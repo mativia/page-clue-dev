@@ -1,0 +1,171 @@
+/* ── Layout ───────────────────────────────────────────────── */
+.hero {
+  position: relative;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding-bottom: clamp(3rem, 6vw, 5rem);
+  padding-left: clamp(1.5rem, 6vw, 6rem);
+  padding-right: clamp(1.5rem, 3vw, 3rem);
+  overflow: hidden;
+  background: linear-gradient(160deg, #0d1f1e 0%, #111110 50%, #0f1a19 100%);
+}
+
+/* ── Heat gradient — static ───────────────────────────────── */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background:
+    radial-gradient(ellipse 75% 80% at 105% -10%, #f0c090 0%, #e84c1e 18%, #8a1a04 42%, transparent 65%),
+    radial-gradient(ellipse 50% 55% at 100% 110%, #1a4a42 0%, #0d2e2a 38%, transparent 62%),
+    radial-gradient(ellipse 65% 55% at -10% 65%,  #0d2e2a 0%, #091e1c 48%, transparent 68%);
+}
+
+/* ── Grain layer (fixed, covers full viewport) ────────────── */
+.hero::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.55;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+  background-repeat: repeat;
+}
+
+/* ── Content zone (left-aligned, bottom) ─────────────────── */
+.content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: 900px;
+}
+
+.eyebrow {
+  display: block;
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #9a9489;
+  margin-bottom: 1.25rem;
+}
+
+.tagline {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(80px, 13vw, 160px);
+  line-height: 0.88;
+  color: #ede9e0;
+  margin: 0 0 1.75rem;
+  letter-spacing: 0.01em;
+}
+
+.dot {
+  color: #e84c1e;
+}
+
+.sub {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  font-size: clamp(14px, 1.4vw, 16px);
+  color: #9a9489;
+  line-height: 1.7;
+  max-width: 420px;
+  margin: 0 0 2.25rem;
+}
+
+.cta {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: #ede9e0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  position: relative;
+  padding-bottom: 4px;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.cta::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: #e84c1e;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.cta:hover::after {
+  transform: scaleX(1);
+}
+
+.cta:active {
+  transform: scale(0.98);
+}
+
+/* ── HUD — metadata block, desktop only ───────────────────── */
+.hud {
+  position: absolute;
+  right: 2rem;
+  bottom: 3rem;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  border-left: 1px solid rgba(255, 255, 255, 0.08);
+  padding-left: 1rem;
+}
+
+.hudItem {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  color: #9a9489;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 7px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.hudItem:first-child {
+  border-top: none;
+}
+
+/* ── Divider ──────────────────────────────────────────────── */
+.divider {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(to right, #e84c1e, transparent 40%);
+}
+
+/* ── Mobile ───────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .tagline {
+    font-size: clamp(52px, 14vw, 80px);
+  }
+
+  .hud {
+    display: none;
+  }
+}
+
+/* ── Reduced motion ───────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .cta::after {
+    transition: none;
+  }
+}

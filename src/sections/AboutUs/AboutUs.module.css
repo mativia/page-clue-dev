@@ -1,0 +1,159 @@
+.section {
+  background: #111110;
+  padding: clamp(5rem, 10vw, 8rem) clamp(1.5rem, 6vw, 6rem);
+  position: relative;
+}
+
+.topDivider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(255, 255, 255, 0.06) 50%,
+    transparent 100%
+  );
+}
+
+.sectionLabel {
+  display: block;
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #9a9489;
+  margin-bottom: 1.5rem;
+}
+
+.sectionTitle {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(48px, 8vw, 96px);
+  line-height: 0.9;
+  color: #ede9e0;
+  margin: 0 0 3rem;
+}
+
+.accentDot {
+  color: #e84c1e;
+}
+
+/* ── Grid centrado ────────────────────────────────────────── */
+.gridWrap {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  width: 100%;
+}
+
+/* ── Cards ────────────────────────────────────────────────── */
+.card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 2px;
+  cursor: pointer;
+  aspect-ratio: 3 / 4;
+  background: #1a1a18;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  box-shadow:
+    0 8px 28px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.07);
+}
+
+.frame {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center top;
+  opacity: 0;
+  transition: opacity 83ms ease;
+  will-change: opacity;
+}
+
+.frameActive {
+  opacity: 1;
+}
+
+.frozen {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center top;
+  opacity: 0;
+  transition: opacity 0.35s ease, filter 0.35s ease;
+  z-index: 2;
+}
+
+.card:hover .frozen {
+  opacity: 1;
+}
+
+.star {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: rgba(237, 233, 224, 0.6);
+  font-size: 22px;
+  pointer-events: none;
+  z-index: 3;
+  transition: opacity 0.3s ease;
+  line-height: 1;
+}
+
+.card:hover .star {
+  opacity: 0;
+}
+
+.memberInfo {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 2rem 1rem 1rem;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+  z-index: 4;
+}
+
+.card:hover .memberInfo {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.memberName {
+  display: inline-block;
+  font-size: 13px;
+  font-weight: 500;
+  color: #ede9e0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: 4px 10px;
+  border-radius: 2px;
+  margin-bottom: 5px;
+  letter-spacing: 0.05em;
+}
+
+.memberRole {
+  font-size: 10px;
+  color: rgba(237, 233, 224, 0.5);
+  letter-spacing: 0.1em;
+  line-height: 1.4;
+}
+
+@media (max-width: 700px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

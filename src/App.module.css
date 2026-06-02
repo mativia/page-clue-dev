@@ -1,0 +1,36 @@
+.root {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-4);
+  background: var(--color-bg);
+}
+
+.badge {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  background: var(--glass-bg);
+  border: 0.5px solid var(--glass-border);
+  padding: 5px 14px;
+  border-radius: var(--radius-full);
+  backdrop-filter: var(--glass-blur);
+}
+
+.title {
+  font-size: clamp(2.5rem, 8vw, 5rem);
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  color: var(--color-text-primary);
+  line-height: 1;
+}
+
+.sub {
+  font-size: 1rem;
+  color: var(--color-text-secondary);
+  letter-spacing: 0.01em;
+}

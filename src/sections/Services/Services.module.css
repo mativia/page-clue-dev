@@ -1,0 +1,217 @@
+/* ── Section ──────────────────────────────────────────────── */
+.section {
+  padding: clamp(5rem, 10vw, 8rem) 0;
+  background: #111110;
+  position: relative;
+}
+
+.topDivider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(255, 255, 255, 0.06) 50%,
+    transparent 100%
+  );
+}
+
+.sectionInner {
+  padding-left: clamp(1.5rem, 6vw, 6rem);
+  padding-right: clamp(1.5rem, 6vw, 6rem);
+}
+
+/* ── Header ───────────────────────────────────────────────── */
+.eyebrow {
+  display: block;
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #9a9489;
+  margin-bottom: 1.5rem;
+}
+
+.sectionTitle {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(48px, 8vw, 96px);
+  line-height: 0.9;
+  color: #ede9e0;
+  margin: 0 0 0.5rem;
+}
+
+.accentDot {
+  color: #e84c1e;
+}
+
+.sectionSub {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  font-size: 14px;
+  color: #9a9489;
+  margin: 0 0 3rem;
+  line-height: 1.6;
+}
+
+/* ── Grid — 1px gap trick for hairline dividers ───────────── */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* ── Card ─────────────────────────────────────────────────── */
+.card {
+  background: #1a1a18;
+  padding: 2rem 1.5rem 2.5rem;
+  min-height: 340px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: background 0.3s ease;
+  cursor: default;
+}
+
+.card:hover {
+  background: #1f1f1c;
+}
+
+.cardNum {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  color: #9a9489;
+  display: block;
+  margin-bottom: 1.5rem;
+}
+
+.cardArrow {
+  position: absolute;
+  top: 1.75rem;
+  right: 1.5rem;
+  font-size: 18px;
+  color: #9a9489;
+  line-height: 1;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), color 0.3s ease;
+}
+
+.card:hover .cardArrow {
+  transform: rotate(45deg);
+  color: #ede9e0;
+}
+
+.cardName {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(32px, 4vw, 48px);
+  line-height: 0.95;
+  color: #ede9e0;
+  margin: 0 0 0.75rem;
+  flex-shrink: 0;
+}
+
+.cardTagline {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  font-size: 13px;
+  color: #9a9489;
+  line-height: 1.5;
+  flex-shrink: 0;
+  margin: 0;
+}
+
+/* ── Expand — pure CSS :hover, no JS state ────────────────── */
+.cardExpand {
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(8px);
+  transition:
+    max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    visibility 0s linear 0.35s;
+  margin-top: 1.25rem;
+}
+
+.card:hover .cardExpand {
+  max-height: 200px;
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  transition:
+    max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    visibility 0s linear 0s;
+}
+
+.cardDesc {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  font-size: 13px;
+  color: rgba(237, 233, 224, 0.7);
+  line-height: 1.7;
+  margin: 0 0 1rem;
+}
+
+.cardTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.cardTag {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  color: #9a9489;
+  letter-spacing: 0.1em;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 3px 8px;
+  border-radius: 2px;
+}
+
+/* ── Bottom bar ───────────────────────────────────────────── */
+.cardBar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.04);
+  transition: background 0.3s ease;
+}
+
+.card:hover .cardBar {
+  background: #e84c1e;
+}
+
+/* ── Responsive ───────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── Reduced motion ───────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .cardArrow,
+  .cardBar,
+  .cardExpand,
+  .card:hover .cardExpand {
+    transition: none;
+  }
+}

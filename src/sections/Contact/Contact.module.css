@@ -1,0 +1,292 @@
+/* ── Section ──────────────────────────────────────────────── */
+.section {
+  padding: clamp(5rem, 10vw, 8rem) 0;
+  background: #0f0f0e;
+  position: relative;
+}
+
+.topDivider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(255, 255, 255, 0.06) 50%,
+    transparent 100%
+  );
+}
+
+.sectionInner {
+  padding-left: clamp(1.5rem, 6vw, 6rem);
+  padding-right: clamp(1.5rem, 6vw, 6rem);
+}
+
+/* ── Header ───────────────────────────────────────────────── */
+.eyebrow {
+  display: block;
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #9a9489;
+  margin-bottom: 1.5rem;
+}
+
+.title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(64px, 10vw, 120px);
+  line-height: 0.88;
+  color: #ede9e0;
+  margin: 0 0 1rem;
+}
+
+.accentDot {
+  color: #e84c1e;
+}
+
+.subtitle {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  font-size: 15px;
+  color: #9a9489;
+  max-width: 480px;
+  margin: 0 0 3.5rem;
+  line-height: 1.6;
+}
+
+/* ── Asymmetric grid ──────────────────────────────────────── */
+.grid {
+  display: grid;
+  grid-template-columns: 55fr 45fr;
+  gap: clamp(3rem, 6vw, 6rem);
+  align-items: start;
+}
+
+/* ── Shared glass surface — misma base para ambas columnas ── */
+.contactCard,
+.form {
+  background: rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  border-radius: 16px;
+  box-shadow:
+    0 24px 48px rgba(0, 0, 0, 0.32),
+    inset 0 1px 0 rgba(255, 255, 255, 0.09);
+  overflow: hidden;
+}
+
+/* ── Contact card — filas estilo iOS settings ─────────────── */
+.contactRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.1rem 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.contactLabel {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #9a9489;
+}
+
+.contactValue {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  color: #ede9e0;
+}
+
+.contactValue a {
+  color: #ede9e0;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s ease;
+}
+
+.contactValue a:hover {
+  border-bottom-color: #e84c1e;
+}
+
+/* ── Socials — bloque inferior dentro del card ────────────── */
+.socials {
+  padding: 1.25rem 1.5rem;
+}
+
+.socialsLabel {
+  display: block;
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #9a9489;
+  margin-bottom: 0.75rem;
+}
+
+.socialsLinks {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0;
+}
+
+.socialLink {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  color: #9a9489;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.socialLink:hover {
+  color: #ede9e0;
+}
+
+.socialSep {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  color: rgba(154, 148, 137, 0.5);
+}
+
+/* ── Form glass card ──────────────────────────────────────── */
+.form {
+  padding: 2rem 1.75rem 2.25rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.formFields {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.fieldGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.fieldLabel {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #9a9489;
+}
+
+/* Inputs — glass-ui input-glass, dark warm ───────────────── */
+.fieldInput,
+.fieldTextarea {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  border-radius: 8px;
+  color: #ede9e0;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  padding: 0.85rem 1rem;
+  width: 100%;
+  outline: none;
+  transition: border-color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+  -webkit-appearance: none;
+}
+
+.fieldInput:focus,
+.fieldTextarea:focus {
+  background: rgba(255, 255, 255, 0.09);
+  border-color: rgba(232, 76, 30, 0.6);
+  box-shadow: 0 0 0 3px rgba(232, 76, 30, 0.09);
+}
+
+.fieldInput::placeholder,
+.fieldTextarea::placeholder {
+  color: rgba(237, 233, 224, 0.2);
+}
+
+.fieldTextarea {
+  min-height: 108px;
+  resize: none;
+  line-height: 1.6;
+}
+
+/* ── Submit button (matches Hero CTA style) ───────────────── */
+.submitBtn {
+  background: transparent;
+  border: none;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  color: #ede9e0;
+  cursor: pointer;
+  margin-top: 2.5rem;
+  display: inline-block;
+  position: relative;
+  padding-bottom: 4px;
+  transition: opacity 0.2s ease;
+  text-align: left;
+}
+
+.submitBtn::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: #e84c1e;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.submitBtn:not(:disabled):hover::after {
+  transform: scaleX(1);
+}
+
+.submitBtn:active {
+  transform: scale(0.98);
+}
+
+.submitBtn:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+/* ── Success message ──────────────────────────────────────── */
+.successMsg {
+  font-family: 'DM Mono', monospace;
+  font-size: 12px;
+  color: #e84c1e;
+  margin-top: 1rem;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.visible {
+  opacity: 1;
+}
+
+/* ── Responsive ───────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── Reduced motion ───────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .contactValue a,
+  .socialLink,
+  .fieldInput,
+  .fieldTextarea,
+  .submitBtn,
+  .submitBtn::after,
+  .successMsg {
+    transition: none;
+  }
+}

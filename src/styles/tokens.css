@@ -1,0 +1,77 @@
+/* ============================================================
+   Clue Dev — Design Tokens
+   Inspired by glass-ui system (iOS 18 / neumorphic dark)
+   ============================================================ */
+
+:root {
+  /* ── Core Backgrounds ─────────────────────────────────── */
+  --color-bg:          #1c1c1c;
+  --color-bg-card:     #242424;
+  --color-bg-raised:   #2a2a2a;
+
+  /* ── Glass ────────────────────────────────────────────── */
+  --glass-bg:          rgba(255, 255, 255, 0.05);
+  --glass-border:      rgba(255, 255, 255, 0.09);
+  --glass-blur:        blur(20px);
+
+  /* ── Shadows (dark neumorphic) ────────────────────────── */
+  --shadow-sm:
+    4px 4px 10px rgba(0, 0, 0, 0.55),
+    -2px -2px 6px rgba(255, 255, 255, 0.04);
+  --shadow-md:
+    7px 7px 16px rgba(0, 0, 0, 0.60),
+    -3px -3px 8px rgba(255, 255, 255, 0.04);
+  --shadow-lg:
+    10px 10px 24px rgba(0, 0, 0, 0.65),
+    -4px -4px 12px rgba(255, 255, 255, 0.045);
+
+  /* ── Typography ───────────────────────────────────────── */
+  --font-sans:    'DM Sans', system-ui, sans-serif;
+  --font-display: 'Bebas Neue', sans-serif;
+  --font-mono:    'DM Mono', 'JetBrains Mono', monospace;
+
+  /* ── Text ─────────────────────────────────────────────── */
+  --color-text-primary:   #ede9e0;
+  --color-text-secondary: #9a9489;
+  --color-text-muted:     #9a9489;
+
+  /* ── Brand palette ────────────────────────────────────── */
+  --color-base:    #111110;
+  --color-ember:   #e84c1e;
+  --color-teal:    #0d2e2a;
+  --color-stone:   #9a9489;
+
+  /* ── Accent ───────────────────────────────────────────── */
+  --color-accent:         #ede9e0;
+  --color-accent-blue:    #4f8eff;
+  --color-accent-cyan:    #22d3ee;
+  --color-accent-muted:   rgba(79, 142, 255, 0.16);
+
+  /* ── Spacing ──────────────────────────────────────────── */
+  --spacing-section: 5rem;
+  --sp-1:   4px;
+  --sp-2:   8px;
+  --sp-3:   12px;
+  --sp-4:   16px;
+  --sp-5:   20px;
+  --sp-6:   24px;
+  --sp-8:   32px;
+  --sp-10:  40px;
+  --sp-12:  48px;
+  --sp-16:  64px;
+  --sp-20:  80px;
+
+  /* ── Border Radius ────────────────────────────────────── */
+  --radius-sm:  3px;
+  --radius-md:  8px;
+  --radius-lg:  14px;
+  --radius-xl:  20px;
+  --radius-full: 9999px;
+
+  /* ── Transitions ──────────────────────────────────────── */
+  --ease:        cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --t-fast:  120ms;
+  --t-base:  220ms;
+  --t-slow:  400ms;
+}
