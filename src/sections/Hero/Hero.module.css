@@ -196,6 +196,21 @@
   .hud {
     display: none;
   }
+
+  /* CTA always shows the hover glow on touch devices */
+  .cta {
+    background: rgba(17, 17, 16, 0.22);
+    border-color: rgba(232, 76, 30, 0.45);
+    box-shadow:
+      0 0 14px rgba(232, 76, 30, 0.20),
+      0 0 40px rgba(232, 76, 30, 0.08),
+      inset 0 1px 0 rgba(255, 255, 255, 0.10);
+  }
+
+  .cta::after {
+    opacity: 1;
+    background-position: 50% center;
+  }
 }
 
 /* ── Reduced motion ───────────────────────────────────────── */
