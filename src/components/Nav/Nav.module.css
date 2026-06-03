@@ -9,7 +9,6 @@
   background: rgba(17, 17, 16, 0.06);
   border-bottom: 1px solid rgba(255, 255, 255, 0.04);
   border-radius: 0 0 16px 16px;
-  overflow: hidden;
   transition: background 0.4s ease, border-color 0.4s ease;
 }
 
@@ -109,6 +108,7 @@
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
   overflow: hidden;
+  border-radius: 0 0 16px 16px;
   max-height: 0;
   transition: max-height 0.35s ease, opacity 0.25s ease;
   opacity: 0;
