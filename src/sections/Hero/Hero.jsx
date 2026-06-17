@@ -1,8 +1,19 @@
 import styles from './Hero.module.css'
+import fondoVideo from '../../assets/fondoconmovimiento.mp4'
 
 export default function Hero() {
   return (
     <section className={styles.hero} id="inicio">
+      <video
+        className={styles.bgVideo}
+        src={fondoVideo}
+        autoPlay
+        loop
+        muted
+        playsInline
+        aria-hidden="true"
+      />
+
       <div className={styles.content}>
         <span className={styles.eyebrow}>CLUE_DEV · EST. 2024 · CBA, AR</span>
 

@@ -10,8 +10,6 @@ export default function Footer() {
       <nav className={styles.nav} aria-label="Navegación de pie de página">
         <a href="#servicios" className={styles.navLink}>Servicios</a>
         <span className={styles.sep} aria-hidden="true"> · </span>
-        <a href="#nosotros" className={styles.navLink}>Nosotros</a>
-        <span className={styles.sep} aria-hidden="true"> · </span>
         <a href="#contacto" className={styles.navLink}>Contacto</a>
       </nav>
 
