@@ -203,6 +203,23 @@
   .grid {
     grid-template-columns: 1fr;
   }
+
+  /* Cards always expanded on mobile — no hover needed */
+  .card {
+    min-height: auto;
+  }
+
+  .cardExpand {
+    max-height: 400px;
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    transition: none;
+  }
+
+  .cardBar {
+    background: #e84c1e;
+  }
 }
 
 /* ── Reduced motion ───────────────────────────────────────── */
