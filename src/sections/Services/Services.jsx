@@ -3,32 +3,25 @@ import { Reveal } from '../../components/Reveal/Reveal'
 
 const SERVICES = [
   {
-    id: 'SVC_001',
+    id: 'SVC_01',
+    name: 'SOFTWARE',
+    tagline: 'Desarrollo de software a medida.',
+    desc: 'Creamos sistemas y aplicaciones a medida para optimizar procesos, centralizar información y mejorar la gestión de la empresa.',
+    tags: ['Sistemas a medida', 'Web apps', 'Automatización', 'Integraciones'],
+  },
+  {
+    id: 'SVC_02',
     name: 'ODOO',
-    tagline: 'Tu operación, sistematizada.',
-    desc: 'Implementamos y desarrollamos módulos Odoo a medida para pymes que necesitan dejar de operar en planillas. Ventas, stock, contabilidad, CRM: todo conectado, sin fricción.',
-    tags: ['ERP', 'Módulos custom', 'Migración de datos', 'Soporte'],
+    tagline: 'Módulos personalizados Odoo.',
+    desc: 'Desarrollamos e integramos funcionalidades específicas para adaptar Odoo a la forma de trabajar de cada organización.',
+    tags: ['ERP', 'Módulos custom', 'Integraciones', 'CRM'],
   },
   {
-    id: 'SVC_002',
-    name: 'SISTEMAS',
-    tagline: 'Software que resuelve el problema real.',
-    desc: 'Desarrollamos aplicaciones web y sistemas internos a medida. Sin templates, sin soluciones genéricas. Analizamos el flujo de trabajo y construimos exactamente lo que se necesita.',
-    tags: ['Web apps', 'APIs', 'Bases de datos', 'Integraciones'],
-  },
-  {
-    id: 'SVC_003',
+    id: 'SVC_03',
     name: 'WEB',
-    tagline: 'Presencia digital que convierte.',
-    desc: 'Sitios y landing pages con diseño de impacto real. No hacemos páginas de catálogo: construimos experiencias visuales que comunican quién sos y generan acción.',
-    tags: ['Landing pages', 'Diseño editorial', 'Performance', 'SEO técnico'],
-  },
-  {
-    id: 'SVC_004',
-    name: 'E-COMMERCE',
-    tagline: 'Mercado Libre, sin el caos.',
-    desc: 'Gestión estratégica de cuentas en Mercado Libre. Listings optimizados, reputación, logística y escalado de ventas. Para el que ya vende y quiere vender más.',
-    tags: ['MercadoLibre', 'Listings', 'Reputación', 'Escalado'],
+    tagline: 'Desarrollo web profesional.',
+    desc: 'Diseñamos sitios web profesionales orientados a fortalecer la presencia digital y generar nuevas oportunidades comerciales.',
+    tags: ['Sitios web', 'Landing pages', 'Performance', 'SEO'],
   },
 ]
 
@@ -62,10 +55,13 @@ export default function Services() {
       <div className={styles.sectionInner}>
         <span className={styles.eyebrow}>02 · SERVICIOS</span>
         <h2 className={styles.sectionTitle}>
-          LO QUE<br />
-          HACEMOS<span className={styles.accentDot}>.</span>
+          TECNOLOGÍA<br />
+          APLICADA A<br />
+          CADA EMPRESA<span className={styles.accentDot}>.</span>
         </h2>
-        <p className={styles.sectionSub}>Cuatro especialidades. Un solo equipo.</p>
+        <p className={styles.sectionSub}>
+          Desarrollamos soluciones digitales adaptadas a las necesidades y procesos de cada negocio.
+        </p>
         <div className={styles.grid}>
           {SERVICES.map((svc, i) => (
             <Reveal key={svc.id} delay={i * 0.08}>

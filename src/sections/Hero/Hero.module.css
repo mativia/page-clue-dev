@@ -82,8 +82,8 @@
 
 .tagline {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(80px, 13vw, 160px);
-  line-height: 0.88;
+  font-size: clamp(46px, 8vw, 104px);
+  line-height: 0.9;
   color: #ede9e0;
   margin: 0 0 1.75rem;
   letter-spacing: 0.01em;
@@ -99,7 +99,7 @@
   font-size: clamp(14px, 1.4vw, 16px);
   color: #9a9489;
   line-height: 1.7;
-  max-width: 420px;
+  max-width: 520px;
   margin: 0 0 2.25rem;
 }
 
@@ -177,7 +177,7 @@
 /* ── Mobile ───────────────────────────────────────────────── */
 @media (max-width: 768px) {
   .tagline {
-    font-size: clamp(52px, 14vw, 80px);
+    font-size: clamp(38px, 11vw, 62px);
   }
 
   .hud {
