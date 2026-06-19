@@ -1,20 +1,10 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState } from 'react'
 import styles from './Nav.module.css'
 
 const LINKS = ['Servicios', 'Contacto']
 
 export default function Nav() {
-  const [isScrolled, setIsScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
-  const thresholdRef = useRef(80)
-
-  useEffect(() => {
-    function onScroll() {
-      setIsScrolled(window.scrollY > thresholdRef.current)
-    }
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [])
 
   function handleNavClick(e, targetId) {
     e.preventDefault()
@@ -24,7 +14,7 @@ export default function Nav() {
   }
 
   return (
-    <nav className={`${styles.nav} ${isScrolled ? styles.scrolled : ''}`}>
+    <nav className={styles.nav}>
       <div className={styles.inner}>
         <a
           href="#inicio"

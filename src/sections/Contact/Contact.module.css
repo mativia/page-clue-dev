@@ -1,8 +1,28 @@
 /* ── Section ──────────────────────────────────────────────── */
 .section {
-  padding: clamp(5rem, 10vw, 8rem) 0;
-  background: #0f0f0e;
   position: relative;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: clamp(3rem, 8vw, 6rem) clamp(1.25rem, 6vw, 6rem);
+  background-color: #0c0a08;
+}
+
+/* Backdrop image on its own layer so it can be enlarged / nudged without
+   affecting the glass panel. Slightly scaled up and shifted right. */
+.section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image: url('../../assets/images/fondoContactanos.webp');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transform: scale(1.12) translateX(2%);
+  transform-origin: center;
 }
 
 .topDivider {
@@ -11,20 +31,154 @@
   left: 0;
   right: 0;
   height: 1px;
-  background: linear-gradient(
-    to right,
-    transparent 0%,
-    rgba(255, 255, 255, 0.06) 50%,
-    transparent 100%
-  );
+  background: linear-gradient(to right,
+      transparent 0%,
+      rgba(255, 255, 255, 0.06) 50%,
+      transparent 100%);
+  z-index: 2;
 }
 
-.sectionInner {
-  padding-left: clamp(1.5rem, 6vw, 6rem);
-  padding-right: clamp(1.5rem, 6vw, 6rem);
+/* ── Unified glass rectangle (frame around both halves) ───── */
+.glass {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  max-width: 92vw;
+  height: min(1040px, 86vh);
+  border-radius: 30px;
+  overflow: hidden;
+  isolation: isolate;
+  box-shadow:
+    0 24px 60px rgba(0, 0, 0, 0.38),
+    0 6px 18px rgba(0, 0, 0, 0.24);
 }
 
-/* ── Header ───────────────────────────────────────────────── */
+/* Frame rim — a crisp glass edge around the whole rectangle, drawn on
+   top of both halves so it stays continuous over the frosted side. */
+.glass::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  pointer-events: none;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(180deg,
+      rgba(255, 255, 255, 0.75) 0%,
+      rgba(255, 255, 255, 0.06) 28%,
+      transparent 62%,
+      rgba(255, 255, 255, 0.22) 100%);
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+/* Two halves. Widths are explicit so the left stays fixed while the
+   right can be made narrower from its right edge inward. */
+.glassHalf {
+  position: relative;
+  flex: 0 0 auto;
+  min-width: 0;
+}
+
+/* Right half — narrower: its left edge stays at the divider, its right
+   edge pulls inward. Adjust this width to taste. */
+.glassRight {
+  width: min(540px, 25vw);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: clamp(1.5rem, 3vw, 2.75rem);
+}
+
+/* Left half keeps its original width (the former 50% of the panel). */
+.glassLeft {
+  width: min(910px, 43vw);
+  overflow: hidden;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+
+  /* Faint diagonal tint so the slab reads as a physical surface. */
+  background: linear-gradient(135deg,
+      rgba(255, 255, 255, 0.14) 0%,
+      rgba(255, 255, 255, 0.04) 55%,
+      rgba(255, 255, 255, 0.08) 100%);
+
+  /* Refraction: blur + saturation/brightness lift on whatever is behind. */
+  backdrop-filter: blur(10px) saturate(180%) brightness(1.06);
+  -webkit-backdrop-filter: blur(10px) saturate(180%) brightness(1.06);
+}
+
+/* Specular reflection — soft light pooling toward the top-left, with a
+   slow drift that gives the surface its "liquid" quality. */
+.glassLeft::before {
+  content: '';
+  position: absolute;
+  inset: -25%;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    radial-gradient(110% 80% at 18% 4%,
+      rgba(255, 255, 255, 0.38) 0%,
+      rgba(255, 255, 255, 0.08) 32%,
+      transparent 58%);
+  animation: glassDrift 9s ease-in-out infinite;
+}
+
+/* Hairline divider between the two halves, fading toward the ends. */
+.glassLeft::after {
+  content: '';
+  position: absolute;
+  z-index: 2;
+  top: 8%;
+  bottom: 8%;
+  right: 0;
+  width: 1px;
+  background: linear-gradient(to bottom,
+      transparent 0%,
+      rgba(255, 255, 255, 0.22) 50%,
+      transparent 100%);
+}
+
+@keyframes glassDrift {
+  0% {
+    transform: translate(0, 0);
+  }
+
+  50% {
+    transform: translate(7%, 5%);
+  }
+
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+/* ── Contact form (inside the left glass half) ────────────── */
+.form {
+  position: relative;
+  z-index: 3;
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: clamp(0.85rem, 1.8vh, 1.35rem);
+  padding: clamp(1.5rem, 3vw, 2.75rem);
+  overflow-y: auto;
+}
+
+.formHeader {
+  margin-bottom: 0.25rem;
+}
+
 .eyebrow {
   display: block;
   font-family: 'DM Mono', monospace;
@@ -32,261 +186,249 @@
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: #9a9489;
-  margin-bottom: 1.5rem;
+  margin-bottom: 0.6rem;
 }
 
 .title {
   font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(64px, 10vw, 120px);
-  line-height: 0.88;
+  font-size: clamp(40px, 5vw, 68px);
+  line-height: 0.9;
   color: #ede9e0;
-  margin: 0 0 1rem;
+  margin: 0;
 }
 
-.accentDot {
+.dot {
   color: #e84c1e;
 }
 
-.subtitle {
-  font-family: 'DM Sans', sans-serif;
-  font-weight: 300;
-  font-size: 15px;
-  color: #9a9489;
-  max-width: 480px;
-  margin: 0 0 3.5rem;
-  line-height: 1.6;
-}
-
-/* ── Asymmetric grid ──────────────────────────────────────── */
-.grid {
+.fieldRow {
   display: grid;
-  grid-template-columns: 55fr 45fr;
-  gap: clamp(3rem, 6vw, 6rem);
-  align-items: start;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(0.75rem, 1.5vw, 1.1rem);
 }
 
-/* ── Shared glass surface — misma base para ambas columnas ── */
-.contactCard,
-.form {
-  background: rgba(255, 255, 255, 0.07);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  border: 1px solid rgba(255, 255, 255, 0.10);
-  border-radius: 16px;
-  box-shadow:
-    0 24px 48px rgba(0, 0, 0, 0.32),
-    inset 0 1px 0 rgba(255, 255, 255, 0.09);
-  overflow: hidden;
-}
-
-/* ── Contact card — filas estilo iOS settings ─────────────── */
-.contactRow {
+.field {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1.1rem 1.5rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  flex-direction: column;
 }
 
-.contactLabel {
-  font-family: 'DM Mono', monospace;
-  font-size: 9px;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: #9a9489;
-}
-
-.contactValue {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 14px;
-  color: #ede9e0;
-}
-
-.contactValue a {
-  color: #ede9e0;
-  text-decoration: none;
-  border-bottom: 1px solid transparent;
-  transition: border-color 0.2s ease;
-}
-
-.contactValue a:hover {
-  border-bottom-color: #e84c1e;
-}
-
-/* ── Socials — bloque inferior dentro del card ────────────── */
-.socials {
-  padding: 1.25rem 1.5rem;
-}
-
-.socialsLabel {
+.label {
   display: block;
-  font-family: 'DM Mono', monospace;
-  font-size: 9px;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: #9a9489;
-  margin-bottom: 0.75rem;
-}
-
-.socialsLinks {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 0;
-}
-
-.socialLink {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 13px;
-  color: #9a9489;
-  text-decoration: none;
-  transition: color 0.2s ease;
-}
-
-.socialLink:hover {
-  color: #ede9e0;
-}
-
-.socialSep {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 13px;
-  color: rgba(154, 148, 137, 0.5);
-}
-
-/* ── Form glass card ──────────────────────────────────────── */
-.form {
-  padding: 2rem 1.75rem 2.25rem;
-  display: flex;
-  flex-direction: column;
-}
-
-.formFields {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
-
-.fieldGroup {
-  display: flex;
-  flex-direction: column;
-  gap: 0.55rem;
-}
-
-.fieldLabel {
   font-family: 'DM Mono', monospace;
   font-size: 9px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: #9a9489;
+  color: #f4f1ea;
+  margin-bottom: 0.5rem;
 }
 
-/* Inputs — glass-ui input-glass, dark warm ───────────────── */
-.fieldInput,
-.fieldTextarea {
+.input,
+.textarea {
+  width: 100%;
   background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.10);
-  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
   color: #ede9e0;
   font-family: 'DM Sans', sans-serif;
   font-size: 14px;
   font-weight: 300;
-  padding: 0.85rem 1rem;
-  width: 100%;
+  padding: 0.78rem 0.95rem;
+  cursor: text;
   outline: none;
   transition: border-color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
   -webkit-appearance: none;
+  appearance: none;
 }
 
-.fieldInput:focus,
-.fieldTextarea:focus {
+.input:focus,
+.textarea:focus {
   background: rgba(255, 255, 255, 0.09);
   border-color: rgba(232, 76, 30, 0.6);
-  box-shadow: 0 0 0 3px rgba(232, 76, 30, 0.09);
+  box-shadow: 0 0 0 3px rgba(232, 76, 30, 0.12);
 }
 
-.fieldInput::placeholder,
-.fieldTextarea::placeholder {
-  color: rgba(237, 233, 224, 0.2);
+.input::placeholder,
+.textarea::placeholder {
+  color: rgba(237, 233, 224, 0.25);
 }
 
-.fieldTextarea {
-  min-height: 108px;
-  resize: none;
+.textarea {
+  min-height: 96px;
+  resize: vertical;
   line-height: 1.6;
 }
 
-/* ── Submit button (matches Hero CTA style) ───────────────── */
-.submitBtn {
-  background: transparent;
-  border: none;
+/* Service selector — single-choice glass chips. */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.chip {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  color: #9a9489;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 100px;
+  padding: 0.5rem 1.05rem;
+  cursor: pointer;
+  transition: color 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+}
+
+.chip:hover {
+  color: #ede9e0;
+  border-color: rgba(255, 255, 255, 0.22);
+}
+
+.chipActive {
+  color: #ede9e0;
+  background: rgba(232, 76, 30, 0.16);
+  border-color: rgba(232, 76, 30, 0.6);
+}
+
+.submit {
+  align-self: flex-start;
+  margin-top: 0.4rem;
   font-family: 'DM Sans', sans-serif;
   font-size: 14px;
   color: #ede9e0;
+  background: rgba(232, 76, 30, 0.18);
+  border: 1px solid rgba(232, 76, 30, 0.55);
+  border-radius: 100px;
+  padding: 0.8rem 1.8rem;
   cursor: pointer;
-  margin-top: 2.5rem;
-  display: inline-block;
-  position: relative;
-  padding-bottom: 4px;
-  transition: opacity 0.2s ease;
-  text-align: left;
+  transition: background 0.2s ease, transform 0.1s ease, opacity 0.2s ease;
 }
 
-.submitBtn::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: #e84c1e;
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+.submit:hover:not(:disabled) {
+  background: rgba(232, 76, 30, 0.3);
 }
 
-.submitBtn:not(:disabled):hover::after {
-  transform: scaleX(1);
-}
-
-.submitBtn:active {
+.submit:active:not(:disabled) {
   transform: scale(0.98);
 }
 
-.submitBtn:disabled {
-  opacity: 0.5;
+.submit:disabled {
+  opacity: 0.55;
   cursor: default;
 }
 
-/* ── Success message ──────────────────────────────────────── */
-.successMsg {
+.feedback {
   font-family: 'DM Mono', monospace;
   font-size: 12px;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.feedbackOk {
+  color: #7bd88f;
+}
+
+.feedbackErr {
   color: #e84c1e;
-  margin-top: 1rem;
-  opacity: 0;
-  transition: opacity 0.4s ease;
 }
 
-.visible {
-  opacity: 1;
+/* ── Company contacts (bottom of the left half) ───────────── */
+.contacts {
+  margin-top: auto;
+  padding-top: clamp(1rem, 2.5vh, 1.6rem);
+  border-top: 1px solid rgba(255, 255, 255, 0.10);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: right;
+  gap: 0.45rem;
 }
 
-/* ── Responsive ───────────────────────────────────────────── */
+.contactItem {
+  width: fit-content;
+  font-family: 'DM Mono', monospace;
+  font-size: 13px;
+  color: #ede9e0;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.contactItem:hover {
+  color: #e84c1e;
+}
+
+/* ── Social links (bottom of the right half) ──────────────── */
+.socials {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: clamp(1rem, 2.5vw, 2rem);
+}
+
+.social {
+  display: inline-flex;
+  color: #ede9e0;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.45));
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.social svg {
+  width: 26px;
+  height: 26px;
+  display: block;
+}
+
+.social:hover {
+  color: #e84c1e;
+  transform: translateY(-2px);
+}
+
+/* ── Mobile: stack to a single full-width form + socials ──── */
 @media (max-width: 768px) {
-  .grid {
+  .glass {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .glassLeft,
+  .glassRight {
+    width: 100%;
+  }
+
+  .glassLeft::after {
+    display: none;
+  }
+
+  .glassRight {
+    justify-content: center;
+    padding: clamp(1.5rem, 6vw, 2rem);
+  }
+
+  .socials {
+    justify-content: center;
+    gap: 2.5rem;
+  }
+
+  .form {
+    flex: none;
+    height: auto;
+    justify-content: flex-start;
+    overflow: visible;
+  }
+
+  .fieldRow {
     grid-template-columns: 1fr;
   }
 }
 
 /* ── Reduced motion ───────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
-  .contactValue a,
-  .socialLink,
-  .fieldInput,
-  .fieldTextarea,
-  .submitBtn,
-  .submitBtn::after,
-  .successMsg {
+  .glassLeft::before {
+    animation: none;
+  }
+
+  .input,
+  .textarea,
+  .chip,
+  .submit {
     transition: none;
   }
 }
