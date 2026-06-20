@@ -22,6 +22,16 @@ export default function Hero() {
       return () => video.removeEventListener('loadedmetadata', showFirstFrame)
     }
 
+    // Mobile: no scroll-scrub. Play the video as a normal looping background.
+    const isMobile = window.matchMedia('(max-width: 768px)').matches
+    if (isMobile) {
+      video.loop = true
+      const play = () => { video.play().catch(() => { /* autoplay blocked */ }) }
+      if (video.readyState >= 2) play()
+      else video.addEventListener('canplay', play)
+      return () => video.removeEventListener('canplay', play)
+    }
+
     const FRAME_STEP = 1 / 30 // don't bother seeking finer than ~one frame
 
     let duration = 0

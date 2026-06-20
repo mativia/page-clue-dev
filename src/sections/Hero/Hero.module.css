@@ -176,6 +176,15 @@
 
 /* ── Mobile ───────────────────────────────────────────────── */
 @media (max-width: 768px) {
+  /* No scroll-scrub on phones: collapse the tall stage to one screen. */
+  .hero {
+    height: 100dvh;
+  }
+
+  .stage {
+    position: relative;
+  }
+
   .tagline {
     font-size: clamp(38px, 11vw, 62px);
   }
