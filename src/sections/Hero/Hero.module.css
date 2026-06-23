@@ -1,49 +1,34 @@
-/* ── Scroll stage ─────────────────────────────────────────── */
-/* The hero is taller than the viewport: scrolling through this extra
-   height is what scrubs the background video frame by frame. */
+/* ── Hero ─────────────────────────────────────────────────── */
 .hero {
   position: relative;
-  height: 250vh;
-  background: linear-gradient(160deg, #0d1f1e 0%, #111110 50%, #0f1a19 100%);
-}
-
-/* Pinned viewport-sized stage that holds the video + content. */
-.stage {
-  position: sticky;
-  top: 0;
-  height: 100dvh;
-  overflow: hidden;
+  min-height: 100dvh;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+  overflow: hidden;
   padding-bottom: clamp(3rem, 6vw, 5rem);
   padding-left: clamp(1.5rem, 6vw, 6rem);
   padding-right: clamp(1.5rem, 3vw, 3rem);
+  background-color: #0d1413;
+  background-image: url('../../assets/images/fondoHero.webp');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
-/* ── Background video (centered, scroll-scrubbed) ─────────── */
-.bgVideo {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  filter: brightness(0.78) contrast(1.04);
-  /* Promote to its own compositing layer for smoother per-frame painting. */
-  transform: translateZ(0);
-  backface-visibility: hidden;
-}
-
-/* ── Scrim over video (keeps the bottom text legible) ─────── */
-.stage::before {
+/* Scrim — darkens the lower area so the text stays legible. */
+.hero::before {
   content: '';
   position: absolute;
   inset: 0;
   z-index: 1;
   pointer-events: none;
-  background: linear-gradient(to top, rgba(6, 11, 10, 0.8) 0%, rgba(6, 11, 10, 0.4) 38%, rgba(6, 11, 10, 0.12) 100%);
+  background: linear-gradient(
+    to top,
+    rgba(6, 11, 10, 0.82) 0%,
+    rgba(6, 11, 10, 0.42) 38%,
+    rgba(6, 11, 10, 0.12) 100%
+  );
 }
 
 /* ── Content zone (left-aligned, bottom) ─────────────────── */
@@ -83,7 +68,7 @@
   font-family: 'DM Sans', sans-serif;
   font-weight: 300;
   font-size: clamp(14px, 1.4vw, 16px);
-  color: #9a9489;
+  color: #c9c4ba;
   line-height: 1.7;
   max-width: 520px;
   margin: 0 0 2.25rem;
@@ -156,21 +141,13 @@
   bottom: 0;
   left: 0;
   right: 0;
+  z-index: 2;
   height: 1px;
   background: linear-gradient(to right, #e84c1e, transparent 40%);
 }
 
 /* ── Mobile ───────────────────────────────────────────────── */
 @media (max-width: 768px) {
-  /* No scroll-scrub on phones: collapse the tall stage to one screen. */
-  .hero {
-    height: 100dvh;
-  }
-
-  .stage {
-    position: relative;
-  }
-
   .tagline {
     font-size: clamp(38px, 11vw, 62px);
   }
@@ -181,16 +158,7 @@
 }
 
 /* ── Reduced motion ───────────────────────────────────────── */
-/* No scroll-scrub, so collapse the tall stage to a single screen. */
 @media (prefers-reduced-motion: reduce) {
-  .hero {
-    height: 100dvh;
-  }
-
-  .stage {
-    position: relative;
-  }
-
   .cta::after {
     transition: none;
   }
