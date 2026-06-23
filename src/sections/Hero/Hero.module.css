@@ -30,7 +30,7 @@
   height: 100%;
   object-fit: cover;
   object-position: center;
-  filter: brightness(0.55) contrast(1.05);
+  filter: brightness(0.78) contrast(1.04);
   /* Promote to its own compositing layer for smoother per-frame painting. */
   transform: translateZ(0);
   backface-visibility: hidden;
@@ -43,21 +43,7 @@
   inset: 0;
   z-index: 1;
   pointer-events: none;
-  background: linear-gradient(to top, rgba(6, 11, 10, 0.96) 0%, rgba(6, 11, 10, 0.6) 40%, rgba(6, 11, 10, 0.35) 100%);
-}
-
-/* ── Grain layer (clipped to the stage) ───────────────────── */
-.stage::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-  opacity: 0.55;
-  mix-blend-mode: overlay;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23noise)'/%3E%3C/svg%3E");
-  background-size: 200px 200px;
-  background-repeat: repeat;
+  background: linear-gradient(to top, rgba(6, 11, 10, 0.8) 0%, rgba(6, 11, 10, 0.4) 38%, rgba(6, 11, 10, 0.12) 100%);
 }
 
 /* ── Content zone (left-aligned, bottom) ─────────────────── */
