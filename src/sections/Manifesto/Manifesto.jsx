@@ -25,25 +25,21 @@ const POINTS = [
   },
 ]
 
-const MARQUEE = [
-  'DESARROLLO DE SOFTWARE',
-  'MÓDULOS PERSONALIZADOS ODOO',
-  'DESARROLLO WEB',
-  'AUTOMATIZACIÓN DE PROCESOS',
-  'ERP',
-  'CRM',
-  'INTEGRACIONES',
-]
-
-// Claudio (CLUE's mascot) — one image per step:
-// src/assets/images/claudio/claudio-01.webp … claudio-04.webp.
-const claudioImgs = import.meta.glob('../../assets/images/claudio/*.webp', {
+// Claudio (CLUE's mascot) — one full-body image per step in
+// src/assets/images/claudio/ as claudio-01 … claudio-04 (.png or .webp).
+const claudioImgs = import.meta.glob('../../assets/images/claudio/*.{png,webp}', {
   eager: true,
   import: 'default',
 })
+const claudioById = Object.fromEntries(
+  Object.entries(claudioImgs).map(([path, url]) => {
+    const match = path.match(/claudio-(\d+)\./)
+    return [match?.[1], url]
+  }),
+)
 
 function claudioSrc(id) {
-  return claudioImgs[`../../assets/images/claudio/claudio-${id}.webp`] ?? null
+  return claudioById[id] ?? null
 }
 
 export default function Manifesto() {
@@ -72,7 +68,7 @@ export default function Manifesto() {
         </div>
 
         <Reveal>
-          <span className={styles.eyebrow}>✦ 01 - Proceso</span>
+          <span className={styles.eyebrow}>✦ 02 - Proceso</span>
           <h2 className={styles.statement}>
             CÓMO<br />
             TRABAJAMOS<span className={styles.accentDot}>.</span>
@@ -108,17 +104,6 @@ export default function Manifesto() {
               </Reveal>
             )
           })}
-        </div>
-      </div>
-
-      <div className={styles.marquee} aria-hidden="true">
-        <div className={styles.marqueeTrack}>
-          {[...MARQUEE, ...MARQUEE].map((word, i) => (
-            <span key={i} className={styles.marqueeItem}>
-              {word}
-              <span className={styles.marqueeStar}>✦</span>
-            </span>
-          ))}
         </div>
       </div>
     </section>

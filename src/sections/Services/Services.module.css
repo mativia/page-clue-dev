@@ -1,7 +1,10 @@
 /* ── Section ──────────────────────────────────────────────── */
 .section {
   padding: clamp(5rem, 10vw, 8rem) 0;
-  background: #111110;
+  /* Top fade blends into the dark bottom of the Hero above. */
+  background:
+    linear-gradient(to bottom, #060b0a 0%, rgba(6, 11, 10, 0.82) 6%, rgba(6, 11, 10, 0) 26%),
+    #111110;
   position: relative;
 }
 

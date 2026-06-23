@@ -53,7 +53,7 @@ export default function Services() {
     <section className={styles.section} id="servicios">
       <div className={styles.topDivider} />
       <div className={styles.sectionInner}>
-        <span className={styles.eyebrow}>02 · SERVICIOS</span>
+        <span className={styles.eyebrow}>01 · SERVICIOS</span>
         <h2 className={styles.sectionTitle}>
           TECNOLOGÍA<br />
           APLICADA A<br />
