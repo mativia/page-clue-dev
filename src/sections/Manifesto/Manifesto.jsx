@@ -7,25 +7,21 @@ const POINTS = [
     id: '01',
     title: 'Relevamiento',
     desc: 'Entendemos tu negocio, tus procesos y dónde se pierde tiempo o información.',
-    bg: 'radial-gradient(ellipse 90% 80% at 100% 0%, rgba(232, 76, 30, 0.18) 0%, transparent 60%), #111110',
   },
   {
     id: '02',
     title: 'Propuesta',
     desc: 'Plazos reales y cumplidos. Te decimos lo que se puede hacer, cuándo, y lo hacemos. Sin sorpresas.',
-    bg: 'radial-gradient(ellipse 90% 80% at 0% 0%, rgba(13, 46, 42, 0.9) 0%, transparent 62%), #111110',
   },
   {
     id: '03',
     title: 'Desarrollo',
     desc: 'Construimos la solución a medida, con avances visibles y comunicación directa.',
-    bg: 'radial-gradient(ellipse 90% 80% at 100% 100%, rgba(232, 76, 30, 0.14) 0%, transparent 58%), #111110',
   },
   {
     id: '04',
     title: 'Implementación y soporte',
     desc: 'Ponemos todo en marcha, capacitamos al equipo y te acompañamos después.',
-    bg: 'radial-gradient(ellipse 100% 90% at 0% 100%, rgba(26, 74, 66, 0.7) 0%, transparent 60%), #111110',
   },
 ]
 
@@ -39,20 +35,42 @@ const MARQUEE = [
   'INTEGRACIONES',
 ]
 
+// Claudio (CLUE's mascot) — one image per step:
+// src/assets/images/claudio/claudio-01.webp … claudio-04.webp.
+const claudioImgs = import.meta.glob('../../assets/images/claudio/*.webp', {
+  eager: true,
+  import: 'default',
+})
+
+function claudioSrc(id) {
+  return claudioImgs[`../../assets/images/claudio/claudio-${id}.webp`] ?? null
+}
+
 export default function Manifesto() {
   const [activeId, setActiveId] = useState(null)
-
-  const activePoint = POINTS.find(p => p.id === activeId)
 
   return (
     <section className={styles.section} id="manifiesto">
       <div className={styles.topDivider} />
-      <div className={styles.glow} aria-hidden="true" />
 
-      <div
-        className={styles.inner}
-        style={activePoint ? { background: activePoint.bg } : undefined}
-      >
+      <div className={styles.inner}>
+        <div className={styles.claudio} aria-hidden="true">
+          {POINTS.map(point => {
+            const src = claudioSrc(point.id)
+            if (!src) return null
+            // Default to step 01 when nothing is active.
+            const shown = (activeId ?? '01') === point.id
+            return (
+              <img
+                key={point.id}
+                src={src}
+                alt=""
+                className={`${styles.claudioImg}${shown ? ` ${styles.claudioVisible}` : ''}`}
+              />
+            )
+          })}
+        </div>
+
         <Reveal>
           <span className={styles.eyebrow}>✦ 01 - Proceso</span>
           <h2 className={styles.statement}>
