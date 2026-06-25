@@ -120,31 +120,14 @@
   display: flex;
   flex-direction: column;
 
-  /* Faint diagonal tint so the slab reads as a physical surface. */
+  /* Opaque dark panel so the form fields & labels stay legible — the
+     bright backdrop (sunset) was washing them out. Slight blur keeps a
+     hint of glass. */
   background: linear-gradient(135deg,
-      rgba(255, 255, 255, 0.14) 0%,
-      rgba(255, 255, 255, 0.04) 55%,
-      rgba(255, 255, 255, 0.08) 100%);
-
-  /* Refraction: blur + saturation/brightness lift on whatever is behind. */
-  backdrop-filter: blur(10px) saturate(180%) brightness(1.06);
-  -webkit-backdrop-filter: blur(10px) saturate(180%) brightness(1.06);
-}
-
-/* Specular reflection — soft light pooling toward the top-left, with a
-   slow drift that gives the surface its "liquid" quality. */
-.glassLeft::before {
-  content: '';
-  position: absolute;
-  inset: -25%;
-  z-index: 1;
-  pointer-events: none;
-  background:
-    radial-gradient(110% 80% at 18% 4%,
-      rgba(255, 255, 255, 0.38) 0%,
-      rgba(255, 255, 255, 0.08) 32%,
-      transparent 58%);
-  animation: glassDrift 9s ease-in-out infinite;
+      rgba(20, 18, 16, 0.82) 0%,
+      rgba(12, 11, 10, 0.78) 100%);
+  backdrop-filter: blur(10px) saturate(130%);
+  -webkit-backdrop-filter: blur(10px) saturate(130%);
 }
 
 /* Hairline divider between the two halves, fading toward the ends. */

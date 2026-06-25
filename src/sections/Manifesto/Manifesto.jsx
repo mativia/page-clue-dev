@@ -79,23 +79,14 @@ export default function Manifesto() {
           </p>
         </Reveal>
 
-        <div className={styles.grid}>
+        <div className={styles.grid} onMouseLeave={() => setActiveId(null)}>
           {POINTS.map((point, i) => {
             const isActive = point.id === activeId
             return (
               <Reveal key={point.id} delay={i * 0.08}>
                 <article
                   className={`${styles.point}${isActive ? ` ${styles.pointActive}` : ''}`}
-                  role="button"
-                  tabIndex={0}
-                  aria-pressed={isActive}
-                  onClick={() => setActiveId(prev => (prev === point.id ? null : point.id))}
-                  onKeyDown={e => {
-                    if (e.key === 'Enter' || e.key === ' ') {
-                      e.preventDefault()
-                      setActiveId(prev => (prev === point.id ? null : point.id))
-                    }
-                  }}
+                  onMouseEnter={() => setActiveId(point.id)}
                 >
                   <span className={styles.pointNum}>{point.id}</span>
                   <h3 className={styles.pointTitle}>{point.title}</h3>

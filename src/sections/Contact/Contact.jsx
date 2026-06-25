@@ -177,8 +177,8 @@ export default function Contact() {
               <a href="mailto:cluedev.agustin@gmail.com" className={styles.contactItem}>
                 cluedev.agustin@gmail.com
               </a>
-              <a href="tel:+543385466752" className={styles.contactItem}>
-                +54 3385 466752
+              <a href="tel:+5493385445914" className={styles.contactItem}>
+                +54 9 3385 445914
               </a>
             </div>
           </motion.form>
@@ -215,7 +215,7 @@ export default function Contact() {
               </svg>
             </a>
             <a
-              href="https://wa.me/543385466752"
+              href="https://wa.me/5493385445914"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="WhatsApp"
