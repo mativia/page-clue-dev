@@ -1,23 +1,15 @@
 import styles from './Marquee.module.css'
-
-const ITEMS = [
-  'DESARROLLO DE SOFTWARE',
-  'MÓDULOS PERSONALIZADOS ODOO',
-  'DESARROLLO WEB',
-  'AUTOMATIZACIÓN DE PROCESOS',
-  'ERP',
-  'CRM',
-  'INTEGRACIONES',
-]
+import { MARQUEE_ITEMS } from '../../i18n/copy'
 
 export default function Marquee() {
   return (
     <div className={styles.marquee} aria-hidden="true">
       <div className={styles.track}>
-        {[...ITEMS, ...ITEMS].map((word, i) => (
+        {[...MARQUEE_ITEMS, ...MARQUEE_ITEMS].map((word, i) => (
           <span key={i} className={styles.item}>
             {word}
-            <span className={styles.star}>✦</span>
+            {/* Estrellas alternadas: el violeta manda, el ember puntúa. */}
+            <span className={i % 3 === 2 ? styles.starEmber : styles.star}>✦</span>
           </span>
         ))}
       </div>

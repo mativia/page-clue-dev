@@ -21,11 +21,30 @@ html {
 
 body {
   font-family: var(--font-sans);
-  background-color: var(--color-bg);
+  background-color: var(--surface-0);
   color: var(--color-text-primary);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Ambient violeta global ───────────────────────────────────
+   La palanca principal del rediseño: un campo violeta fijo detrás
+   de TODO el sitio. Las secciones ya no pintan su propio fondo
+   opaco — flotan sobre esto, así el violeta está en cada píxel.
+   Si una sección necesita separarse, usa un tinte semitransparente
+   sobre este campo, nunca un color sólido.                      */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(120vw 95vh at 10% -12%, rgba(139, 92, 246, 0.22), transparent 62%),
+    radial-gradient(95vw 75vh at 96% 12%, rgba(113, 75, 103, 0.20), transparent 64%),
+    radial-gradient(85vw 65vh at 50% 112%, rgba(232, 76, 30, 0.07), transparent 60%),
+    var(--surface-0);
 }
 
 img,
@@ -68,27 +87,38 @@ a {
   color: inherit;
 }
 
+/* ── Foco visible — accesibilidad ─────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--ember-500);
+  outline-offset: 2px;
+  border-radius: var(--radius-sm);
+}
+
 /* ── Scrollbar ────────────────────────────────────────────── */
 ::-webkit-scrollbar {
-  width: 6px;
+  width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: transparent;
+  background: var(--surface-inset);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #333;
+  background: var(--violet-900);
   border-radius: var(--radius-full);
 }
 
-/* ── Selection ────────────────────────────────────────────── */
+::-webkit-scrollbar-thumb:hover {
+  background: var(--violet-700);
+}
+
+/* ── Selección ────────────────────────────────────────────── */
 ::selection {
-  background: var(--color-accent-muted);
+  background: var(--violet-a40);
   color: var(--color-text-primary);
 }
 
-/* ── Scroll offset for sticky nav ────────────────────────── */
+/* ── Offset de scroll por el nav fijo ─────────────────────── */
 [id] {
-  scroll-margin-top: 80px;
+  scroll-margin-top: 92px;
 }

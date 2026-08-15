@@ -1,51 +1,60 @@
-/* ── Hero ─────────────────────────────────────────────────── */
+/* ── Hero — campo violeta construido en CSS ───────────────── */
 .hero {
   position: relative;
   min-height: 100dvh;
-  background-color: #0d1413;
+  overflow: hidden;
+  background-color: #0b0812;
+}
+
+/* Capa 1 — la foto, en duotono violeta y muy baja opacidad.
+   Aporta textura y profundidad, no color. */
+.photo {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  /* background-image lo setea Hero.jsx desde fondoHero.* en assets */
+  filter: grayscale(1) contrast(1.15) brightness(0.55);
+  opacity: 0.28;
 }
 
-/* Viewport-sized stage that holds the content. */
-.stage {
-  position: relative;
-  min-height: 100dvh;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: clamp(5rem, 10vh, 7rem) clamp(1.5rem, 6vw, 6rem);
-}
-
-/* ── Scrim (keeps the bottom text legible) ────────────────── */
-.stage::before {
-  content: '';
+/* Capa 2 — el campo violeta propiamente dicho. */
+.field {
   position: absolute;
   inset: 0;
   z-index: 1;
-  pointer-events: none;
-  background: linear-gradient(to top, #060b0a 0%, #060b0a 8%, rgba(6, 11, 10, 0.9) 20%, rgba(6, 11, 10, 0.6) 42%, rgba(6, 11, 10, 0.42) 100%);
+  background:
+    radial-gradient(80vw 80vh at 18% 22%, rgba(139, 92, 246, 0.40), transparent 60%),
+    radial-gradient(70vw 70vh at 88% 68%, rgba(113, 75, 103, 0.42), transparent 62%),
+    radial-gradient(60vw 50vh at 62% 4%, rgba(91, 63, 168, 0.34), transparent 64%),
+    linear-gradient(180deg, rgba(11, 8, 18, 0.30) 0%, rgba(11, 8, 18, 0.86) 72%, #0b0812 100%);
 }
 
-/* ── Film grain ───────────────────────────────────────────── */
-/* Fine noise over the gradient, under the text. The oversize + stepped
-   translate gives a subtle film flicker. */
-.stage::after {
-  content: '';
+/* Capa 3 — grilla técnica. El guiño "instrumento", casi imperceptible. */
+.mesh {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  opacity: 0.5;
+  background-image:
+    linear-gradient(to right, rgba(139, 92, 246, 0.07) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(139, 92, 246, 0.07) 1px, transparent 1px);
+  background-size: 88px 88px;
+  mask-image: radial-gradient(70vw 70vh at 30% 40%, #000 10%, transparent 78%);
+  -webkit-mask-image: radial-gradient(70vw 70vh at 30% 40%, #000 10%, transparent 78%);
+}
+
+/* Capa 4 — film grain. Se mantiene del diseño anterior: buen oficio. */
+.grain {
   position: absolute;
   inset: -50%;
-  z-index: 1;
+  z-index: 2;
   pointer-events: none;
-  opacity: 0.4;
+  opacity: 0.34;
   mix-blend-mode: overlay;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.78' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
   background-size: 180px 180px;
-  background-repeat: repeat;
   animation: heroGrain 0.5s steps(3) infinite;
   will-change: transform;
 }
@@ -59,202 +68,306 @@
   100% { transform: translate(0, 0); }
 }
 
-/* ── Content zone (left-aligned, bottom) ─────────────────── */
-.content {
+/* ── Stage ────────────────────────────────────────────────── */
+.stage {
   position: relative;
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
+  z-index: 3;
+  min-height: 100dvh;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
   align-items: center;
-  text-align: center;
-  max-width: 820px;
+  gap: var(--sp-10);
+  padding: clamp(7rem, 14vh, 10rem) var(--gutter) clamp(4rem, 10vh, 6rem);
 }
 
-.eyebrow {
-  display: block;
-  font-family: 'DM Mono', monospace;
-  font-size: 10px;
-  letter-spacing: 0.22em;
+/* ── Contenido — alineado a la izquierda ──────────────────── */
+.content {
+  max-width: 900px;
+}
+
+/* Chip de estado: pill violeta con punto que pulsa. */
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-family: var(--font-mono);
+  font-size: var(--fs-mono-sm);
+  letter-spacing: var(--track-mono);
   text-transform: uppercase;
-  color: #9a9489;
-  margin-bottom: 1.25rem;
+  color: var(--violet-200);
+  background: var(--violet-a14);
+  border: 1px solid var(--border-violet);
+  border-radius: var(--radius-full);
+  padding: 0.45rem 0.95rem;
+  margin-bottom: 1.75rem;
+}
+
+.statusDot {
+  width: 6px;
+  height: 6px;
+  border-radius: var(--radius-full);
+  background: var(--ember-500);
+  box-shadow: 0 0 0 0 var(--ember-a60);
+  animation: statusPulse 2.4s var(--ease) infinite;
+}
+
+@keyframes statusPulse {
+  0%   { box-shadow: 0 0 0 0 rgba(232, 76, 30, 0.55); }
+  70%  { box-shadow: 0 0 0 7px rgba(232, 76, 30, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(232, 76, 30, 0); }
 }
 
 .tagline {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(52px, 9vw, 120px);
-  line-height: 0.9;
-  color: #ede9e0;
+  font-family: var(--font-display);
+  font-size: clamp(52px, 8.6vw, 132px);
+  line-height: 0.88;
+  letter-spacing: 0.005em;
+  color: var(--color-text-primary);
   margin: 0 0 1.75rem;
-  letter-spacing: 0.01em;
+}
+
+.taglineLine {
+  display: block;
 }
 
 .dot {
-  color: #e84c1e;
+  color: var(--ember-500);
 }
 
 .sub {
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--font-sans);
   font-weight: 300;
-  font-size: clamp(14px, 1.4vw, 16px);
-  color: #9a9489;
+  font-size: clamp(15px, 1.5vw, 18px);
+  color: var(--color-text-secondary);
   line-height: 1.7;
-  max-width: 520px;
-  margin: 0 0 2.25rem;
+  max-width: 58ch;
+  margin: 0 0 2.5rem;
 }
 
-.cta {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 14px;
-  font-weight: 400;
-  color: #ede9e0;
+/* ── CTAs — ember primario, violeta fantasma secundario ───── */
+.ctas {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--sp-4);
+}
+
+.ctaPrimary {
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
-  position: relative;
-  padding-bottom: 4px;
-  text-decoration: none;
-  transition: opacity 0.2s ease;
+  gap: 0.5rem;
+  font-family: var(--font-sans);
+  font-size: 15px;
+  color: var(--color-text-primary);
+  background: var(--ember-a24);
+  border: 1px solid var(--border-ember);
+  border-radius: var(--radius-full);
+  padding: 0.85rem 1.9rem;
+  transition: background var(--t-base) var(--ease), box-shadow var(--t-base) var(--ease),
+    transform var(--t-fast) var(--ease);
 }
 
-.cta::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: #e84c1e;
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.3s ease;
+.ctaPrimary:hover {
+  background: var(--ember-a40);
+  box-shadow: var(--glow-ember);
 }
 
-.cta:hover::after {
-  transform: scaleX(1);
-}
-
-.cta:active {
+.ctaPrimary:active {
   transform: scale(0.98);
 }
 
-/* ── HUD — metadata block, desktop only ───────────────────── */
-.hud {
-  position: absolute;
-  left: 2rem;
-  bottom: 3rem;
-  z-index: 2;
+.ctaSecondary {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-sans);
+  font-size: 15px;
+  color: var(--violet-200);
+  border: 1px solid var(--border-violet);
+  border-radius: var(--radius-full);
+  padding: 0.85rem 1.6rem;
+  transition: background var(--t-base) var(--ease), border-color var(--t-base) var(--ease),
+    color var(--t-base) var(--ease);
+}
+
+.ctaSecondary:hover {
+  background: var(--violet-a14);
+  border-color: var(--border-violet-strong);
+  color: var(--color-text-primary);
+}
+
+/* ── Spec rail — metadata vertical sobre el borde derecho ─── */
+.spec {
+  justify-self: end;
+  align-self: center;
   display: flex;
   flex-direction: column;
-  border-left: 1px solid rgba(255, 255, 255, 0.08);
-  padding-left: 1rem;
+  gap: var(--sp-5);
+  border-left: 1px solid var(--violet-a24);
+  padding-left: var(--sp-5);
+  max-width: 210px;
 }
 
-.hudItem {
-  font-family: 'DM Mono', monospace;
-  font-size: 9px;
-  color: #9a9489;
-  letter-spacing: 0.15em;
+.specItem {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.specKey {
+  font-family: var(--font-mono);
+  font-size: var(--fs-mono-xs);
+  letter-spacing: var(--track-mono);
   text-transform: uppercase;
-  padding: 7px 0;
-  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  color: var(--violet-300);
 }
 
-.hudItem:first-child {
-  border-top: none;
+.specVal {
+  font-family: var(--font-mono);
+  font-size: var(--fs-mono-md);
+  color: var(--color-text-primary);
+  line-height: 1.4;
 }
 
-/* ── Divider — orange separator at the Hero/Services seam ──── */
-.divider {
+/* ── Scroll hint ──────────────────────────────────────────── */
+.scrollHint {
+  position: absolute;
+  left: var(--gutter);
+  bottom: clamp(1.5rem, 4vh, 2.5rem);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.scrollLabel {
+  font-family: var(--font-mono);
+  font-size: var(--fs-mono-xs);
+  letter-spacing: var(--track-mono);
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.scrollLine {
+  width: 54px;
+  height: 1px;
+  background: var(--bar-violet-ember);
+  transform-origin: left;
+  animation: scrollPull 2.6s var(--ease) infinite;
+}
+
+@keyframes scrollPull {
+  0%, 100% { transform: scaleX(0.45); opacity: 0.5; }
+  50%      { transform: scaleX(1);    opacity: 1; }
+}
+
+/* ── Seam — costura violeta→ember hacia la sección siguiente ─ */
+.seam {
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
-  z-index: 3; /* above the scrim/grain so the dark gradient doesn't hide it */
+  z-index: 4;
   height: 1px;
-  background: linear-gradient(to right, rgba(232, 76, 30, 0.85) 0%, transparent 24%);
+  background: linear-gradient(
+    90deg,
+    var(--violet-500) 0%,
+    var(--ember-500) 28%,
+    transparent 62%
+  );
 }
 
-/* ── On-load entrance (staggered) ─────────────────────────── */
-.eyebrow,
+/* ── Entrada escalonada ───────────────────────────────────── */
+.status,
 .tagline,
 .sub {
-  animation: heroRise 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation: heroRise 0.8s var(--ease-out) both;
 }
 
-.cta,
-.hud {
-  animation: heroFade 0.8s ease both;
+.ctas,
+.spec,
+.scrollHint {
+  animation: heroFade 0.9s var(--ease) both;
 }
 
-.eyebrow {
-  animation-delay: 0.1s;
-}
-.tagline {
-  animation-delay: 0.24s;
-}
-.sub {
-  animation-delay: 0.46s;
-}
-.cta {
-  animation-delay: 0.62s;
-}
-.hud {
-  animation-delay: 0.85s;
-}
+.status   { animation-delay: 0.10s; }
+.tagline  { animation-delay: 0.24s; }
+.sub      { animation-delay: 0.46s; }
+.ctas     { animation-delay: 0.62s; }
+.spec     { animation-delay: 0.80s; }
+.scrollHint { animation-delay: 1s; }
 
 @keyframes heroRise {
-  from {
-    opacity: 0;
-    transform: translateY(24px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes heroFade {
-  from {
-    opacity: 0;
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ── Responsive ───────────────────────────────────────────── */
+@media (max-width: 1080px) {
+  .stage {
+    grid-template-columns: minmax(0, 1fr);
   }
-  to {
-    opacity: 1;
+
+  /* El spec rail pasa a fila horizontal debajo del contenido:
+     sigue aportando la señal técnica en vez de desaparecer. */
+  .spec {
+    justify-self: start;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: var(--sp-6);
+    max-width: none;
+    border-left: none;
+    border-top: 1px solid var(--violet-a24);
+    padding-left: 0;
+    padding-top: var(--sp-5);
+    margin-top: var(--sp-8);
   }
 }
 
-/* ── Mobile ───────────────────────────────────────────────── */
 @media (max-width: 768px) {
-  /* No scroll-scrub on phones: collapse the tall stage to one screen. */
   .hero {
-    height: 100dvh;
+    min-height: 100dvh;
   }
 
   .stage {
-    position: relative;
+    align-items: flex-start;
+    padding-top: clamp(6.5rem, 18vh, 9rem);
   }
 
   .tagline {
-    font-size: clamp(42px, 12vw, 72px);
+    font-size: clamp(42px, 12vw, 76px);
   }
 
-  .hud {
+  .scrollHint {
     display: none;
+  }
+
+  .ctaPrimary,
+  .ctaSecondary {
+    flex: 1 1 auto;
+    justify-content: center;
   }
 }
 
 /* ── Reduced motion ───────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
-  .stage::after,
-  .eyebrow,
+  .grain,
+  .statusDot,
+  .scrollLine,
+  .status,
   .tagline,
   .sub,
-  .cta,
-  .hud {
+  .ctas,
+  .spec,
+  .scrollHint {
     animation: none;
   }
 
-  .cta::after {
+  .ctaPrimary,
+  .ctaSecondary {
     transition: none;
   }
 }

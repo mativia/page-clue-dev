@@ -1,77 +1,120 @@
 /* ============================================================
    Clue Dev — Design Tokens
-   Inspired by glass-ui system (iOS 18 / neumorphic dark)
+   Sistema violeta-protagonista / ember-acento.
+
+   REGLA DE COLOR (respetala al agregar estilos nuevos):
+     · Violeta = ambiente, superficie, estructura.
+       Fondos, bordes, grillas, glow, numeración, hovers, tags.
+     · Ember   = acción y jerarquía.
+       CTAs, punto de los titulares, ítem destacado, foco, activo.
+   El ember funciona porque es escaso. Si lo repartís, deja de señalar.
    ============================================================ */
 
 :root {
-  /* ── Core Backgrounds ─────────────────────────────────── */
-  --color-bg:          #1c1c1c;
-  --color-bg-card:     #242424;
-  --color-bg-raised:   #2a2a2a;
+  /* ── Superficies — berenjena muy oscuro, teñido violeta ─── */
+  --surface-0:     #100c16;  /* base de página */
+  --surface-1:     #17111f;  /* cards */
+  --surface-2:     #1e1729;  /* elevado / hover */
+  --surface-inset: #0b0810;  /* hundido: inputs, footer */
+
+  /* ── Escala violeta ───────────────────────────────────── */
+  --violet-900: #2a1d3d;
+  --violet-700: #5b3fa8;
+  --violet-500: #8b5cf6;  /* violeta vivo — el principal de UI */
+  --violet-300: #a982e0;  /* lavanda — eyebrows, numeración */
+  --violet-200: #c4aef0;  /* texto sobre superficie violeta */
+
+  --violet-a04: rgba(139, 92, 246, 0.04);
+  --violet-a08: rgba(139, 92, 246, 0.08);
+  --violet-a14: rgba(139, 92, 246, 0.14);
+  --violet-a24: rgba(139, 92, 246, 0.24);
+  --violet-a40: rgba(139, 92, 246, 0.40);
+  --violet-a60: rgba(139, 92, 246, 0.60);
+
+  /* Violeta oficial de Odoo — detalles "esto es Odoo".
+     Se usa apagado, como tinte de ambiente, nunca como CTA. */
+  --color-odoo:  #714b67;
+  --odoo-a12:    rgba(113, 75, 103, 0.12);
+  --odoo-a20:    rgba(113, 75, 103, 0.20);
+
+  /* ── Escala ember (acento) ────────────────────────────── */
+  --ember-500: #e84c1e;
+  --ember-300: #f5875f;
+
+  --ember-a08: rgba(232, 76, 30, 0.08);
+  --ember-a14: rgba(232, 76, 30, 0.14);
+  --ember-a24: rgba(232, 76, 30, 0.24);
+  --ember-a40: rgba(232, 76, 30, 0.40);
+  --ember-a60: rgba(232, 76, 30, 0.60);
+
+  /* Alias de marca (compatibilidad + lectura) */
+  --color-ember:  var(--ember-500);
+  --color-violet: var(--violet-500);
+
+  /* ── Texto — grises corridos hacia el violeta ─────────── */
+  --color-text-primary:   #ede9e0;
+  --color-text-secondary: #a49cb0;
+  --color-text-muted:     #7d7589;
+
+  /* ── Bordes ───────────────────────────────────────────── */
+  --border-hairline:      rgba(255, 255, 255, 0.07);
+  --border-violet:        var(--violet-a24);
+  --border-violet-strong: var(--violet-a40);
+  --border-ember:         var(--ember-a40);
+
+  /* ── Tintes de superficie (fondos de cards) ───────────── */
+  --tint-violet: linear-gradient(160deg, var(--violet-a14), var(--violet-a04));
+  --tint-violet-hover: linear-gradient(160deg, var(--violet-a24), var(--violet-a08));
+  --tint-ember:  linear-gradient(160deg, var(--ember-a14), var(--violet-a04));
+  --tint-ember-hover: linear-gradient(160deg, var(--ember-a24), var(--violet-a08));
+
+  /* ── Barras / hairlines de acento ─────────────────────── */
+  --bar-violet-ember: linear-gradient(90deg, var(--violet-500), var(--ember-a40));
+  --bar-ember-violet: linear-gradient(90deg, var(--ember-500), var(--violet-a40));
+  --bar-active:       linear-gradient(90deg, var(--violet-500), var(--ember-500));
+  --rule-fade: linear-gradient(90deg, transparent, var(--border-hairline) 50%, transparent);
+
+  /* ── Glows ────────────────────────────────────────────── */
+  --glow-violet: 0 0 40px rgba(139, 92, 246, 0.18);
+  --glow-ember:  0 0 32px rgba(232, 76, 30, 0.22);
 
   /* ── Glass ────────────────────────────────────────────── */
-  --glass-bg:          rgba(255, 255, 255, 0.05);
-  --glass-border:      rgba(255, 255, 255, 0.09);
-  --glass-blur:        blur(20px);
+  --glass-violet:  rgba(24, 18, 34, 0.55);
+  --glass-border:  rgba(255, 255, 255, 0.10);
+  --glass-blur:    blur(20px);
 
-  /* ── Shadows (dark neumorphic) ────────────────────────── */
-  --shadow-sm:
-    4px 4px 10px rgba(0, 0, 0, 0.55),
-    -2px -2px 6px rgba(255, 255, 255, 0.04);
-  --shadow-md:
-    7px 7px 16px rgba(0, 0, 0, 0.60),
-    -3px -3px 8px rgba(255, 255, 255, 0.04);
-  --shadow-lg:
-    10px 10px 24px rgba(0, 0, 0, 0.65),
-    -4px -4px 12px rgba(255, 255, 255, 0.045);
+  /* ── Sombras ──────────────────────────────────────────── */
+  --shadow-sm: 4px 4px 10px rgba(0, 0, 0, 0.55);
+  --shadow-md: 7px 7px 16px rgba(0, 0, 0, 0.60);
+  --shadow-lg: 0 24px 60px rgba(0, 0, 0, 0.45), 0 6px 18px rgba(0, 0, 0, 0.28);
 
-  /* ── Typography ───────────────────────────────────────── */
+  /* ── Tipografía ───────────────────────────────────────── */
   --font-sans:    'DM Sans', system-ui, sans-serif;
   --font-display: 'Bebas Neue', sans-serif;
   --font-mono:    'DM Mono', 'JetBrains Mono', monospace;
 
-  /* ── Text ─────────────────────────────────────────────── */
-  --color-text-primary:   #ede9e0;
-  --color-text-secondary: #9a9489;
-  --color-text-muted:     #9a9489;
+  --fs-mono-xs: 9px;
+  --fs-mono-sm: 10px;
+  --fs-mono-md: 12px;
+  --track-mono: 0.2em;   /* letter-spacing de los detalles mono */
 
-  /* ── Brand palette ────────────────────────────────────── */
-  --color-base:    #111110;
-  --color-ember:   #e84c1e;
-  --color-teal:    #0d2e2a;
-  --color-stone:   #9a9489;
+  /* ── Ritmo de sección ─────────────────────────────────── */
+  --section-y:  clamp(5rem, 10vw, 8.5rem);
+  --gutter:     clamp(1.5rem, 6vw, 6rem);
+  --measure:    68ch;
 
-  /* ── Accent ───────────────────────────────────────────── */
-  --color-accent:         #ede9e0;
-  --color-accent-blue:    #4f8eff;
-  --color-accent-cyan:    #22d3ee;
-  --color-accent-muted:   rgba(79, 142, 255, 0.16);
+  /* ── Espaciado ────────────────────────────────────────── */
+  --sp-1: 4px;   --sp-2: 8px;   --sp-3: 12px;  --sp-4: 16px;
+  --sp-5: 20px;  --sp-6: 24px;  --sp-8: 32px;  --sp-10: 40px;
+  --sp-12: 48px; --sp-16: 64px; --sp-20: 80px;
 
-  /* ── Spacing ──────────────────────────────────────────── */
-  --spacing-section: 5rem;
-  --sp-1:   4px;
-  --sp-2:   8px;
-  --sp-3:   12px;
-  --sp-4:   16px;
-  --sp-5:   20px;
-  --sp-6:   24px;
-  --sp-8:   32px;
-  --sp-10:  40px;
-  --sp-12:  48px;
-  --sp-16:  64px;
-  --sp-20:  80px;
+  /* ── Radios ───────────────────────────────────────────── */
+  --radius-sm: 3px;   --radius-md: 8px;   --radius-lg: 14px;
+  --radius-xl: 20px;  --radius-full: 9999px;
 
-  /* ── Border Radius ────────────────────────────────────── */
-  --radius-sm:  3px;
-  --radius-md:  8px;
-  --radius-lg:  14px;
-  --radius-xl:  20px;
-  --radius-full: 9999px;
-
-  /* ── Transitions ──────────────────────────────────────── */
+  /* ── Transiciones ─────────────────────────────────────── */
   --ease:        cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-out:    cubic-bezier(0.16, 1, 0.3, 1);
   --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
-  --t-fast:  120ms;
-  --t-base:  220ms;
-  --t-slow:  400ms;
+  --t-fast: 120ms;  --t-base: 220ms;  --t-slow: 400ms;
 }

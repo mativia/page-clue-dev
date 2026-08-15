@@ -1,0 +1,250 @@
+/* ── Módulos propios ──────────────────────────────────────── */
+.section {
+  position: relative;
+  padding: var(--section-y) 0;
+  border-top: 1px solid var(--border-hairline);
+}
+
+.inner {
+  padding: 0 var(--gutter);
+}
+
+/* ── Header ───────────────────────────────────────────────── */
+.header {
+  max-width: 900px;
+  margin-bottom: clamp(3rem, 6vw, 4.5rem);
+}
+
+.eyebrow {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: var(--fs-mono-sm);
+  letter-spacing: var(--track-mono);
+  text-transform: uppercase;
+  color: var(--violet-300);
+  margin-bottom: 1.5rem;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: clamp(44px, 7.4vw, 96px);
+  line-height: 0.88;
+  color: var(--color-text-primary);
+  margin: 0 0 1.25rem;
+}
+
+.titleLine {
+  display: block;
+}
+
+.dot {
+  color: var(--ember-500);
+}
+
+.lede {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: clamp(14px, 1.4vw, 17px);
+  line-height: 1.7;
+  color: var(--color-text-secondary);
+  max-width: 62ch;
+  margin: 0;
+}
+
+/* ── Grilla de cards ──────────────────────────────────────── */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--sp-4);
+}
+
+.grid > * {
+  display: flex;
+}
+
+.grid > * > * {
+  width: 100%;
+}
+
+/* ── Card de módulo — estética manifiesto de paquete ──────── */
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 230px;
+  padding: 1.5rem 1.4rem 1.75rem;
+  background: var(--tint-violet), rgba(23, 17, 31, 0.72);
+  border: 1px solid var(--border-violet);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: background var(--t-base) var(--ease), border-color var(--t-base) var(--ease);
+}
+
+.card:hover {
+  background: var(--tint-violet-hover), rgba(30, 23, 41, 0.85);
+  border-color: var(--border-violet-strong);
+}
+
+.badge {
+  align-self: flex-start;
+  font-family: var(--font-mono);
+  font-size: var(--fs-mono-xs);
+  letter-spacing: var(--track-mono);
+  text-transform: uppercase;
+  border-radius: var(--radius-full);
+  padding: 4px 10px;
+  margin-bottom: auto;
+}
+
+.badgeBuilding {
+  color: var(--violet-200);
+  background: var(--violet-a14);
+  border: 1px solid var(--border-violet);
+}
+
+.badgeSoon {
+  color: var(--color-text-muted);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-hairline);
+}
+
+.slug {
+  font-family: var(--font-mono);
+  font-size: 15px;
+  color: var(--color-text-primary);
+  margin: 1.75rem 0 0.6rem;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  min-width: 0;
+}
+
+.slugPrefix {
+  color: var(--violet-300);
+}
+
+/* Nombre tapado: bloque violeta del ancho de los caracteres que
+   ocuparía, con un brillo que recorre. Estado de espera, no de error. */
+.redaction {
+  display: inline-block;
+  height: 0.95em;
+  width: calc(var(--redaction-len, 7) * 0.62em);
+  border-radius: 3px;
+  background: linear-gradient(
+    90deg,
+    var(--violet-a40) 0%,
+    var(--violet-a60) 42%,
+    var(--violet-a40) 84%
+  );
+  background-size: 220% 100%;
+  animation: redactionShimmer 3.6s var(--ease) infinite;
+}
+
+@keyframes redactionShimmer {
+  0%   { background-position: 120% 0; }
+  100% { background-position: -60% 0; }
+}
+
+.desc {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--color-text-muted);
+  margin: 0;
+}
+
+.cardRule {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--bar-violet-ember);
+  opacity: 0.45;
+  transition: opacity var(--t-base) var(--ease);
+}
+
+.card:hover .cardRule {
+  opacity: 1;
+}
+
+/* ── Card CTA — la única ember de la sección ──────────────── */
+.ctaCard {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 230px;
+  padding: 1.5rem 1.4rem 1.75rem;
+  background: var(--tint-ember), rgba(31, 19, 20, 0.72);
+  border: 1px solid var(--border-ember);
+  border-radius: var(--radius-lg);
+  transition: background var(--t-base) var(--ease), box-shadow var(--t-base) var(--ease);
+}
+
+.ctaCard:hover {
+  background: var(--tint-ember-hover), rgba(41, 24, 24, 0.85);
+  box-shadow: var(--glow-ember);
+}
+
+.ctaTitle {
+  font-family: var(--font-display);
+  font-size: clamp(24px, 2.2vw, 30px);
+  line-height: 1.02;
+  color: var(--color-text-primary);
+  margin: 0 0 0.75rem;
+}
+
+.ctaDesc {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: 13px;
+  line-height: 1.65;
+  color: var(--color-text-secondary);
+  margin: 0 0 auto;
+}
+
+.ctaAction {
+  font-family: var(--font-mono);
+  font-size: var(--fs-mono-md);
+  letter-spacing: 0.05em;
+  color: var(--ember-300);
+  margin-top: 1.5rem;
+  transition: color var(--t-base) var(--ease);
+}
+
+.ctaCard:hover .ctaAction {
+  color: var(--color-text-primary);
+}
+
+/* ── Responsive ───────────────────────────────────────────── */
+@media (max-width: 1080px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 560px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .card,
+  .ctaCard {
+    min-height: 0;
+  }
+}
+
+/* ── Reduced motion ───────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .redaction {
+    animation: none;
+  }
+
+  .card,
+  .ctaCard,
+  .cardRule,
+  .ctaAction {
+    transition: none;
+  }
+}

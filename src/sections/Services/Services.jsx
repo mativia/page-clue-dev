@@ -1,71 +1,70 @@
 import styles from './Services.module.css'
 import { Reveal } from '../../components/Reveal/Reveal'
+import { useLang } from '../../i18n/context'
 
-const SERVICES = [
-  {
-    id: 'SVC_01',
-    name: 'SOFTWARE',
-    tagline: 'Desarrollo de software a medida.',
-    desc: 'Creamos sistemas y aplicaciones a medida para optimizar procesos, centralizar información y mejorar la gestión de la empresa.',
-    tags: ['Sistemas a medida', 'Web apps', 'Automatización', 'Integraciones'],
-  },
-  {
-    id: 'SVC_02',
-    name: 'ODOO',
-    tagline: 'Módulos personalizados Odoo.',
-    desc: 'Desarrollamos e integramos funcionalidades específicas para adaptar Odoo a la forma de trabajar de cada organización.',
-    tags: ['ERP', 'Módulos custom', 'Integraciones', 'CRM'],
-  },
-  {
-    id: 'SVC_03',
-    name: 'WEB',
-    tagline: 'Desarrollo web profesional.',
-    desc: 'Diseñamos sitios web profesionales orientados a fortalecer la presencia digital y generar nuevas oportunidades comerciales.',
-    tags: ['Sitios web', 'Landing pages', 'Performance', 'SEO'],
-  },
-]
+/* Filas numeradas en vez de cards en grilla: el contenido está siempre
+   visible (nada de hover-expand) y absorbe bien la diferencia de largo
+   entre el copy en español y en inglés. */
+function ServiceRow({ index, name, tagline, desc, tags, variant }) {
+  const rowClass = `${styles.row} ${variant === 'ember' ? styles.rowEmber : styles.rowViolet}`
 
-function ServiceCard({ id, name, tagline, desc, tags }) {
   return (
-    <article className={styles.card}>
-      <span className={styles.cardNum}>{id}</span>
-      <span className={styles.cardArrow} aria-hidden="true">↗</span>
+    <article className={rowClass}>
+      <span className={styles.num} aria-hidden="true">
+        {String(index + 1).padStart(2, '0')}
+      </span>
 
-      <div className={styles.cardName}>{name}</div>
-      <p className={styles.cardTagline}>{tagline}</p>
-
-      <div className={styles.cardExpand}>
-        <p className={styles.cardDesc}>{desc}</p>
-        <div className={styles.cardTags}>
+      <div className={styles.body}>
+        <h3 className={styles.name}>{name}</h3>
+        <p className={styles.tagline}>{tagline}</p>
+        <p className={styles.desc}>{desc}</p>
+        <div className={styles.tags}>
           {tags.map(tag => (
-            <span key={tag} className={styles.cardTag}>{tag}</span>
+            <span key={tag} className={styles.tag}>{tag}</span>
           ))}
         </div>
       </div>
 
-      <div className={styles.cardBar} />
+      <span className={styles.arrow} aria-hidden="true">↗</span>
+      <span className={styles.rule} aria-hidden="true" />
     </article>
   )
 }
 
 export default function Services() {
+  const { t } = useLang()
+  const c = t.services
+
   return (
     <section className={styles.section} id="servicios">
-      <div className={styles.topDivider} />
-      <div className={styles.sectionInner}>
-        <span className={styles.eyebrow}>01 · SERVICIOS</span>
-        <h2 className={styles.sectionTitle}>
-          TECNOLOGÍA<br />
-          APLICADA A<br />
-          CADA EMPRESA<span className={styles.accentDot}>.</span>
-        </h2>
-        <p className={styles.sectionSub}>
-          Desarrollamos soluciones digitales adaptadas a las necesidades y procesos de cada negocio.
-        </p>
-        <div className={styles.grid}>
-          {SERVICES.map((svc, i) => (
+      <div className={styles.inner}>
+        <Reveal>
+          <div className={styles.header}>
+            <span className={styles.eyebrow}>{c.eyebrow}</span>
+            <h2 className={styles.title}>
+              {c.titleLines.map((line, i) => (
+                <span key={line} className={styles.titleLine}>
+                  {line}
+                  {i === c.titleLines.length - 1 && (
+                    <span className={styles.dot} aria-hidden="true">.</span>
+                  )}
+                </span>
+              ))}
+            </h2>
+            <p className={styles.sub}>{c.sub}</p>
+          </div>
+        </Reveal>
+
+        <div className={styles.rows}>
+          {c.items.map((svc, i) => (
             <Reveal key={svc.id} delay={i * 0.08}>
-              <ServiceCard {...svc} />
+              <ServiceRow
+                index={i}
+                {...svc}
+                // La tercera es la línea de producto: acento ember para
+                // darle jerarquía sobre las dos de servicio.
+                variant={svc.id === 'SVC_03' ? 'ember' : 'violet'}
+              />
             </Reveal>
           ))}
         </div>

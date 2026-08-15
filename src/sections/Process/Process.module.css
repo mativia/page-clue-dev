@@ -1,0 +1,247 @@
+/* ── Proceso ──────────────────────────────────────────────── */
+.section {
+  position: relative;
+  padding: var(--section-y) 0;
+  border-top: 1px solid var(--border-hairline);
+  background: linear-gradient(180deg, var(--violet-a08) 0%, transparent 45%);
+}
+
+.inner {
+  padding: 0 var(--gutter);
+}
+
+/* ── Header ───────────────────────────────────────────────── */
+.header {
+  max-width: 820px;
+  margin-bottom: clamp(3rem, 6vw, 4.5rem);
+}
+
+.eyebrow {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: var(--fs-mono-sm);
+  letter-spacing: var(--track-mono);
+  text-transform: uppercase;
+  color: var(--violet-300);
+  margin-bottom: 1.5rem;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: clamp(48px, 8.4vw, 118px);
+  line-height: 0.86;
+  color: var(--color-text-primary);
+  margin: 0 0 1.5rem;
+}
+
+.titleLine {
+  display: block;
+}
+
+.dot {
+  color: var(--ember-500);
+}
+
+.lede {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: clamp(15px, 1.5vw, 19px);
+  line-height: 1.7;
+  color: var(--color-text-secondary);
+  max-width: 58ch;
+  margin: 0;
+}
+
+.lede strong {
+  color: var(--color-text-primary);
+  font-weight: 500;
+}
+
+/* ── Layout de dos columnas ───────────────────────────────── */
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) clamp(280px, 32%, 440px);
+  gap: clamp(2rem, 5vw, 4.5rem);
+  align-items: start;
+}
+
+/* ── Stepper vertical ─────────────────────────────────────── */
+.stepper {
+  position: relative;
+  margin: 0;
+  padding: 0;
+}
+
+/* Riel: violeta de base, se llena de ember donde estás parado. */
+.stepper::before {
+  content: '';
+  position: absolute;
+  top: 12px;
+  bottom: 12px;
+  left: 7px;
+  width: 1px;
+  background: linear-gradient(180deg, var(--violet-500), var(--violet-a24));
+}
+
+.step {
+  position: relative;
+  padding: 0 0 clamp(2rem, 3.5vw, 2.75rem) clamp(2.25rem, 4vw, 3rem);
+  cursor: pointer;
+  transition: transform var(--t-base) var(--ease-out);
+}
+
+.step:last-child {
+  padding-bottom: 0;
+}
+
+.stepActive {
+  transform: translateX(4px);
+}
+
+/* Marcador sobre el riel */
+.marker {
+  position: absolute;
+  top: 8px;
+  left: 0;
+  width: 15px;
+  height: 15px;
+  border-radius: var(--radius-full);
+  background: var(--surface-0);
+  border: 1px solid var(--violet-a40);
+  transition: border-color var(--t-base) var(--ease), box-shadow var(--t-base) var(--ease),
+    background var(--t-base) var(--ease);
+}
+
+.marker::after {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  border-radius: var(--radius-full);
+  background: var(--violet-a40);
+  transition: background var(--t-base) var(--ease);
+}
+
+.stepActive .marker {
+  border-color: var(--ember-500);
+  box-shadow: 0 0 0 4px var(--ember-a14);
+}
+
+.stepActive .marker::after {
+  background: var(--ember-500);
+}
+
+.stepNum {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: var(--fs-mono-sm);
+  letter-spacing: var(--track-mono);
+  color: var(--violet-300);
+  margin-bottom: 0.5rem;
+  transition: color var(--t-base) var(--ease);
+}
+
+.stepActive .stepNum {
+  color: var(--ember-300);
+}
+
+.stepTitle {
+  font-family: var(--font-display);
+  font-size: clamp(26px, 3vw, 40px);
+  line-height: 1;
+  letter-spacing: 0.01em;
+  color: var(--color-text-primary);
+  margin: 0 0 0.6rem;
+}
+
+.stepDesc {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: clamp(13px, 1.25vw, 15px);
+  line-height: 1.75;
+  color: var(--color-text-secondary);
+  max-width: 56ch;
+  margin: 0;
+}
+
+/* Reveal envuelve cada <li>: el wrapper no debe romper el flujo. */
+.stepper > * {
+  display: block;
+}
+
+/* ── Claudio ──────────────────────────────────────────────── */
+.claudio {
+  position: sticky;
+  top: 120px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-4);
+}
+
+.claudioFrame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  border-radius: var(--radius-xl);
+  background:
+    radial-gradient(70% 60% at 50% 40%, var(--violet-a24), transparent 70%),
+    var(--tint-violet),
+    rgba(23, 17, 31, 0.5);
+  border: 1px solid var(--border-violet);
+  overflow: hidden;
+}
+
+.claudioImg {
+  position: absolute;
+  inset: 8%;
+  width: 84%;
+  height: 84%;
+  object-fit: contain;
+  object-position: center;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity var(--t-slow) var(--ease), transform var(--t-slow) var(--ease-out);
+}
+
+.claudioVisible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.claudioStep {
+  font-family: var(--font-mono);
+  font-size: var(--fs-mono-sm);
+  letter-spacing: var(--track-mono);
+  color: var(--violet-300);
+}
+
+/* ── Responsive ───────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  /* Claudio arriba del stepper, no oculto: es identidad de marca y la
+     mayoría del tráfico es mobile. */
+  .claudio {
+    position: static;
+    order: -1;
+    margin-bottom: var(--sp-8);
+  }
+
+  .claudioFrame {
+    width: min(280px, 70vw);
+    margin: 0 auto;
+  }
+}
+
+/* ── Reduced motion ───────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .step,
+  .marker,
+  .marker::after,
+  .stepNum,
+  .claudioImg {
+    transition: none;
+  }
+}

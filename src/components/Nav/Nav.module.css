@@ -6,25 +6,25 @@
   border-radius: 0 0 16px 16px;
   /* Promote the nav to its own GPU layer so the backdrop-filter actually
      samples the page in the production build (without this, Chromium drops
-     the blur on desktop because the page's animated layers break it). */
+     the blur on desktop because the page's animated layers break it).
+     NO TOCAR: costó tres commits que esto funcione en prod. */
   transform: translateZ(0);
 
-  /* Translucent dark glass. The dark tint is substantial enough that the
-     bar is ALWAYS visible (never "fully transparent") even if the browser
-     drops the backdrop-filter; the blur just enhances it when rendered. */
-  background: rgba(16, 15, 14, 0.45);
-  backdrop-filter: blur(12px) saturate(150%);
-  -webkit-backdrop-filter: blur(12px) saturate(150%);
+  /* Glass oscuro teñido violeta. El tinte es lo bastante sólido como para
+     que la barra SIEMPRE se vea, aunque el browser descarte el blur. */
+  background: var(--glass-violet);
+  backdrop-filter: blur(14px) saturate(150%);
+  -webkit-backdrop-filter: blur(14px) saturate(150%);
 
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.16),
-    inset 0 -1px 0 rgba(255, 255, 255, 0.05),
-    0 12px 32px rgba(0, 0, 0, 0.22);
+    inset 0 1px 0 rgba(255, 255, 255, 0.14),
+    inset 0 -1px 0 var(--violet-a24),
+    0 12px 32px rgba(0, 0, 0, 0.30);
 }
 
 @supports not (backdrop-filter: blur(1px)) {
   .nav {
-    background: rgba(14, 13, 12, 0.92);
+    background: rgba(18, 13, 26, 0.94);
   }
 }
 
@@ -32,120 +32,184 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1.5rem clamp(1.5rem, 5vw, 4rem);
+  gap: var(--sp-4);
+  padding: 1.1rem clamp(1.25rem, 5vw, 4rem);
 }
 
 .brand {
-  font-family: 'DM Mono', monospace;
+  display: inline-flex;
+  align-items: baseline;
+  font-family: var(--font-mono);
   font-size: 13px;
-  letter-spacing: 0.12em;
-  color: #ede9e0;
+  letter-spacing: 0.14em;
+  color: var(--color-text-primary);
   user-select: none;
-  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.brandDot {
+  color: var(--ember-500);
 }
 
 /* ── Desktop links ────────────────────────────────────────── */
 .links {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  list-style: none;
-  margin: 0;
-  padding: 0;
+  gap: var(--sp-1);
 }
 
 .link {
   position: relative;
-  font-family: 'DM Sans', sans-serif;
+  display: block;
+  font-family: var(--font-sans);
   font-size: 13px;
-  font-weight: 400;
-  color: #ede9e0;
-  text-decoration: none;
-  padding: 0.6rem 1.4rem;
-  border-radius: 100px;
-  transition: color 0.25s ease;
-  z-index: 0;
+  color: var(--color-text-secondary);
+  padding: 0.55rem 1.15rem;
+  border-radius: var(--radius-full);
+  border: 1px solid transparent;
+  transition: color var(--t-base) var(--ease), background var(--t-base) var(--ease),
+    border-color var(--t-base) var(--ease);
 }
 
-.link::before {
+.link:hover {
+  color: var(--color-text-primary);
+  background: var(--violet-a14);
+  border-color: var(--border-violet);
+}
+
+/* Sección activa: pill violeta + punto ember. El violeta ubica,
+   el ember señala. */
+.linkActive {
+  color: var(--color-text-primary);
+  background: var(--violet-a24);
+  border-color: var(--border-violet-strong);
+}
+
+.linkActive::after {
   content: '';
   position: absolute;
-  inset: 0;
-  border-radius: 100px;
-  background: linear-gradient(
-    150deg,
-    rgba(255, 255, 255, 0.13) 0%,
-    rgba(255, 255, 255, 0.04) 55%,
-    rgba(255, 255, 255, 0.09) 100%
-  );
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  box-shadow:
-    inset 0 1.5px 0 rgba(255, 255, 255, 0.22),
-    inset 0 -1px 0 rgba(0, 0, 0, 0.12),
-    0 6px 20px rgba(0, 0, 0, 0.22);
-  opacity: 1;
-  transform: scale(1);
-  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.25s ease;
-  z-index: -1;
+  bottom: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 4px;
+  border-radius: var(--radius-full);
+  background: var(--ember-500);
+  box-shadow: 0 0 8px var(--ember-a60);
 }
 
-.link:hover::before {
-  transform: scale(1.06);
+/* ── Acciones (idioma + CTA + hamburguesa) ────────────────── */
+.actions {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  flex-shrink: 0;
 }
 
-/* ── Hamburger ────────────────────────────────────────────── */
+.lang {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: var(--fs-mono-sm);
+  letter-spacing: 0.1em;
+}
+
+.langBtn {
+  color: var(--color-text-muted);
+  padding: 2px 1px;
+  transition: color var(--t-fast) var(--ease);
+}
+
+.langBtn:hover {
+  color: var(--color-text-primary);
+}
+
+.langActive {
+  color: var(--violet-200);
+}
+
+.langSep {
+  color: var(--violet-a40);
+}
+
+.cta {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  color: var(--color-text-primary);
+  background: var(--ember-a24);
+  border: 1px solid var(--border-ember);
+  border-radius: var(--radius-full);
+  padding: 0.55rem 1.25rem;
+  white-space: nowrap;
+  transition: background var(--t-base) var(--ease), box-shadow var(--t-base) var(--ease);
+}
+
+.cta:hover {
+  background: var(--ember-a40);
+  box-shadow: var(--glow-ember);
+}
+
+/* ── Hamburguesa ──────────────────────────────────────────── */
 .hamburger {
   display: none;
-  background: none;
-  border: none;
-  cursor: pointer;
   padding: 6px;
   align-items: center;
   justify-content: center;
-  color: #ede9e0;
+  color: var(--color-text-primary);
 }
 
-/* ── Mobile menu — glass sólido para legibilidad ──────────── */
+/* ── Menú mobile ──────────────────────────────────────────── */
 .mobileMenu {
   display: flex;
   flex-direction: column;
-  background: rgba(14, 14, 13, 0.95);
+  background: rgba(18, 13, 26, 0.97);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
   overflow: hidden;
   border-radius: 0 0 16px 16px;
   max-height: 0;
-  transition: max-height 0.35s ease, opacity 0.25s ease;
   opacity: 0;
+  transition: max-height var(--t-slow) var(--ease), opacity var(--t-base) var(--ease);
 }
 
 .mobileMenuOpen {
-  max-height: 400px;
+  max-height: 460px;
   opacity: 1;
 }
 
 .mobileLink {
-  font-family: 'DM Sans', sans-serif;
+  font-family: var(--font-sans);
   font-size: 16px;
-  font-weight: 400;
-  color: #9a9489;
-  padding: 1.1rem clamp(1.5rem, 5vw, 4rem);
-  text-decoration: none;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-  transition: color 0.2s ease;
-}
-
-.mobileLink:last-child {
-  border-bottom: none;
+  color: var(--color-text-secondary);
+  padding: 1rem clamp(1.25rem, 5vw, 4rem);
+  border-bottom: 1px solid var(--border-hairline);
+  border-left: 2px solid transparent;
+  transition: color var(--t-base) var(--ease), border-color var(--t-base) var(--ease);
 }
 
 .mobileLink:hover {
-  color: #ede9e0;
+  color: var(--color-text-primary);
+}
+
+.mobileLinkActive {
+  color: var(--color-text-primary);
+  border-left-color: var(--violet-500);
+  background: var(--violet-a08);
+}
+
+.mobileCta {
+  font-family: var(--font-sans);
+  font-size: 15px;
+  color: var(--color-text-primary);
+  background: var(--ember-a24);
+  padding: 1rem clamp(1.25rem, 5vw, 4rem);
 }
 
 /* ── Responsive ───────────────────────────────────────────── */
-@media (max-width: 768px) {
-  .links {
+@media (max-width: 940px) {
+  .links,
+  .cta {
     display: none;
   }
 
@@ -158,6 +222,8 @@
 @media (prefers-reduced-motion: reduce) {
   .nav,
   .link,
+  .cta,
+  .langBtn,
   .mobileMenu,
   .mobileLink {
     transition: none;
