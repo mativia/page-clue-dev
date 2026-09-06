@@ -4,27 +4,26 @@
   z-index: 50;
   width: 100%;
   border-radius: 0 0 16px 16px;
-  /* Promote the nav to its own GPU layer so the backdrop-filter actually
-     samples the page in the production build (without this, Chromium drops
-     the blur on desktop because the page's animated layers break it).
+  /* Promueve el nav a su propia capa GPU para que el backdrop-filter samplee
+     bien en el build de prod (sin esto Chromium descarta el blur en desktop).
      NO TOCAR: costó tres commits que esto funcione en prod. */
   transform: translateZ(0);
 
-  /* Glass oscuro teñido violeta. El tinte es lo bastante sólido como para
-     que la barra SIEMPRE se vea, aunque el browser descarte el blur. */
-  background: var(--glass-violet);
-  backdrop-filter: blur(14px) saturate(150%);
-  -webkit-backdrop-filter: blur(14px) saturate(150%);
+  /* Glass oscuro NEUTRO (negro/blanco, sin tinte de color). El fondo es
+     lo bastante sólido como para verse siempre, aunque se descarte el blur. */
+  background: rgba(14, 14, 16, 0.58);
+  backdrop-filter: blur(16px) saturate(130%);
+  -webkit-backdrop-filter: blur(16px) saturate(130%);
 
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.14),
-    inset 0 -1px 0 var(--violet-a24),
-    0 12px 32px rgba(0, 0, 0, 0.30);
+    inset 0 1px 0 rgba(255, 255, 255, 0.12),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.05),
+    0 12px 32px rgba(0, 0, 0, 0.34);
 }
 
 @supports not (backdrop-filter: blur(1px)) {
   .nav {
-    background: rgba(18, 13, 26, 0.94);
+    background: rgba(10, 10, 12, 0.94);
   }
 }
 
@@ -48,7 +47,7 @@
 }
 
 .brandDot {
-  color: var(--ember-500);
+  color: rgba(255, 255, 255, 0.4);
 }
 
 /* ── Desktop links ────────────────────────────────────────── */
@@ -63,7 +62,7 @@
   display: block;
   font-family: var(--font-sans);
   font-size: 13px;
-  color: var(--color-text-secondary);
+  color: rgba(255, 255, 255, 0.58);
   padding: 0.55rem 1.15rem;
   border-radius: var(--radius-full);
   border: 1px solid transparent;
@@ -73,29 +72,15 @@
 
 .link:hover {
   color: var(--color-text-primary);
-  background: var(--violet-a14);
-  border-color: var(--border-violet);
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.12);
 }
 
-/* Sección activa: pill violeta + punto ember. El violeta ubica,
-   el ember señala. */
+/* Página activa: pill blanco sutil, sin color. */
 .linkActive {
   color: var(--color-text-primary);
-  background: var(--violet-a24);
-  border-color: var(--border-violet-strong);
-}
-
-.linkActive::after {
-  content: '';
-  position: absolute;
-  bottom: 5px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 4px;
-  height: 4px;
-  border-radius: var(--radius-full);
-  background: var(--ember-500);
-  box-shadow: 0 0 8px var(--ember-a60);
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.18);
 }
 
 /* ── Acciones (idioma + CTA + hamburguesa) ────────────────── */
@@ -116,7 +101,7 @@
 }
 
 .langBtn {
-  color: var(--color-text-muted);
+  color: rgba(255, 255, 255, 0.45);
   padding: 2px 1px;
   transition: color var(--t-fast) var(--ease);
 }
@@ -126,28 +111,35 @@
 }
 
 .langActive {
-  color: var(--violet-200);
+  color: var(--color-text-primary);
 }
 
 .langSep {
-  color: var(--violet-a40);
+  color: rgba(255, 255, 255, 0.22);
 }
 
+/* CTA — pastilla blanca sólida: el único "momento", en blanco. */
 .cta {
   font-family: var(--font-sans);
+  font-weight: 500;
   font-size: 13px;
-  color: var(--color-text-primary);
-  background: var(--ember-a24);
-  border: 1px solid var(--border-ember);
+  color: #0c0b0d;
+  background: #ece9e3;
+  border: 1px solid transparent;
   border-radius: var(--radius-full);
-  padding: 0.55rem 1.25rem;
+  padding: 0.55rem 1.3rem;
   white-space: nowrap;
-  transition: background var(--t-base) var(--ease), box-shadow var(--t-base) var(--ease);
+  transition: background var(--t-base) var(--ease), transform var(--t-fast) var(--ease),
+    box-shadow var(--t-base) var(--ease);
 }
 
 .cta:hover {
-  background: var(--ember-a40);
-  box-shadow: var(--glow-ember);
+  background: #ffffff;
+  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.35);
+}
+
+.cta:active {
+  transform: scale(0.98);
 }
 
 /* ── Hamburguesa ──────────────────────────────────────────── */
@@ -163,7 +155,7 @@
 .mobileMenu {
   display: flex;
   flex-direction: column;
-  background: rgba(18, 13, 26, 0.97);
+  background: rgba(10, 10, 12, 0.97);
   backdrop-filter: blur(24px);
   -webkit-backdrop-filter: blur(24px);
   overflow: hidden;
@@ -181,11 +173,12 @@
 .mobileLink {
   font-family: var(--font-sans);
   font-size: 16px;
-  color: var(--color-text-secondary);
+  color: rgba(255, 255, 255, 0.6);
   padding: 1rem clamp(1.25rem, 5vw, 4rem);
-  border-bottom: 1px solid var(--border-hairline);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
   border-left: 2px solid transparent;
-  transition: color var(--t-base) var(--ease), border-color var(--t-base) var(--ease);
+  transition: color var(--t-base) var(--ease), border-color var(--t-base) var(--ease),
+    background var(--t-base) var(--ease);
 }
 
 .mobileLink:hover {
@@ -194,15 +187,16 @@
 
 .mobileLinkActive {
   color: var(--color-text-primary);
-  border-left-color: var(--violet-500);
-  background: var(--violet-a08);
+  border-left-color: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.05);
 }
 
 .mobileCta {
   font-family: var(--font-sans);
+  font-weight: 500;
   font-size: 15px;
-  color: var(--color-text-primary);
-  background: var(--ember-a24);
+  color: #0c0b0d;
+  background: #ece9e3;
   padding: 1rem clamp(1.25rem, 5vw, 4rem);
 }
 

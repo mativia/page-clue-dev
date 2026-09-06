@@ -1,18 +1,24 @@
 import { useState } from 'react'
+import { NavLink } from 'react-router-dom'
 import styles from './Nav.module.css'
 import { useLang } from '../../i18n/context'
-import { useActiveSection } from '../../hooks/useActiveSection'
-
-const SECTION_IDS = ['servicios', 'modulos', 'proceso', 'contacto']
 
 export default function Nav() {
   const { t, lang, setLang } = useLang()
   const [menuOpen, setMenuOpen] = useState(false)
-  const activeId = useActiveSection(SECTION_IDS)
 
-  function handleNavClick(e, targetId) {
+  const closeMenu = () => setMenuOpen(false)
+
+  const linkClass = ({ isActive }) =>
+    `${styles.link}${isActive ? ` ${styles.linkActive}` : ''}`
+  const mobileLinkClass = ({ isActive }) =>
+    `${styles.mobileLink}${isActive ? ` ${styles.mobileLinkActive}` : ''}`
+
+  // CTA de contacto: scrollea a la sección #contacto de la página actual
+  // (Home y Odoo la tienen). Los anchors internos siguen funcionando igual.
+  function goToContact(e) {
     e.preventDefault()
-    const el = document.getElementById(targetId)
+    const el = document.getElementById('contacto')
     if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' })
     setMenuOpen(false)
   }
@@ -20,26 +26,22 @@ export default function Nav() {
   return (
     <nav className={styles.nav}>
       <div className={styles.inner}>
-        <a
-          href="#inicio"
-          className={styles.brand}
-          onClick={e => handleNavClick(e, 'inicio')}
-        >
+        <NavLink to="/" className={styles.brand} onClick={closeMenu} end>
           CLUE DEV
           <span className={styles.brandDot} aria-hidden="true">.</span>
-        </a>
+        </NavLink>
 
         <ul className={styles.links} role="list">
-          {t.nav.links.map(link => (
-            <li key={link.id}>
-              <a
-                href={`#${link.id}`}
-                className={`${styles.link}${activeId === link.id ? ` ${styles.linkActive}` : ''}`}
-                aria-current={activeId === link.id ? 'true' : undefined}
-                onClick={e => handleNavClick(e, link.id)}
+          {t.nav.pages.map(page => (
+            <li key={page.to}>
+              <NavLink
+                to={page.to}
+                className={linkClass}
+                onClick={closeMenu}
+                end={page.to === '/'}
               >
-                {link.label}
-              </a>
+                {page.label}
+              </NavLink>
             </li>
           ))}
         </ul>
@@ -65,11 +67,7 @@ export default function Nav() {
             </button>
           </div>
 
-          <a
-            href="#contacto"
-            className={styles.cta}
-            onClick={e => handleNavClick(e, 'contacto')}
-          >
+          <a href="#contacto" className={styles.cta} onClick={goToContact}>
             {t.nav.cta}
           </a>
 
@@ -93,21 +91,18 @@ export default function Nav() {
         id="mobile-menu"
         className={`${styles.mobileMenu} ${menuOpen ? styles.mobileMenuOpen : ''}`}
       >
-        {t.nav.links.map(link => (
-          <a
-            key={link.id}
-            href={`#${link.id}`}
-            className={`${styles.mobileLink}${activeId === link.id ? ` ${styles.mobileLinkActive}` : ''}`}
-            onClick={e => handleNavClick(e, link.id)}
+        {t.nav.pages.map(page => (
+          <NavLink
+            key={page.to}
+            to={page.to}
+            className={mobileLinkClass}
+            onClick={closeMenu}
+            end={page.to === '/'}
           >
-            {link.label}
-          </a>
+            {page.label}
+          </NavLink>
         ))}
-        <a
-          href="#contacto"
-          className={styles.mobileCta}
-          onClick={e => handleNavClick(e, 'contacto')}
-        >
+        <a href="#contacto" className={styles.mobileCta} onClick={goToContact}>
           {t.nav.cta} →
         </a>
       </div>
