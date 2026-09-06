@@ -19,13 +19,16 @@ function ScrollToTop() {
 
 function App() {
   const { pathname } = useLocation()
-  // La home es una sola pantalla (solo las 3 cards): sin footer.
-  const showFooter = pathname !== '/'
+  // La home es una sola pantalla (solo las 3 cards): sin nav ni footer.
+  // El nav aparece dentro de cada página (Odoo / Landing / Desarrollo).
+  const isHome = pathname === '/'
+  const showNav = !isHome
+  const showFooter = !isHome
 
   return (
     <>
       <ScrollToTop />
-      <Nav />
+      {showNav && <Nav />}
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/odoo" element={<OdooPage />} />
