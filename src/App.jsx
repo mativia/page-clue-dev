@@ -1,30 +1,40 @@
 import './styles/globals.css'
-import { LanguageProvider } from './i18n/LanguageProvider'
+import { useEffect } from 'react'
+import { Routes, Route, useLocation } from 'react-router-dom'
 import Nav from './components/Nav/Nav'
-import Hero from './sections/Hero/Hero'
-import Partners from './sections/Partners/Partners'
-import Services from './sections/Services/Services'
-import Modules from './sections/Modules/Modules'
-import Process from './sections/Process/Process'
-import Marquee from './components/Marquee/Marquee'
-import Contact from './sections/Contact/Contact'
 import Footer from './components/Footer/Footer'
+import HomePage from './pages/Home/HomePage'
+import OdooPage from './pages/Odoo/OdooPage'
+import LandingPage from './pages/Landing/LandingPage'
+import DesarrolloPage from './pages/Desarrollo/DesarrolloPage'
+
+/* Al cambiar de ruta, volvemos arriba (React Router no lo hace solo). */
+function ScrollToTop() {
+  const { pathname } = useLocation()
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [pathname])
+  return null
+}
 
 function App() {
+  const { pathname } = useLocation()
+  // La home es una sola pantalla (solo las 3 cards): sin footer.
+  const showFooter = pathname !== '/'
+
   return (
-    <LanguageProvider>
+    <>
+      <ScrollToTop />
       <Nav />
-      <main>
-        <Hero />
-        <Partners />
-        <Services />
-        <Modules />
-        <Process />
-        <Marquee />
-        <Contact />
-      </main>
-      <Footer />
-    </LanguageProvider>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/odoo" element={<OdooPage />} />
+        <Route path="/landing" element={<LandingPage />} />
+        <Route path="/desarrollo" element={<DesarrolloPage />} />
+        <Route path="*" element={<HomePage />} />
+      </Routes>
+      {showFooter && <Footer />}
+    </>
   )
 }
 
