@@ -1,0 +1,165 @@
+/* ── Hero ─────────────────────────────────────────────────── */
+.hero {
+  position: relative;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  overflow: hidden;
+  padding-bottom: clamp(3rem, 6vw, 5rem);
+  padding-left: clamp(1.5rem, 6vw, 6rem);
+  padding-right: clamp(1.5rem, 3vw, 3rem);
+  background-color: #0d1413;
+  background-image: url('../../assets/images/fondoLanding.webp');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Scrim — darkens the lower area so the text stays legible. */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    to top,
+    rgba(6, 11, 10, 0.82) 0%,
+    rgba(6, 11, 10, 0.42) 38%,
+    rgba(6, 11, 10, 0.12) 100%
+  );
+}
+
+/* ── Content zone (left-aligned, bottom) ─────────────────── */
+.content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: 900px;
+}
+
+.eyebrow {
+  display: block;
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #9a9489;
+  margin-bottom: 1.25rem;
+}
+
+.tagline {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(46px, 8vw, 104px);
+  line-height: 0.9;
+  color: #ede9e0;
+  margin: 0 0 1.75rem;
+  letter-spacing: 0.01em;
+}
+
+.dot {
+  color: #e84c1e;
+}
+
+.sub {
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  font-size: clamp(14px, 1.4vw, 16px);
+  color: #c9c4ba;
+  line-height: 1.7;
+  max-width: 520px;
+  margin: 0 0 2.25rem;
+}
+
+.cta {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  color: #ede9e0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  position: relative;
+  padding-bottom: 4px;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.cta::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: #e84c1e;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.cta:hover::after {
+  transform: scaleX(1);
+}
+
+.cta:active {
+  transform: scale(0.98);
+}
+
+/* ── HUD — metadata block, desktop only ───────────────────── */
+.hud {
+  position: absolute;
+  right: 2rem;
+  bottom: 3rem;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  border-left: 1px solid rgba(255, 255, 255, 0.08);
+  padding-left: 1rem;
+}
+
+.hudItem {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  color: #9a9489;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 7px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.hudItem:first-child {
+  border-top: none;
+}
+
+/* ── Divider ──────────────────────────────────────────────── */
+.divider {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  height: 1px;
+  background: linear-gradient(to right, #e84c1e, transparent 40%);
+}
+
+/* ── Mobile ───────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .tagline {
+    font-size: clamp(38px, 11vw, 62px);
+  }
+
+  .hud {
+    display: none;
+  }
+}
+
+/* ── Reduced motion ───────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .cta::after {
+    transition: none;
+  }
+}

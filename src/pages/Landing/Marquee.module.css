@@ -1,0 +1,42 @@
+/* ── Marquee — movement band between sections ─────────────── */
+.marquee {
+  background: #111110;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  overflow: hidden;
+  white-space: nowrap;
+  padding: 1.4rem 0;
+}
+
+.track {
+  display: inline-flex;
+  align-items: center;
+  animation: marqueeScroll 32s linear infinite;
+}
+
+.item {
+  display: inline-flex;
+  align-items: center;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(22px, 3vw, 34px);
+  letter-spacing: 0.04em;
+  color: #ede9e0;
+  padding: 0 1.5rem;
+}
+
+.star {
+  color: #e84c1e;
+  font-size: 0.5em;
+  margin-left: 2rem;
+}
+
+@keyframes marqueeScroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .track {
+    animation: none;
+  }
+}
