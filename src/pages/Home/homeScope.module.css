@@ -1,0 +1,59 @@
+/* ============================================================
+   HOME — paleta paraguas, SCOPEADA (no toca :root / Odoo).
+   Tesis: lienzo neutro acromático. El color NO decora: identifica.
+   Cada servicio tiene su color, en cuarentena dentro de su bloque.
+   Los tres nunca se mezclan ni se funden (nada de degradés).
+   Dos son hue (violeta, ember); el tercero es acromático (blanco/
+   grafito) = la cara "blanco y negro" de Desarrollo.
+   ============================================================ */
+.scope {
+  /* ── Lienzo neutro ────────────────────────────────────── */
+  --h-base:      #0c0b0d;  /* casi negro, sin tinte de servicio */
+  --h-surface:   #141317;  /* card en reposo */
+  --h-surface-2: #191820;  /* elevado */
+  --h-inset:     #08070a;  /* hundido: inputs */
+  --h-line:        rgba(255, 255, 255, 0.09);
+  --h-line-strong: rgba(255, 255, 255, 0.16);
+
+  /* ── Tinta (off-white cálido, hereda la marca) ────────── */
+  --h-ink:     #ece9e3;
+  --h-ink-dim: #b3b0aa;
+  --h-mute:    #78767e;   /* mono / detalles */
+
+  /* ── Las tres caras (cuarentena por card) ─────────────── */
+  --c-odoo:       #8b5cf6;                    /* violeta */
+  --c-odoo-soft:  rgba(139, 92, 246, 0.13);
+  --c-odoo-glow:  rgba(139, 92, 246, 0.24);
+
+  --c-landing:      #e84c1e;                  /* ember */
+  --c-landing-soft: rgba(232, 76, 30, 0.13);
+  --c-landing-glow: rgba(232, 76, 30, 0.26);
+
+  --c-dev:      #f2f1ee;                       /* blanco (B&N minimal) */
+  --c-dev-soft: rgba(242, 241, 238, 0.09);
+  --c-dev-glow: rgba(242, 241, 238, 0.16);
+  --c-dev-mid:  #6a6a71;                       /* grafito */
+
+  /* ── Tipografía (mismas caras de marca) ───────────────── */
+  --font-display: 'Bebas Neue', sans-serif;
+  --font-sans:    'DM Sans', system-ui, sans-serif;
+  --font-mono:    'DM Mono', 'JetBrains Mono', monospace;
+  --track-mono:   0.22em;
+  --fs-mono-sm:   10px;
+  --fs-mono-md:   12px;
+
+  /* ── Ritmo ────────────────────────────────────────────── */
+  --h-gutter:    clamp(1.5rem, 6vw, 6rem);
+  --h-section-y: clamp(5rem, 10vw, 8.5rem);
+  --h-radius:    16px;
+
+  /* ── Movimiento ───────────────────────────────────────── */
+  --ease:     cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --t-fast: 140ms;
+  --t-base: 260ms;
+  --t-slow: 520ms;
+
+  background-color: var(--h-base);
+  color: var(--h-ink);
+}

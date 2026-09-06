@@ -21,10 +21,76 @@ export const COPY = {
         { label: 'Proceso', id: 'proceso' },
         { label: 'Contacto', id: 'contacto' },
       ],
+      pages: [
+        { to: '/', label: 'Inicio' },
+        { to: '/odoo', label: 'Odoo' },
+        { to: '/landing', label: 'Landing' },
+        { to: '/desarrollo', label: 'Desarrollo' },
+      ],
       cta: 'Trabajemos juntos',
       openMenu: 'Abrir menú',
       closeMenu: 'Cerrar menú',
       langLabel: 'Cambiar idioma',
+    },
+
+    /* ── HOME ("/") — página paraguas (Fase 2) ─────────────── */
+    home: {
+      hero: {
+        eyebrow: 'Estudio digital — Córdoba, AR',
+        titleLines: ['UN ESTUDIO.', 'TRES FORMAS', 'DE CONSTRUIR'],
+        sub: 'Clue Dev construye el lado digital de tu negocio. Una marca, tres formas de trabajar: sistemas Odoo, landing pages y software a medida. Elegí por dónde entrar.',
+        ctaPrimary: 'Ver servicios',
+        ctaSecondary: 'Hablemos',
+        spec: [
+          { k: 'Servicios', v: 'Tres' },
+          { k: 'Base', v: 'Córdoba, AR' },
+          { k: 'Trabajo', v: 'B2B + Pyme' },
+        ],
+        scrollHint: 'Servicios',
+      },
+      services: {
+        eyebrow: 'Los servicios',
+        title: 'Elegí tu puerta',
+        note: 'Tres caras, un solo estándar.',
+        items: [
+          {
+            id: 'odoo', face: 'odoo', index: '01', route: '/odoo',
+            name: 'ODOO',
+            oneLiner: 'Desarrollo y módulos a medida',
+            desc: 'El brazo de desarrollo Odoo para otras implementadoras. Módulos a medida sobre los requerimientos de tus clientes, más módulos propios para el marketplace.',
+            cta: 'Entrar a Odoo',
+          },
+          {
+            id: 'landing', face: 'landing', index: '02', route: '/landing',
+            name: 'LANDING',
+            oneLiner: 'Sitios simples con foco en diseño',
+            desc: 'Nuestra vidriera creativa: landing pages y sitios que priorizan el diseño. Rápidos, claros y hechos para convertir.',
+            cta: 'Entrar a Landing',
+          },
+          {
+            id: 'dev', face: 'dev', index: '03', route: '/desarrollo',
+            name: 'DESARROLLO',
+            oneLiner: 'Software a medida para tu empresa',
+            desc: 'Del relevamiento al desarrollo: sistemas a medida para pymes y empresas. Resolvemos el problema real, sin vender tecnicismos.',
+            cta: 'Entrar a Desarrollo',
+          },
+        ],
+      },
+      brand: {
+        line: 'Una marca, tres formas de construir digital.',
+        strong: 'El mismo estándar en las tres.',
+      },
+      contact: {
+        eyebrow: 'Contacto',
+        title: 'HABLEMOS',
+        sub: 'Contanos qué necesitás y te decimos por dónde empezar.',
+        fields: { name: 'Nombre', email: 'Email', message: 'Mensaje' },
+        placeholders: { name: 'Tu nombre', email: 'tu@email.com', message: '¿Qué querés construir?' },
+        send: 'Enviar mensaje',
+        sending: 'Enviando…',
+        ok: 'Listo. Te respondemos a la brevedad.',
+        error: 'No se pudo enviar. Probá de nuevo o escribinos por mail.',
+      },
     },
 
     hero: {
@@ -189,10 +255,76 @@ export const COPY = {
         { label: 'Process', id: 'proceso' },
         { label: 'Contact', id: 'contacto' },
       ],
+      pages: [
+        { to: '/', label: 'Home' },
+        { to: '/odoo', label: 'Odoo' },
+        { to: '/landing', label: 'Landing' },
+        { to: '/desarrollo', label: 'Development' },
+      ],
       cta: "Let's work together",
       openMenu: 'Open menu',
       closeMenu: 'Close menu',
       langLabel: 'Change language',
+    },
+
+    /* ── HOME ("/") — umbrella page (Phase 2) ──────────────── */
+    home: {
+      hero: {
+        eyebrow: 'Digital studio — Córdoba, AR',
+        titleLines: ['ONE STUDIO.', 'THREE WAYS', 'TO BUILD'],
+        sub: 'Clue Dev builds the digital side of your business. One brand, three ways to work: Odoo systems, landing pages and custom software. Pick your door.',
+        ctaPrimary: 'See services',
+        ctaSecondary: "Let's talk",
+        spec: [
+          { k: 'Services', v: 'Three' },
+          { k: 'Based in', v: 'Córdoba, AR' },
+          { k: 'We serve', v: 'B2B + SMB' },
+        ],
+        scrollHint: 'Services',
+      },
+      services: {
+        eyebrow: 'The services',
+        title: 'Pick your door',
+        note: 'Three faces, one standard.',
+        items: [
+          {
+            id: 'odoo', face: 'odoo', index: '01', route: '/odoo',
+            name: 'ODOO',
+            oneLiner: 'Custom development & modules',
+            desc: "The Odoo development arm for other implementers. Custom modules built to your clients' needs, plus our own modules for the marketplace.",
+            cta: 'Enter Odoo',
+          },
+          {
+            id: 'landing', face: 'landing', index: '02', route: '/landing',
+            name: 'LANDING',
+            oneLiner: 'Simple sites, design-first',
+            desc: 'Our creative shopfront: landing pages and sites that put design first. Fast, clear and built to convert.',
+            cta: 'Enter Landing',
+          },
+          {
+            id: 'dev', face: 'dev', index: '03', route: '/desarrollo',
+            name: 'DEVELOPMENT',
+            oneLiner: 'Custom software for your company',
+            desc: 'From discovery to development: custom systems for SMEs and companies. We solve the real problem, no jargon.',
+            cta: 'Enter Development',
+          },
+        ],
+      },
+      brand: {
+        line: 'One brand, three ways to build digital.',
+        strong: 'The same standard across all three.',
+      },
+      contact: {
+        eyebrow: 'Contact',
+        title: "LET'S TALK",
+        sub: "Tell us what you need and we'll point you to the right door.",
+        fields: { name: 'Name', email: 'Email', message: 'Message' },
+        placeholders: { name: 'Your name', email: 'you@email.com', message: 'What do you want to build?' },
+        send: 'Send message',
+        sending: 'Sending…',
+        ok: "Done. We'll get back to you shortly.",
+        error: "Couldn't send. Try again or email us.",
+      },
     },
 
     hero: {
