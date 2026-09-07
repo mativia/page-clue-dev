@@ -4,6 +4,7 @@ import Modes from './Modes'
 import Custom from './Custom'
 import Products from './Products'
 import Statement from './Statement'
+import Contact from './Contact'
 
 /* /desarrollo — cara B&N minimalista: software a medida + productos por
    suscripción. Dos modos de un mismo sistema. Paleta scopeada en .scope. */
@@ -15,6 +16,7 @@ export default function DesarrolloPage() {
       <Custom />
       <Products />
       <Statement />
+      <Contact />
     </main>
   )
 }

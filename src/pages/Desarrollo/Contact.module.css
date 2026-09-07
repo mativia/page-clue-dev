@@ -1,0 +1,258 @@
+.section {
+  position: relative;
+  padding: var(--d-section-y) var(--d-gutter);
+  background: var(--d-base);
+}
+
+.topDivider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.06) 50%, transparent);
+}
+
+/* Form + info directa. */
+.inner {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: start;
+}
+
+/* ── Form ─────────────────────────────────────────────────── */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.formHeader {
+  margin-bottom: 0.5rem;
+}
+
+.eyebrow {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--d-mute);
+  margin-bottom: 0.75rem;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: clamp(44px, 6vw, 80px);
+  line-height: 0.9;
+  color: var(--d-ink);
+  margin: 0;
+}
+
+.dot {
+  color: var(--d-mute);
+}
+
+.fieldRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--d-mute);
+}
+
+.input,
+.textarea {
+  font-family: var(--font-sans);
+  font-size: 15px;
+  color: var(--d-ink);
+  background: var(--d-surface);
+  border: 1px solid var(--d-line);
+  border-radius: var(--radius-sm);
+  padding: 0.75rem 0.9rem;
+  width: 100%;
+  transition: border-color var(--t-base) var(--ease), background var(--t-base) var(--ease);
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.input:focus,
+.textarea:focus {
+  outline: none;
+  border-color: rgba(255, 255, 255, 0.45);
+  background: var(--d-raised);
+}
+
+/* ── Chips (interés) ──────────────────────────────────────── */
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.chip {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  color: var(--d-ink-dim);
+  background: transparent;
+  border: 1px solid var(--d-line);
+  border-radius: var(--radius-full);
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: border-color var(--t-base) var(--ease), color var(--t-base) var(--ease),
+    background var(--t-base) var(--ease);
+}
+
+.chip:hover {
+  border-color: rgba(255, 255, 255, 0.35);
+  color: var(--d-ink);
+}
+
+/* Activo = pill sólido (mismo lenguaje que el badge Disponible). */
+.chipActive {
+  background: var(--d-ink);
+  border-color: var(--d-ink);
+  color: var(--d-base);
+}
+
+/* ── Submit — pastilla blanca sólida ──────────────────────── */
+.submit {
+  align-self: flex-start;
+  font-family: var(--font-sans);
+  font-weight: 500;
+  font-size: 14px;
+  color: var(--d-base);
+  background: var(--d-ink);
+  border: 1px solid transparent;
+  border-radius: var(--radius-full);
+  padding: 0.75rem 1.6rem;
+  cursor: pointer;
+  transition: opacity var(--t-base) var(--ease), transform var(--t-fast) var(--ease);
+}
+
+.submit:hover {
+  opacity: 0.88;
+}
+
+.submit:active {
+  transform: scale(0.98);
+}
+
+.submit:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.feedback {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  margin: 0;
+}
+
+.feedbackOk {
+  color: var(--d-ink);
+}
+
+.feedbackErr {
+  color: var(--d-ink-dim);
+}
+
+/* ── Aside (info directa) ─────────────────────────────────── */
+.aside {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding-top: 0.5rem;
+}
+
+.contacts {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  border-top: 1px solid var(--d-line);
+  padding-top: 1.5rem;
+}
+
+.contactItem {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--d-ink-dim);
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  transition: color var(--t-base) var(--ease);
+  width: fit-content;
+}
+
+.contactItem:hover {
+  color: var(--d-ink);
+}
+
+.socials {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.social {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--d-line);
+  border-radius: var(--radius-full);
+  color: var(--d-ink-dim);
+  transition: border-color var(--t-base) var(--ease), color var(--t-base) var(--ease),
+    background var(--t-base) var(--ease);
+}
+
+.social svg {
+  width: 18px;
+  height: 18px;
+}
+
+.social:hover {
+  border-color: var(--d-ink);
+  color: var(--d-base);
+  background: var(--d-ink);
+}
+
+/* ── Responsive ───────────────────────────────────────────── */
+@media (max-width: 820px) {
+  .inner {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 520px) {
+  .fieldRow {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── Reduced motion ───────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .input,
+  .textarea,
+  .chip,
+  .submit,
+  .contactItem,
+  .social {
+    transition: none;
+  }
+}
