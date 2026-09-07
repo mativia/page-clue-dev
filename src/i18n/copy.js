@@ -93,6 +93,70 @@ export const COPY = {
       },
     },
 
+    /* ── LANDING ("/landing") — vidriera de landing pages ──────
+       Registro: cálido y aspiracional, para emprendedores y marcas
+       personales. Equilibra diseño (atrae) y resultado (convierte). */
+    landing: {
+      hero: {
+        eyebrow: 'CLUE_DEV · LANDING PAGES · CBA, AR',
+        titleA: 'Diseño que atrae',
+        titleB: 'Código que convierte',
+        sub: 'Unimos diseño y desarrollo para crear webs que se ven increíbles y trabajan para vos: rápidas, claras y pensadas para convertir visitas en clientes.',
+        cta: 'Hablemos →',
+        hud: ['01 · DISEÑO', '02 · DESARROLLO', '03 · ONLINE'],
+      },
+      portfolio: {
+        eyebrow: '✦ Trabajos',
+        titleLines: ['PROYECTOS QUE', 'HABLAN POR', 'NOSOTROS'],
+        sub: 'Una selección de webs y landing pages que diseñamos y desarrollamos de punta a punta.',
+        linkLabel: 'Ver proyecto',
+        placeholderNote: 'Captura en camino',
+        /* Cada item: slug = nombre del archivo en assets/images/portfolio/.
+           Si el archivo no existe, se muestra un placeholder on-brand.
+           link vacío ('') = card no clickeable. Editá libremente. */
+        items: [
+          { slug: 'proyecto-01', title: 'Marca personal', type: 'Landing page · Marca personal', desc: 'Landing para una marca personal, con foco en captar contactos.', url: 'marca-personal.com', link: '' },
+          { slug: 'proyecto-02', title: 'Tienda online', type: 'E-commerce · UX/UI', desc: 'Rediseño completo de una tienda online: más simple, más ventas.', url: 'tienda-online.com', link: '' },
+          { slug: 'proyecto-03', title: 'Estudio creativo', type: 'Sitio web · Identidad', desc: 'Sitio institucional para un estudio creativo, con foco en el portfolio.', url: 'estudio-creativo.com', link: '' },
+          { slug: 'proyecto-04', title: 'App landing', type: 'Landing page · Producto', desc: 'Landing de lanzamiento para una app, pensada para descargas.', url: 'app-landing.com', link: '' },
+          { slug: 'proyecto-05', title: 'Gastronomía', type: 'Sitio web · Reservas', desc: 'Web para un restaurante con menú y reservas online.', url: 'gastro.com', link: '' },
+          { slug: 'proyecto-06', title: 'Coach & cursos', type: 'Landing page · Educación', desc: 'Landing para vender un curso online, optimizada para conversión.', url: 'coach-cursos.com', link: '' },
+        ],
+      },
+      marquee: ['DISEÑO WEB', 'UX/UI', 'RESPONSIVE', 'IDENTIDAD VISUAL', 'LANDING PAGES', 'SEO', 'PERFORMANCE', 'MOTION'],
+      process: {
+        eyebrow: '✦ 02 — Proceso',
+        titleLines: ['DE LA IDEA', 'AL LANZAMIENTO'],
+        lede: 'Un camino simple y ágil, de la primera charla a tu web online.',
+        strong: 'Así lo hacemos realidad.',
+        steps: [
+          { id: '01', title: 'Charla', desc: 'Nos contás tu proyecto, tu marca y qué querés lograr. Sin vueltas.' },
+          { id: '02', title: 'Diseño', desc: 'Diseñamos una propuesta visual hecha para vos, y la ajustamos hasta que te enamore.' },
+          { id: '03', title: 'Desarrollo', desc: 'La construimos rápida, responsive y lista para buscadores.' },
+          { id: '04', title: 'Publicación', desc: 'La ponemos online y te dejamos todo listo para crecer.' },
+        ],
+      },
+      contact: {
+        eyebrow: 'CONTACTO',
+        title: 'Hablemos',
+        labels: {
+          nombre: 'Nombre',
+          empresa: 'Marca o proyecto',
+          rol: 'Rol',
+          email: 'Email',
+          servicio: 'Servicio',
+          mensaje: 'Contanos sobre tu proyecto',
+        },
+        chips: ['Landing page', 'Sitio web', 'Rediseño', 'Otro'],
+        submit: 'Enviar mensaje →',
+        sending: 'Enviando…',
+        validationService: 'Elegí un tipo de servicio.',
+        success: '¡Mensaje enviado! Te contactamos a la brevedad.',
+        errorGeneric: 'No se pudo enviar. Probá de nuevo en un momento.',
+        errorNetwork: 'Error de conexión. Probá de nuevo en un momento.',
+      },
+    },
+
     hero: {
       status: 'Disponible para nuevos proyectos',
       titleLines: ['MÓDULOS Y', 'DESARROLLO ODOO', 'A MEDIDA'],
@@ -324,6 +388,65 @@ export const COPY = {
         sending: 'Sending…',
         ok: "Done. We'll get back to you shortly.",
         error: "Couldn't send. Try again or email us.",
+      },
+    },
+
+    /* ── LANDING ("/landing") — landing-pages shopfront ──────── */
+    landing: {
+      hero: {
+        eyebrow: 'CLUE_DEV · LANDING PAGES · CBA, AR',
+        titleA: 'Design that attracts',
+        titleB: 'Code that converts',
+        sub: 'We combine design and development to create sites that look incredible and work for you: fast, clear and built to turn visitors into clients.',
+        cta: "Let's talk →",
+        hud: ['01 · DESIGN', '02 · BUILD', '03 · LIVE'],
+      },
+      portfolio: {
+        eyebrow: '✦ Selected work',
+        titleLines: ['WORK THAT', 'SPEAKS FOR', 'ITSELF'],
+        sub: 'A selection of sites and landing pages we designed and built end to end.',
+        linkLabel: 'View project',
+        placeholderNote: 'Shot coming soon',
+        items: [
+          { slug: 'proyecto-01', title: 'Personal brand', type: 'Landing page · Personal brand', desc: 'Landing for a personal brand, focused on capturing leads.', url: 'marca-personal.com', link: '' },
+          { slug: 'proyecto-02', title: 'Online store', type: 'E-commerce · UX/UI', desc: 'Full redesign of an online store: simpler, more sales.', url: 'tienda-online.com', link: '' },
+          { slug: 'proyecto-03', title: 'Creative studio', type: 'Website · Identity', desc: 'Institutional site for a creative studio, portfolio-focused.', url: 'estudio-creativo.com', link: '' },
+          { slug: 'proyecto-04', title: 'App landing', type: 'Landing page · Product', desc: 'Launch landing for an app, built for downloads.', url: 'app-landing.com', link: '' },
+          { slug: 'proyecto-05', title: 'Restaurant', type: 'Website · Bookings', desc: 'Site for a restaurant with menu and online bookings.', url: 'gastro.com', link: '' },
+          { slug: 'proyecto-06', title: 'Coach & courses', type: 'Landing page · Education', desc: 'Landing to sell an online course, conversion-optimized.', url: 'coach-cursos.com', link: '' },
+        ],
+      },
+      marquee: ['WEB DESIGN', 'UX/UI', 'RESPONSIVE', 'VISUAL IDENTITY', 'LANDING PAGES', 'SEO', 'PERFORMANCE', 'MOTION'],
+      process: {
+        eyebrow: '✦ 02 — Process',
+        titleLines: ['FROM IDEA', 'TO LAUNCH'],
+        lede: 'A simple, agile path from first chat to your site online.',
+        strong: 'This is how we make it real.',
+        steps: [
+          { id: '01', title: 'Chat', desc: 'You tell us about your project, your brand and your goals. No fuss.' },
+          { id: '02', title: 'Design', desc: 'We design a visual proposal made for you, refined until you love it.' },
+          { id: '03', title: 'Build', desc: 'We build it fast, responsive and search-ready.' },
+          { id: '04', title: 'Launch', desc: 'We take it live and leave everything ready to grow.' },
+        ],
+      },
+      contact: {
+        eyebrow: 'CONTACT',
+        title: "Let's talk",
+        labels: {
+          nombre: 'Name',
+          empresa: 'Brand or project',
+          rol: 'Role',
+          email: 'Email',
+          servicio: 'Service',
+          mensaje: 'Tell us about your project',
+        },
+        chips: ['Landing page', 'Website', 'Redesign', 'Other'],
+        submit: 'Send message →',
+        sending: 'Sending…',
+        validationService: 'Choose a service type.',
+        success: "Message sent! We'll get back to you shortly.",
+        errorGeneric: "Couldn't send. Try again in a moment.",
+        errorNetwork: 'Connection error. Try again in a moment.',
       },
     },
 
