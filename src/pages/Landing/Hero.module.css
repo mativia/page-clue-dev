@@ -54,14 +54,32 @@
 .tagline {
   font-family: 'Bebas Neue', sans-serif;
   font-size: clamp(46px, 8vw, 104px);
-  line-height: 0.9;
-  color: #ede9e0;
+  line-height: 0.92;
   margin: 0 0 1.75rem;
   letter-spacing: 0.01em;
 }
 
+/* Dos tiempos: la primera frase, más apagada (el diseño que atrae);
+   la segunda, al full, es el remate (el código que convierte). */
+.lineLead,
+.line {
+  display: block;
+}
+
+.lineLead {
+  color: #b3ada2;
+}
+
+.line {
+  color: #ede9e0;
+}
+
 .dot {
   color: #e84c1e;
+}
+
+.dotDim {
+  color: #6f6a62;
 }
 
 .sub {
