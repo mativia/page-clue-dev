@@ -1,0 +1,292 @@
+/* ── Section ──────────────────────────────────────────────── */
+.section {
+  padding: clamp(5rem, 10vw, 8rem) 0;
+  /* El fade superior se funde con el fondo oscuro del hero de arriba. */
+  background:
+    linear-gradient(to bottom, #060b0a 0%, rgba(6, 11, 10, 0.82) 6%, rgba(6, 11, 10, 0) 26%),
+    #111110;
+  position: relative;
+}
+
+.topDivider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent 0%, rgba(255, 255, 255, 0.06) 50%, transparent 100%);
+}
+
+.sectionInner {
+  padding-left: clamp(1.5rem, 6vw, 6rem);
+  padding-right: clamp(1.5rem, 6vw, 6rem);
+}
+
+/* ── Header ───────────────────────────────────────────────── */
+.eyebrow {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #9a9489;
+  margin-bottom: 1.5rem;
+}
+
+.sectionTitle {
+  font-family: var(--font-display);
+  font-size: clamp(48px, 8vw, 96px);
+  line-height: 0.9;
+  color: #ede9e0;
+  margin: 0 0 0.75rem;
+}
+
+.titleLine {
+  display: block;
+}
+
+.accentDot {
+  color: var(--color-ember);
+}
+
+.sectionSub {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: 14px;
+  color: #9a9489;
+  margin: 0 0 3.25rem;
+  line-height: 1.6;
+  max-width: 46ch;
+}
+
+/* ── Grid ─────────────────────────────────────────────────── */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+  align-items: start;
+}
+
+/* ── Card ─────────────────────────────────────────────────── */
+.card {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+  cursor: default;
+}
+
+.cardLink {
+  cursor: pointer;
+}
+
+/* ── Ventana de navegador ─────────────────────────────────── */
+.frame {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: #1a1a18;
+  box-shadow: var(--shadow-md);
+  transition:
+    transform var(--t-base) var(--ease),
+    box-shadow var(--t-base) var(--ease),
+    border-color var(--t-base) var(--ease);
+}
+
+.card:hover .frame {
+  transform: translateY(-4px);
+  border-color: rgba(232, 76, 30, 0.4);
+  box-shadow: var(--shadow-lg);
+}
+
+.bar {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.6rem 0.85rem;
+  background: #141412;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.dots {
+  display: inline-flex;
+  gap: 5px;
+  flex-shrink: 0;
+}
+
+.dots i {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.16);
+}
+
+.dots i:first-child {
+  background: rgba(232, 76, 30, 0.75);
+}
+
+.url {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: #9a9489;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.barArrow {
+  margin-left: auto;
+  font-size: 12px;
+  color: #9a9489;
+  flex-shrink: 0;
+  transition: color var(--t-base) var(--ease), transform var(--t-base) var(--ease);
+}
+
+.card:hover .barArrow {
+  color: #ede9e0;
+  transform: translate(2px, -2px);
+}
+
+/* ── Viewport (captura o placeholder) ─────────────────────── */
+.viewport {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: #0e0e0c;
+}
+
+.shot {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  /* Al hover, la captura "scrollea" (paneo full-page). */
+  transition: object-position 1.2s var(--ease);
+}
+
+.card:hover .shot {
+  object-position: bottom center;
+}
+
+/* Placeholder on-brand: glow ember + trama diagonal + tipo fantasmal. */
+.placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.85rem;
+  text-align: center;
+  padding: 1.5rem;
+  background:
+    radial-gradient(120% 90% at 50% 120%, rgba(232, 76, 30, 0.22), transparent 60%),
+    repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.02) 0 10px, transparent 10px 20px),
+    #17130f;
+}
+
+.phType {
+  font-family: var(--font-display);
+  font-size: clamp(24px, 3.4vw, 42px);
+  line-height: 1;
+  letter-spacing: 0.02em;
+  color: rgba(237, 233, 224, 0.34);
+}
+
+.phNote {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #9a9489;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+}
+
+/* Overlay "Ver proyecto" — solo en cards con link. */
+.overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  padding: 1rem;
+  background: linear-gradient(to top, rgba(6, 11, 10, 0.78), transparent 55%);
+  opacity: 0;
+  transition: opacity var(--t-base) var(--ease);
+}
+
+.card:hover .overlay {
+  opacity: 1;
+}
+
+.overlayLabel {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #ede9e0;
+  border-bottom: 1px solid var(--color-ember);
+  padding-bottom: 2px;
+}
+
+/* ── Ficha ────────────────────────────────────────────────── */
+.meta {
+  padding: 1.2rem 0.25rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.type {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-ember);
+}
+
+.name {
+  font-family: var(--font-display);
+  font-size: clamp(26px, 3vw, 36px);
+  line-height: 1;
+  color: #ede9e0;
+  margin: 0;
+}
+
+.desc {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 1.55;
+  color: #9a9489;
+  margin: 0;
+}
+
+/* ── Responsive ───────────────────────────────────────────── */
+@media (max-width: 720px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── Reduced motion ───────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .frame,
+  .shot,
+  .overlay,
+  .barArrow {
+    transition: none;
+  }
+
+  .card:hover .frame {
+    transform: none;
+  }
+
+  .card:hover .shot {
+    object-position: top center;
+  }
+}

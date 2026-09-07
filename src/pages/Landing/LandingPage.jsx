@@ -1,18 +1,19 @@
 import scope from './landingScope.module.css'
 import Hero from './Hero'
-import Services from './Services'
+import Portfolio from './Portfolio'
 import Marquee from './Marquee'
 import Manifesto from './Manifesto'
 import Contact from './Contact'
 
-/* /landing — cara naranja/ember: es la home vieja (hero con imagen,
-   "Hablemos" y Claudio) reutilizada como vidriera creativa. Paleta
-   scopeada en .scope. Provisional: se rediseña/traduce más adelante. */
+/* /landing — cara naranja/ember: la vidriera creativa de Clue Dev.
+   Diseño y desarrollo de landing pages / webs simples, para emprendedores
+   y marcas personales. Bilingüe (i18n namespace `landing`). Paleta
+   naranja/ember scopeada en .scope. */
 export default function LandingPage() {
   return (
     <main className={scope.scope}>
       <Hero />
-      <Services />
+      <Portfolio />
       <Marquee />
       <Manifesto />
       <Contact />
