@@ -1,32 +1,10 @@
-import { useState } from 'react'
+import { Fragment, useState } from 'react'
 import styles from './Manifesto.module.css'
 import { Reveal } from '../../components/Reveal/Reveal'
+import { useLang } from '../../i18n/context'
 
-const POINTS = [
-  {
-    id: '01',
-    title: 'Relevamiento',
-    desc: 'Entendemos tu negocio, tus procesos y dónde se pierde tiempo o información.',
-  },
-  {
-    id: '02',
-    title: 'Propuesta',
-    desc: 'Plazos reales y cumplidos. Te decimos lo que se puede hacer, cuándo, y lo hacemos. Sin sorpresas.',
-  },
-  {
-    id: '03',
-    title: 'Desarrollo',
-    desc: 'Construimos la solución a medida, con avances visibles y comunicación directa.',
-  },
-  {
-    id: '04',
-    title: 'Implementación y soporte',
-    desc: 'Ponemos todo en marcha, capacitamos al equipo y te acompañamos después.',
-  },
-]
-
-// Claudio (CLUE's mascot) — one full-body image per step in
-// src/assets/images/claudio/ as claudio-01 … claudio-04 (.png or .webp).
+// Claudio (mascota de CLUE) — una imagen por paso en
+// src/assets/images/claudio/ como claudio-01 … claudio-04 (.png o .webp).
 const claudioImgs = import.meta.glob('../../assets/images/claudio/*.{png,webp}', {
   eager: true,
   import: 'default',
@@ -43,22 +21,24 @@ function claudioSrc(id) {
 }
 
 export default function Manifesto() {
+  const { t } = useLang()
+  const pr = t.landing.process
   const [activeId, setActiveId] = useState(null)
 
   return (
-    <section className={styles.section} id="manifiesto">
+    <section className={styles.section} id="proceso">
       <div className={styles.topDivider} />
 
       <div className={styles.inner}>
         <div className={styles.claudio} aria-hidden="true">
-          {POINTS.map(point => {
-            const src = claudioSrc(point.id)
+          {pr.steps.map(step => {
+            const src = claudioSrc(step.id)
             if (!src) return null
-            // Default to step 01 when nothing is active.
-            const shown = (activeId ?? '01') === point.id
+            // Por defecto se muestra el paso 01 cuando no hay nada activo.
+            const shown = (activeId ?? '01') === step.id
             return (
               <img
-                key={point.id}
+                key={step.id}
                 src={src}
                 alt=""
                 className={`${styles.claudioImg}${shown ? ` ${styles.claudioVisible}` : ''}`}
@@ -68,38 +48,42 @@ export default function Manifesto() {
         </div>
 
         <Reveal>
-          <span className={styles.eyebrow}>✦ 02 - Proceso</span>
+          <span className={styles.eyebrow}>{pr.eyebrow}</span>
           <h2 className={styles.statement}>
-            CÓMO<br />
-            TRABAJAMOS<span className={styles.accentDot}>.</span>
+            {pr.titleLines.map((line, i) => (
+              <Fragment key={line}>
+                {i > 0 && <br />}
+                {line}
+                {i === pr.titleLines.length - 1 && <span className={styles.accentDot}>.</span>}
+              </Fragment>
+            ))}
           </h2>
           <p className={styles.lede}>
-            Un camino claro, del primer problema a la solución funcionando.
-            <strong> Como lo hacemos realidad.</strong>
+            {pr.lede} <strong>{pr.strong}</strong>
           </p>
         </Reveal>
 
         <div className={styles.grid}>
-          {POINTS.map((point, i) => {
-            const isActive = point.id === activeId
+          {pr.steps.map((step, i) => {
+            const isActive = step.id === activeId
             return (
-              <Reveal key={point.id} delay={i * 0.08}>
+              <Reveal key={step.id} delay={i * 0.08}>
                 <article
                   className={`${styles.point}${isActive ? ` ${styles.pointActive}` : ''}`}
                   role="button"
                   tabIndex={0}
                   aria-pressed={isActive}
-                  onClick={() => setActiveId(prev => (prev === point.id ? null : point.id))}
+                  onClick={() => setActiveId(prev => (prev === step.id ? null : step.id))}
                   onKeyDown={e => {
                     if (e.key === 'Enter' || e.key === ' ') {
                       e.preventDefault()
-                      setActiveId(prev => (prev === point.id ? null : point.id))
+                      setActiveId(prev => (prev === step.id ? null : step.id))
                     }
                   }}
                 >
-                  <span className={styles.pointNum}>{point.id}</span>
-                  <h3 className={styles.pointTitle}>{point.title}</h3>
-                  <p className={styles.pointDesc}>{point.desc}</p>
+                  <span className={styles.pointNum}>{step.id}</span>
+                  <h3 className={styles.pointTitle}>{step.title}</h3>
+                  <p className={styles.pointDesc}>{step.desc}</p>
                 </article>
               </Reveal>
             )

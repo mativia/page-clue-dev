@@ -1,8 +1,7 @@
 import { useState } from 'react'
 import { motion, useReducedMotion } from 'framer-motion'
 import styles from './Contact.module.css'
-
-const SERVICES = ['Odoo', 'Desarrollo de software', 'Sitio web']
+import { useLang } from '../../i18n/context'
 
 // Pegá tu Access Key gratuita de https://web3forms.com (es pública, no secreta).
 const WEB3FORMS_ACCESS_KEY = '49438b95-8e29-4937-8c53-3f24b3496378'
@@ -10,6 +9,8 @@ const WEB3FORMS_ACCESS_KEY = '49438b95-8e29-4937-8c53-3f24b3496378'
 const EMPTY = { nombre: '', empresa: '', rol: '', email: '', mensaje: '' }
 
 export default function Contact() {
+  const { t } = useLang()
+  const c = t.landing.contact
   const prefersReduced = useReducedMotion()
   const [fields, setFields] = useState(EMPTY)
   const [servicio, setServicio] = useState('')
@@ -26,7 +27,7 @@ export default function Contact() {
 
     if (!servicio) {
       setStatus('error')
-      setMessage('Elegí un tipo de servicio.')
+      setMessage(c.validationService)
       return
     }
 
@@ -53,16 +54,16 @@ export default function Contact() {
       const data = await res.json()
       if (data.success) {
         setStatus('success')
-        setMessage('¡Mensaje enviado! Te contactamos a la brevedad.')
+        setMessage(c.success)
         setFields(EMPTY)
         setServicio('')
       } else {
         setStatus('error')
-        setMessage(data.message || 'No se pudo enviar. Probá de nuevo en un momento.')
+        setMessage(data.message || c.errorGeneric)
       }
     } catch {
       setStatus('error')
-      setMessage('Error de conexión. Probá de nuevo en un momento.')
+      setMessage(c.errorNetwork)
     }
   }
 
@@ -86,15 +87,15 @@ export default function Contact() {
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.15 }}
           >
             <div className={styles.formHeader}>
-              <span className={styles.eyebrow}>CONTACTO</span>
+              <span className={styles.eyebrow}>{c.eyebrow}</span>
               <h2 className={styles.title}>
-                Hablemos<span className={styles.dot}>.</span>
+                {c.title}<span className={styles.dot}>.</span>
               </h2>
             </div>
 
             <div className={styles.fieldRow}>
               <div className={styles.field}>
-                <label htmlFor="c-nombre" className={styles.label}>Nombre</label>
+                <label htmlFor="c-nombre" className={styles.label}>{c.labels.nombre}</label>
                 <input
                   id="c-nombre" name="nombre" type="text"
                   className={styles.input} value={fields.nombre}
@@ -102,7 +103,7 @@ export default function Contact() {
                 />
               </div>
               <div className={styles.field}>
-                <label htmlFor="c-empresa" className={styles.label}>Empresa</label>
+                <label htmlFor="c-empresa" className={styles.label}>{c.labels.empresa}</label>
                 <input
                   id="c-empresa" name="empresa" type="text"
                   className={styles.input} value={fields.empresa}
@@ -113,7 +114,7 @@ export default function Contact() {
 
             <div className={styles.fieldRow}>
               <div className={styles.field}>
-                <label htmlFor="c-rol" className={styles.label}>Rol</label>
+                <label htmlFor="c-rol" className={styles.label}>{c.labels.rol}</label>
                 <input
                   id="c-rol" name="rol" type="text"
                   className={styles.input} value={fields.rol}
@@ -121,7 +122,7 @@ export default function Contact() {
                 />
               </div>
               <div className={styles.field}>
-                <label htmlFor="c-email" className={styles.label}>Email</label>
+                <label htmlFor="c-email" className={styles.label}>{c.labels.email}</label>
                 <input
                   id="c-email" name="email" type="email"
                   className={styles.input} value={fields.email}
@@ -131,9 +132,9 @@ export default function Contact() {
             </div>
 
             <div className={styles.field}>
-              <span className={styles.label}>Servicio</span>
-              <div className={styles.chips} role="radiogroup" aria-label="Tipo de servicio">
-                {SERVICES.map(s => (
+              <span className={styles.label}>{c.labels.servicio}</span>
+              <div className={styles.chips} role="radiogroup" aria-label={c.labels.servicio}>
+                {c.chips.map(s => (
                   <button
                     type="button"
                     key={s}
@@ -149,7 +150,7 @@ export default function Contact() {
             </div>
 
             <div className={styles.field}>
-              <label htmlFor="c-mensaje" className={styles.label}>Describe tu proyecto o necesidad</label>
+              <label htmlFor="c-mensaje" className={styles.label}>{c.labels.mensaje}</label>
               <textarea
                 id="c-mensaje" name="mensaje"
                 className={styles.textarea} value={fields.mensaje}
@@ -158,7 +159,7 @@ export default function Contact() {
             </div>
 
             <button type="submit" className={styles.submit} disabled={status === 'sending'}>
-              {status === 'sending' ? 'Enviando…' : 'Enviar mensaje →'}
+              {status === 'sending' ? c.sending : c.submit}
             </button>
 
             {message && (
