@@ -1,0 +1,159 @@
+.section {
+  position: relative;
+  padding: var(--d-section-y) 0;
+  background: var(--d-base);
+}
+
+.topDivider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.06) 50%, transparent);
+}
+
+.inner {
+  padding-left: var(--d-gutter);
+  padding-right: var(--d-gutter);
+}
+
+.eyebrow {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--d-mute);
+  margin-bottom: 1.25rem;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: clamp(40px, 6vw, 76px);
+  line-height: 0.92;
+  color: var(--d-ink);
+  margin: 0 0 3rem;
+}
+
+/* ── Dos columnas simétricas ──────────────────────────────── */
+.cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: stretch;
+  border-top: 1px solid var(--d-line);
+}
+
+.col {
+  display: flex;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  padding: 2.25rem clamp(1.5rem, 3vw, 3rem) 2rem;
+  text-decoration: none;
+  color: inherit;
+  transition: background var(--t-base) var(--ease);
+}
+
+/* Hairline vertical entre las dos columnas. */
+.col:nth-child(2) .card {
+  border-left: 1px solid var(--d-line);
+}
+
+.card:hover {
+  background: var(--d-surface);
+}
+
+.head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.75rem;
+}
+
+.tag {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--d-ink);
+}
+
+.index {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--d-mute);
+}
+
+.name {
+  font-family: var(--font-display);
+  font-size: clamp(34px, 4.5vw, 60px);
+  line-height: 0.95;
+  color: var(--d-ink);
+  margin: 0 0 1rem;
+}
+
+.desc {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: clamp(14px, 1.4vw, 16px);
+  line-height: 1.6;
+  color: var(--d-ink-dim);
+  margin: 0 0 1.25rem;
+  max-width: 42ch;
+}
+
+.for {
+  font-family: var(--font-sans);
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--d-mute);
+  margin: 0;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--d-line-soft);
+  max-width: 42ch;
+}
+
+.jump {
+  margin-top: 1.75rem;
+  font-family: var(--font-mono);
+  font-size: 16px;
+  color: var(--d-mute);
+  transition: transform var(--t-base) var(--ease-out), color var(--t-base) var(--ease);
+}
+
+.card:hover .jump {
+  transform: translateY(4px);
+  color: var(--d-ink);
+}
+
+/* ── Responsive ───────────────────────────────────────────── */
+@media (max-width: 760px) {
+  .cols {
+    grid-template-columns: 1fr;
+  }
+
+  .col:nth-child(2) .card {
+    border-left: none;
+    border-top: 1px solid var(--d-line);
+  }
+}
+
+/* ── Reduced motion ───────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .jump {
+    transition: none;
+  }
+
+  .card:hover .jump {
+    transform: none;
+  }
+}

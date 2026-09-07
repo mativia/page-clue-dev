@@ -1,0 +1,47 @@
+/* ============================================================
+   DESARROLLO ("/desarrollo") — cara B&N minimalista.
+   Sobria, seria, premium: la anti-Landing. SIN color; el único
+   "acento" es la inversión blanco/negro (base oscura + franja papel).
+   Todo scopeado en .scope para no pisar las otras caras.
+   ============================================================ */
+.scope {
+  /* ── Base oscura (tinta sobre negro) ─────────────────────── */
+  --d-base:       #0d0d0f;
+  --d-surface:    #141416;
+  --d-raised:     #1a1a1d;
+  --d-ink:        #f2f1ee;
+  --d-ink-dim:    #b4b3ae;
+  --d-mute:       #6f6e6a;
+  --d-line:       rgba(255, 255, 255, 0.1);
+  --d-line-soft:  rgba(255, 255, 255, 0.055);
+
+  /* ── Inversión (papel blanco, tinta negra) ───────────────── */
+  --d-paper:      #f2f1ee;
+  --d-paper-ink:  #121214;
+  --d-paper-dim:  #56555a;
+  --d-paper-line: rgba(0, 0, 0, 0.16);
+
+  /* ── Tipografía ──────────────────────────────────────────── */
+  --font-display: 'Bebas Neue', sans-serif;
+  --font-sans:    'DM Sans', system-ui, sans-serif;
+  --font-mono:    'DM Mono', 'JetBrains Mono', monospace;
+
+  /* ── Layout ──────────────────────────────────────────────── */
+  --d-gutter:     clamp(1.5rem, 6vw, 6rem);
+  --d-section-y:  clamp(5rem, 10vw, 8rem);
+
+  /* ── Radios ──────────────────────────────────────────────── */
+  --radius-sm:   3px;
+  --radius-md:   8px;
+  --radius-full: 9999px;
+
+  /* ── Transiciones ────────────────────────────────────────── */
+  --ease:     cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --t-fast: 120ms;
+  --t-base: 240ms;
+  --t-slow: 480ms;
+
+  background-color: var(--d-base);
+  color: var(--d-ink);
+}
