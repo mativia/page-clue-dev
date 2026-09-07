@@ -1,0 +1,131 @@
+.section {
+  position: relative;
+  padding: var(--d-section-y) 0;
+  background: var(--d-base);
+}
+
+.topDivider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.06) 50%, transparent);
+}
+
+.inner {
+  padding-left: var(--d-gutter);
+  padding-right: var(--d-gutter);
+}
+
+.eyebrow {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--d-mute);
+  margin-bottom: 1.25rem;
+}
+
+/* Título + bajada, en dos columnas en desktop. */
+.head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.5rem 3rem;
+  margin-bottom: 3.5rem;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: clamp(40px, 6vw, 76px);
+  line-height: 0.9;
+  color: var(--d-ink);
+  margin: 0;
+}
+
+.line {
+  display: block;
+}
+
+.sub {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: clamp(14px, 1.4vw, 16px);
+  line-height: 1.6;
+  color: var(--d-ink-dim);
+  margin: 0;
+  max-width: 40ch;
+}
+
+/* ── Pasos ────────────────────────────────────────────────── */
+.steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid var(--d-line);
+}
+
+.stepCell {
+  display: flex;
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 1.75rem clamp(1.25rem, 2.5vw, 2.25rem) 0.5rem;
+  border-left: 1px solid var(--d-line-soft);
+}
+
+.stepCell:first-child .step {
+  border-left: none;
+  padding-left: 0;
+}
+
+.num {
+  font-family: var(--font-display);
+  font-size: clamp(48px, 6vw, 84px);
+  line-height: 0.85;
+  color: var(--d-mute);
+  margin-bottom: 1rem;
+}
+
+.stepTitle {
+  font-family: var(--font-display);
+  font-size: clamp(24px, 2.6vw, 34px);
+  line-height: 1;
+  color: var(--d-ink);
+  margin: 0 0 0.75rem;
+}
+
+.stepDesc {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--d-ink-dim);
+  margin: 0;
+  max-width: 34ch;
+}
+
+/* ── Responsive ───────────────────────────────────────────── */
+@media (max-width: 760px) {
+  .steps {
+    grid-template-columns: 1fr;
+  }
+
+  .step {
+    border-left: none;
+    border-top: 1px solid var(--d-line-soft);
+    padding: 1.75rem 0 0.5rem;
+  }
+
+  .stepCell:first-child .step {
+    border-top: none;
+  }
+}
