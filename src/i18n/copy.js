@@ -203,9 +203,9 @@ export const COPY = {
         /* status: 'disponible' | 'pronto' → el label sale de badges.
            price y link son editables. link:'' = card no clickeable. */
         items: [
-          { id: 'pan-control', name: 'Pan Control', desc: 'Gestión de producción, stock y ventas para panaderías.', status: 'pronto', price: 'desde $X /mes', link: '' },
-          { id: 'talleres', name: 'Talleres mecánicos', desc: 'Órdenes de trabajo, turnos, clientes e historial de vehículos.', status: 'pronto', price: 'desde $X /mes', link: '' },
-          { id: 'clue-internal', name: 'Clue Internal', desc: 'Nuestro CRM y gestión de proyectos, ahora para tu equipo.', status: 'pronto', price: 'A consultar', link: '' },
+          { id: 'pan-control', name: 'Pan Control', desc: 'Gestión de producción, stock y ventas para panaderías.', status: 'pronto', price: 'Consultar', link: ''},
+          { id: 'talleres', name: 'Talleres mecánicos', desc: 'Órdenes de trabajo, turnos, clientes e historial de vehículos.', status: 'pronto', price: 'Consultar', link: ''},
+          { id: 'clue-internal', name: 'Clue Internal', desc: 'Nuestro CRM y gestión de proyectos, ahora para tu equipo.', status: 'pronto', price: 'Consultar', link: ''},
         ],
       },
       statement: {
@@ -567,9 +567,9 @@ export const COPY = {
         badges: { disponible: 'Available', pronto: 'Soon' },
         priceNote: 'Price',
         items: [
-          { id: 'pan-control', name: 'Pan Control', desc: 'Production, stock and sales management for bakeries.', status: 'pronto', price: 'from $X /mo', link: '' },
-          { id: 'talleres', name: 'Auto workshops', desc: 'Work orders, scheduling, customers and vehicle history.', status: 'pronto', price: 'from $X /mo', link: '' },
-          { id: 'clue-internal', name: 'Clue Internal', desc: 'Our own CRM and project management, now for your team.', status: 'pronto', price: 'On request', link: '' },
+          { id: 'pan-control', name: 'Pan Control', desc: 'Production, stock and sales management for bakeries.', status: 'pronto', price: 'Contact us', link: ''},
+          { id: 'talleres', name: 'Auto workshops', desc: 'Work orders, scheduling, customers and vehicle history.', status: 'pronto', price: 'Contact us', link: ''},
+          { id: 'clue-internal', name: 'Clue Internal', desc: 'Our own CRM and project management, now for your team.', status: 'pronto', price: 'Contact us', link: ''},
         ],
       },
       statement: {
