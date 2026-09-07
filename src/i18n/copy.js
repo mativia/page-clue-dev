@@ -157,6 +157,82 @@ export const COPY = {
       },
     },
 
+    /* ── DESARROLLO ("/desarrollo") — software a medida ────────
+       Cara B&N minimalista: sobria, seria, premium. Para pymes y
+       empresas. Dos modos de un mismo sistema: a medida + productos
+       por suscripción. Sin color; el acento es la inversión B&N. */
+    desarrollo: {
+      hero: {
+        eyebrow: 'CLUE_DEV · SOFTWARE A MEDIDA · CBA, AR',
+        titleLines: ['SISTEMAS A MEDIDA.', 'PRODUCTOS LISTOS.', 'UN SOLO ESTÁNDAR'],
+        sub: 'Construimos sistemas a medida, del relevamiento al deploy, y ofrecemos productos listos por suscripción. Dos formas de sumar software a tu empresa, con el mismo estándar de ingeniería.',
+        cta: 'Hablemos →',
+      },
+      modes: {
+        eyebrow: '✦ Cómo trabajamos',
+        title: 'Dos modos, un estándar',
+        a: {
+          tag: 'Modo A',
+          name: 'A MEDIDA',
+          desc: 'Sistemas hechos a medida de tu operación, del relevamiento de requerimientos al desarrollo y el deploy.',
+          for: 'Para empresas con un proceso propio que necesita su software.',
+        },
+        b: {
+          tag: 'Modo B',
+          name: 'POR SUSCRIPCIÓN',
+          desc: 'Productos ya desarrollados, listos para usar, con una suscripción mensual.',
+          for: 'Para sumar software probado sin esperar un desarrollo.',
+        },
+      },
+      custom: {
+        eyebrow: 'Modo A · A medida',
+        titleLines: ['DEL PROBLEMA', 'AL SISTEMA', 'EN PRODUCCIÓN'],
+        sub: 'Un proceso claro y medible, del primer relevamiento al sistema funcionando en tu empresa.',
+        steps: [
+          { id: '01', title: 'Relevamiento', desc: 'Entendemos tu operación y definimos los requerimientos reales, sin tecnicismos.' },
+          { id: '02', title: 'Desarrollo', desc: 'Construimos el sistema a medida, con avances visibles y comunicación directa.' },
+          { id: '03', title: 'Deploy', desc: 'Lo ponemos en producción, capacitamos al equipo y te acompañamos después.' },
+        ],
+      },
+      products: {
+        eyebrow: 'Modo B · Por suscripción',
+        titleLines: ['PRODUCTOS', 'LISTOS PARA USAR'],
+        sub: 'Sistemas que ya desarrollamos, disponibles con suscripción mensual.',
+        badges: { disponible: 'Disponible', pronto: 'Pronto' },
+        priceNote: 'Precio',
+        /* status: 'disponible' | 'pronto' → el label sale de badges.
+           price y link son editables. link:'' = card no clickeable. */
+        items: [
+          { id: 'pan-control', name: 'Pan Control', desc: 'Gestión de producción, stock y ventas para panaderías.', status: 'pronto', price: 'desde $X /mes', link: '' },
+          { id: 'talleres', name: 'Talleres mecánicos', desc: 'Órdenes de trabajo, turnos, clientes e historial de vehículos.', status: 'pronto', price: 'desde $X /mes', link: '' },
+          { id: 'clue-internal', name: 'Clue Internal', desc: 'Nuestro CRM y gestión de proyectos, ahora para tu equipo.', status: 'pronto', price: 'A consultar', link: '' },
+        ],
+      },
+      statement: {
+        line: 'Un mismo estándar,',
+        strong: 'dos formas de empezar.',
+      },
+      contact: {
+        eyebrow: 'CONTACTO',
+        title: 'Hablemos',
+        labels: {
+          nombre: 'Nombre',
+          empresa: 'Empresa',
+          rol: 'Rol',
+          email: 'Email',
+          servicio: 'Interés',
+          mensaje: 'Contanos sobre tu proyecto o necesidad',
+        },
+        chips: ['Desarrollo a medida', 'Producto por suscripción', 'Otro'],
+        submit: 'Enviar mensaje →',
+        sending: 'Enviando…',
+        validationService: 'Elegí una opción.',
+        success: '¡Mensaje enviado! Te contactamos a la brevedad.',
+        errorGeneric: 'No se pudo enviar. Probá de nuevo en un momento.',
+        errorNetwork: 'Error de conexión. Probá de nuevo en un momento.',
+      },
+    },
+
     hero: {
       status: 'Disponible para nuevos proyectos',
       titleLines: ['MÓDULOS Y', 'DESARROLLO ODOO', 'A MEDIDA'],
@@ -444,6 +520,77 @@ export const COPY = {
         submit: 'Send message →',
         sending: 'Sending…',
         validationService: 'Choose a service type.',
+        success: "Message sent! We'll get back to you shortly.",
+        errorGeneric: "Couldn't send. Try again in a moment.",
+        errorNetwork: 'Connection error. Try again in a moment.',
+      },
+    },
+
+    /* ── DESARROLLO ("/desarrollo") — custom software ────────── */
+    desarrollo: {
+      hero: {
+        eyebrow: 'CLUE_DEV · CUSTOM SOFTWARE · CBA, AR',
+        titleLines: ['CUSTOM SYSTEMS.', 'READY PRODUCTS.', 'ONE STANDARD'],
+        sub: 'We build custom systems, from discovery to deploy, and offer ready-made products by subscription. Two ways to bring software into your company, with the same engineering standard.',
+        cta: "Let's talk →",
+      },
+      modes: {
+        eyebrow: '✦ How we work',
+        title: 'Two modes, one standard',
+        a: {
+          tag: 'Mode A',
+          name: 'CUSTOM',
+          desc: 'Systems built around your operation, from requirements discovery to development and deploy.',
+          for: 'For companies whose own process needs its own software.',
+        },
+        b: {
+          tag: 'Mode B',
+          name: 'SUBSCRIPTION',
+          desc: 'Ready-made products, built and ready to use, on a monthly subscription.',
+          for: 'To add proven software without waiting for a build.',
+        },
+      },
+      custom: {
+        eyebrow: 'Mode A · Custom',
+        titleLines: ['FROM PROBLEM', 'TO SYSTEM', 'IN PRODUCTION'],
+        sub: 'A clear, measurable process, from first discovery to the system running in your company.',
+        steps: [
+          { id: '01', title: 'Discovery', desc: 'We understand your operation and define the real requirements, no jargon.' },
+          { id: '02', title: 'Development', desc: 'We build the custom system, with visible progress and direct communication.' },
+          { id: '03', title: 'Deploy', desc: 'We ship it to production, train the team and support you afterwards.' },
+        ],
+      },
+      products: {
+        eyebrow: 'Mode B · Subscription',
+        titleLines: ['PRODUCTS', 'READY TO USE'],
+        sub: 'Systems we already built, available on a monthly subscription.',
+        badges: { disponible: 'Available', pronto: 'Soon' },
+        priceNote: 'Price',
+        items: [
+          { id: 'pan-control', name: 'Pan Control', desc: 'Production, stock and sales management for bakeries.', status: 'pronto', price: 'from $X /mo', link: '' },
+          { id: 'talleres', name: 'Auto workshops', desc: 'Work orders, scheduling, customers and vehicle history.', status: 'pronto', price: 'from $X /mo', link: '' },
+          { id: 'clue-internal', name: 'Clue Internal', desc: 'Our own CRM and project management, now for your team.', status: 'pronto', price: 'On request', link: '' },
+        ],
+      },
+      statement: {
+        line: 'One standard,',
+        strong: 'two ways to start.',
+      },
+      contact: {
+        eyebrow: 'CONTACT',
+        title: "Let's talk",
+        labels: {
+          nombre: 'Name',
+          empresa: 'Company',
+          rol: 'Role',
+          email: 'Email',
+          servicio: 'Interest',
+          mensaje: 'Tell us about your project or need',
+        },
+        chips: ['Custom development', 'Subscription product', 'Other'],
+        submit: 'Send message →',
+        sending: 'Sending…',
+        validationService: 'Choose an option.',
         success: "Message sent! We'll get back to you shortly.",
         errorGeneric: "Couldn't send. Try again in a moment.",
         errorNetwork: 'Connection error. Try again in a moment.',
