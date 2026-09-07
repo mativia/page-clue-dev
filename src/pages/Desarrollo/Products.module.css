@@ -1,0 +1,248 @@
+.section {
+  position: relative;
+  padding: var(--d-section-y) 0;
+  background: var(--d-base);
+}
+
+.topDivider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.06) 50%, transparent);
+}
+
+.inner {
+  padding-left: var(--d-gutter);
+  padding-right: var(--d-gutter);
+}
+
+.eyebrow {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--d-mute);
+  margin-bottom: 1.25rem;
+}
+
+.head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1.5rem 3rem;
+  margin-bottom: 3.5rem;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: clamp(40px, 6vw, 76px);
+  line-height: 0.9;
+  color: var(--d-ink);
+  margin: 0;
+}
+
+.line {
+  display: block;
+}
+
+.sub {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: clamp(14px, 1.4vw, 16px);
+  line-height: 1.6;
+  color: var(--d-ink-dim);
+  margin: 0;
+  max-width: 40ch;
+}
+
+/* ── Grid ─────────────────────────────────────────────────── */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(1rem, 2vw, 1.5rem);
+  align-items: stretch;
+}
+
+.cell {
+  display: flex;
+}
+
+/* ── Card ─────────────────────────────────────────────────── */
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 1.5rem 1.5rem 1.35rem;
+  background: var(--d-surface);
+  border: 1px solid var(--d-line);
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  color: inherit;
+  cursor: default;
+  transition: border-color var(--t-base) var(--ease), background var(--t-base) var(--ease),
+    transform var(--t-base) var(--ease);
+}
+
+.cardLink {
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(255, 255, 255, 0.22);
+}
+
+/* La card disponible se ilumina: barra superior blanca + borde más presente. */
+.cardAvailable {
+  border-color: rgba(255, 255, 255, 0.3);
+  background: var(--d-raised);
+}
+
+.cardAvailable::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  right: -1px;
+  height: 2px;
+  background: var(--d-ink);
+  border-radius: var(--radius-md) var(--radius-md) 0 0;
+}
+
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 2.25rem;
+}
+
+/* ── Badge (semántica B&N) ────────────────────────────────── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 5px 11px;
+  border-radius: var(--radius-full);
+}
+
+.badgeDot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+}
+
+/* Disponible = pill sólido (lleno). */
+.badgeAvailable {
+  background: var(--d-ink);
+  color: var(--d-base);
+}
+
+.badgeAvailable .badgeDot {
+  background: var(--d-base);
+}
+
+/* Pronto = pill outline (hueco). */
+.badgeSoon {
+  background: transparent;
+  border: 1px solid var(--d-line);
+  color: var(--d-mute);
+}
+
+.badgeSoon .badgeDot {
+  border: 1px solid var(--d-mute);
+}
+
+.cardArrow {
+  font-size: 16px;
+  color: var(--d-mute);
+  line-height: 1;
+  transition: transform var(--t-base) var(--ease-out), color var(--t-base) var(--ease);
+}
+
+.card:hover .cardArrow {
+  transform: translate(2px, -2px);
+  color: var(--d-ink);
+}
+
+.name {
+  font-family: var(--font-display);
+  font-size: clamp(30px, 3.4vw, 44px);
+  line-height: 0.95;
+  color: var(--d-ink);
+  margin: 0 0 0.75rem;
+}
+
+.desc {
+  font-family: var(--font-sans);
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--d-ink-dim);
+  margin: 0 0 1.75rem;
+}
+
+/* ── Precio ───────────────────────────────────────────────── */
+.foot {
+  margin-top: auto;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-top: 1.1rem;
+  border-top: 1px solid var(--d-line-soft);
+}
+
+.priceNote {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--d-mute);
+}
+
+.price {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  color: var(--d-ink);
+  text-align: right;
+}
+
+/* ── Responsive ───────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── Reduced motion ───────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .card,
+  .cardArrow {
+    transition: none;
+  }
+
+  .card:hover {
+    transform: none;
+  }
+
+  .card:hover .cardArrow {
+    transform: none;
+  }
+}

@@ -2,6 +2,7 @@ import scope from './desarrolloScope.module.css'
 import Hero from './Hero'
 import Modes from './Modes'
 import Custom from './Custom'
+import Products from './Products'
 import Statement from './Statement'
 
 /* /desarrollo — cara B&N minimalista: software a medida + productos por
@@ -12,6 +13,7 @@ export default function DesarrolloPage() {
       <Hero />
       <Modes />
       <Custom />
+      <Products />
       <Statement />
     </main>
   )
