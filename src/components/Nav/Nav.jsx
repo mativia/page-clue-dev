@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import styles from './Nav.module.css'
+import ClueLogo from './ClueLogo'
 import { useLang } from '../../i18n/context'
 
 export default function Nav() {
@@ -26,9 +27,14 @@ export default function Nav() {
   return (
     <nav className={styles.nav}>
       <div className={styles.inner}>
-        <NavLink to="/" className={styles.brand} onClick={closeMenu} end>
-          CLUE DEV
-          <span className={styles.brandDot} aria-hidden="true">.</span>
+        <NavLink
+          to="/"
+          className={styles.brand}
+          onClick={closeMenu}
+          end
+          aria-label="Clue Dev — Inicio"
+        >
+          <ClueLogo className={styles.logo} />
         </NavLink>
 
         <ul className={styles.links} role="list">

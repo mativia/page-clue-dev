@@ -37,17 +37,24 @@
 
 .brand {
   display: inline-flex;
-  align-items: baseline;
-  font-family: var(--font-mono);
-  font-size: 13px;
-  letter-spacing: 0.14em;
-  color: var(--color-text-primary);
-  user-select: none;
+  align-items: center;
   flex-shrink: 0;
+  /* Isotipo en blanco (Digital White) en TODAS las páginas — nav monocromo.
+     El SVG usa fill:currentColor, así que toma este color. */
+  --nav-logo-color: #EBEBEB;
+  color: var(--nav-logo-color);
+
+  /* Color-por-página a futuro (el Nav ya es route-aware): en Nav.jsx poner
+     data-face en este NavLink según la ruta y descomentar estas reglas
+     (Hyper Violet en Odoo, Infrared Orange en Landing):
+     .brand[data-face="odoo"]    { --nav-logo-color: #8628FC; }
+     .brand[data-face="landing"] { --nav-logo-color: #FC4A01; } */
 }
 
-.brandDot {
-  color: rgba(255, 255, 255, 0.4);
+.logo {
+  height: 32px;
+  width: auto;
+  display: block;
 }
 
 /* ── Desktop links ────────────────────────────────────────── */
