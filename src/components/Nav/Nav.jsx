@@ -1,8 +1,14 @@
 import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import styles from './Nav.module.css'
-import ClueLogo from './ClueLogo'
 import { useLang } from '../../i18n/context'
+import isoWhite from '../../assets/images/logo/iso-blanco.png'
+
+/* Isotipo blanco en el nav (fondo oscuro monocromo) en TODAS las páginas.
+   Para colorear por página a futuro: la diseñadora dejó un PNG por color de
+   marca en assets/images/logo/ (CLUE HYPER VIOLET / INFRARED ORANGE / …).
+   El Nav ya es route-aware → mapear pathname a la variante y cambiar el src:
+     const iso = { '/odoo': isoViolet, '/landing': isoOrange }[pathname] ?? isoWhite */
 
 export default function Nav() {
   const { t, lang, setLang } = useLang()
@@ -34,7 +40,7 @@ export default function Nav() {
           end
           aria-label="Clue Dev — Inicio"
         >
-          <ClueLogo className={styles.logo} />
+          <img src={isoWhite} alt="" className={styles.logo} />
         </NavLink>
 
         <ul className={styles.links} role="list">
