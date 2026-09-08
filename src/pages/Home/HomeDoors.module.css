@@ -59,11 +59,11 @@
   transition: opacity var(--t-slow) var(--ease), transform var(--t-slow) var(--ease-out);
 }
 
-/* Logo de Clue Dev (en el color de la cara) — aparece grande y CENTRADO en el
-   panel (horizontal y vertical) al hover, con un fundido y leve zoom. */
+/* Logo de Clue Dev (en el color de la cara) — aparece grande al hover:
+   centrado horizontal y un 25% por encima del centro vertical. Fundido + zoom. */
 .logoReveal {
   position: absolute;
-  top: 50%;
+  top: 25%;
   left: 50%;
   z-index: 1;
   width: min(70%, 340px);
