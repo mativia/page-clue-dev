@@ -2,15 +2,14 @@ import { useState, useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
 import styles from './Nav.module.css'
 import { useLang } from '../../i18n/context'
-import clueLogo from '../../assets/images/logo/clue-digital-white.png'
 
-/* Logo del nav: una sola imagen (el lockup CLUE DIGITAL WHITE). Arriba se ve
-   completo (isotipo + "Clue Dev"); al scrollear, la "ventana" recorta el texto
-   y queda solo el isotipo — que NO cambia de tamaño porque es la misma imagen,
-   así la transición es suave (el recorte vive en Nav.module.css).
-   Blanco en todas las páginas; para colorear por página a futuro hay un PNG
-   por color de marca en assets/images/logo/ (mismas dimensiones): se cambia el
-   src según la ruta (el Nav ya es route-aware). */
+/* Logo del nav: una sola imagen (el lockup CLUE DIGITAL WHITE) usada como
+   background del .logo y recortada por la "ventana" .brand. Arriba se ve
+   completo (isotipo + "Clue Dev"); al scrollear, la ventana encoge y el
+   background se corre para dejar SOLO el isotipo — que no cambia de tamaño
+   (background-size constante), así la transición es suave. El recorte y el
+   asset viven en Nav.module.css. Blanco en todas las páginas; para colorear
+   por página a futuro hay un PNG por color de marca (mismas dimensiones). */
 
 export default function Nav() {
   const { t, lang, setLang } = useLang()
@@ -51,7 +50,7 @@ export default function Nav() {
           end
           aria-label="Clue Dev — Inicio"
         >
-          <img src={clueLogo} alt="" className={styles.logo} />
+          <span className={styles.logo} aria-hidden="true" />
         </NavLink>
 
         <ul className={styles.links} role="list">

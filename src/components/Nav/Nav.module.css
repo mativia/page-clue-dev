@@ -35,11 +35,12 @@
   padding: 1.1rem clamp(1.25rem, 5vw, 4rem);
 }
 
-/* Marca = "ventana" que recorta el lockup (una sola imagen). El isotipo, con
-   alto CONSTANTE, no cambia de tamaño; al scrollear la ventana encoge y recorta
-   el texto de abajo → transición suave, sin salto.
+/* Marca = "ventana" que recorta el lockup. El lockup va como background del
+   .logo con background-size CONSTANTE (el isotipo nunca cambia de tamaño); al
+   scrollear la ventana encoge y el background se corre para dejar solo el
+   isotipo → transición suave, sin salto.
    Medidas del lockup 876x396: isotipo x[264..623] y[0..245]; texto y[246..395].
-   A 22px de isotipo → escala 0.0894 → imagen de 35.4px de alto. */
+   A 22px de isotipo → escala 0.0894 → background de 78.3 x 35.4 px. */
 .brand {
   position: relative;
   display: block;
@@ -50,27 +51,26 @@
   transition: width var(--t-slow) var(--ease), height var(--t-slow) var(--ease);
 }
 
-/* La imagen (lockup) no se mueve de tamaño: solo se desliza en X al scrollear.
-   Blanco en todas las páginas; el color por página se haría cambiando el src. */
 .logo {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 35.4px;  /* CONSTANTE: el isotipo nunca cambia de tamaño */
-  width: auto;
   display: block;
-  transition: left var(--t-slow) var(--ease);
+  width: 100%;
+  height: 100%;
+  background-image: url('../../assets/images/logo/clue-digital-white.png');
+  background-repeat: no-repeat;
+  background-size: 78.3px 35.4px; /* CONSTANTE → el isotipo no cambia de tamaño */
+  background-position: 0 0;       /* lockup completo */
+  transition: background-position var(--t-slow) var(--ease);
 }
 
-/* Scrolleado: la ventana queda del tamaño del isotipo (recorta el texto) y lo
-   alinea a la izquierda. */
+/* Scrolleado: la ventana queda del tamaño del isotipo (recorta el texto) y el
+   background se corre a la izquierda para mostrar solo el isotipo. */
 .navScrolled .brand {
   width: 32.2px;
   height: 22px;
 }
 
 .navScrolled .logo {
-  left: -23.6px;
+  background-position: -23.6px 0;
 }
 
 /* ── Desktop links ────────────────────────────────────────── */
