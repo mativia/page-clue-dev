@@ -56,8 +56,10 @@
   top: 0;
   left: 0;
   display: block;
-  width: 78.3px;   /* EXPLÍCITO (no auto): lockup completo, alto/ancho fijos */
-  height: 35.4px;  /* CONSTANTE → el isotipo nunca cambia de tamaño */
+  width: 78.3px;    /* EXPLÍCITO (no auto): lockup completo, alto/ancho fijos */
+  height: 35.4px;   /* CONSTANTE → el isotipo nunca cambia de tamaño */
+  max-width: none;  /* anula el reset global img{max-width:100%}: si no, al
+                       encoger la ventana capaba el ancho y rompía el recorte */
   transition: left var(--t-slow) var(--ease);
 }
 
