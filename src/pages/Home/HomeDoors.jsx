@@ -1,11 +1,21 @@
 import { Link } from 'react-router-dom'
 import styles from './HomeDoors.module.css'
 import { useLang } from '../../i18n/context'
+import logoViolet from '../../assets/images/logo/clue-hyper-violet.png'
+import logoOrange from '../../assets/images/logo/clue-infrared-orange.png'
+import logoWhite from '../../assets/images/logo/clue-digital-white.png'
 
 const FACE = {
   odoo: styles.faceOdoo,
   landing: styles.faceLanding,
   dev: styles.faceDev,
+}
+
+// Logo de Clue Dev en el color de cada cara; aparece grande arriba en hover.
+const LOGO = {
+  odoo: logoViolet,
+  landing: logoOrange,
+  dev: logoWhite,
 }
 
 /* HOME ("/") — una sola pantalla: tres cards a lo alto, una por servicio.
@@ -20,6 +30,7 @@ export default function HomeDoors() {
       {items.map(s => (
         <Link key={s.id} to={s.route} className={`${styles.panel} ${FACE[s.face]}`}>
           <span className={styles.glow} aria-hidden="true" />
+          <img src={LOGO[s.face]} alt="" className={styles.logoReveal} aria-hidden="true" />
 
           <span className={styles.index}>
             {s.index}<span className={styles.of}> / 03</span>

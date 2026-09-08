@@ -59,6 +59,28 @@
   transition: opacity var(--t-slow) var(--ease), transform var(--t-slow) var(--ease-out);
 }
 
+/* Logo de Clue Dev (en el color de la cara) — aparece grande arriba en hover. */
+.logoReveal {
+  position: absolute;
+  top: clamp(4.5rem, 11vh, 7.5rem);
+  left: clamp(1.75rem, 3vw, 3.5rem);
+  z-index: 1;
+  width: min(68%, 340px);
+  height: auto;
+  max-width: none; /* anula el reset global img{max-width:100%} */
+  opacity: 0;
+  transform: translateY(10px) scale(0.96);
+  transform-origin: top left;
+  pointer-events: none;
+  transition: opacity var(--t-base) var(--ease), transform var(--t-slow) var(--ease-out);
+}
+
+.panel:hover .logoReveal,
+.panel:focus-visible .logoReveal {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
 /* Metadata mono, arriba. */
 .index {
   position: absolute;
@@ -227,6 +249,7 @@
 @media (prefers-reduced-motion: reduce) {
   .panel,
   .glow,
+  .logoReveal,
   .title,
   .bar,
   .go,
