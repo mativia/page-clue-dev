@@ -52,25 +52,24 @@
 }
 
 .logo {
+  position: absolute;
+  top: 0;
+  left: 0;
   display: block;
-  width: 100%;
-  height: 100%;
-  background-image: url('../../assets/images/logo/clue-digital-white.png');
-  background-repeat: no-repeat;
-  background-size: 78.3px 35.4px; /* CONSTANTE → el isotipo no cambia de tamaño */
-  background-position: 0 0;       /* lockup completo */
-  transition: background-position var(--t-slow) var(--ease);
+  width: 78.3px;   /* EXPLÍCITO (no auto): lockup completo, alto/ancho fijos */
+  height: 35.4px;  /* CONSTANTE → el isotipo nunca cambia de tamaño */
+  transition: left var(--t-slow) var(--ease);
 }
 
-/* Scrolleado: la ventana queda del tamaño del isotipo (recorta el texto) y el
-   background se corre a la izquierda para mostrar solo el isotipo. */
+/* Scrolleado: la ventana queda del tamaño del isotipo (recorta el texto) y la
+   imagen se desliza a la izquierda para mostrar solo el isotipo. */
 .navScrolled .brand {
   width: 32.2px;
   height: 22px;
 }
 
 .navScrolled .logo {
-  background-position: -23.6px 0;
+  left: -23.6px;
 }
 
 /* ── Desktop links ────────────────────────────────────────── */
