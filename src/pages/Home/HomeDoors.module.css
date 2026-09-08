@@ -59,9 +59,10 @@
   transition: opacity var(--t-slow) var(--ease), transform var(--t-slow) var(--ease-out);
 }
 
-/* Logo de Clue Dev (en el color de la cara) — aparece grande al hover:
-   centrado horizontal y un 25% por encima del centro vertical. Fundido + zoom. */
-.logoReveal {
+/* Logo de Clue Dev, grande y centrado (horizontal; centro vertical al 35%).
+   Dos capas superpuestas: Concrete fijo (preview) + el color de la cara que
+   aparece encima al hover. */
+.logoLayer {
   position: absolute;
   top: 35%;
   left: 50%;
@@ -69,16 +70,20 @@
   width: min(84%, 408px);
   height: auto;
   max-width: none; /* anula el reset global img{max-width:100%} */
-  opacity: 0;
-  transform: translate(-50%, -50%) scale(0.94);
+  transform: translate(-50%, -50%);
   pointer-events: none;
-  transition: opacity var(--t-base) var(--ease), transform var(--t-slow) var(--ease-out);
+  transition: opacity var(--t-slow) var(--ease-out);
 }
 
-.panel:hover .logoReveal,
-.panel:focus-visible .logoReveal {
+/* CLUE CONCRETE — preview fijo (fantasma oscuro) en los 3 paneles. */
+.logoBase { opacity: 1; }
+
+/* Logo en el color de la cara — oculto, aparece al hover encima del Concrete. */
+.logoColor { opacity: 0; }
+
+.panel:hover .logoColor,
+.panel:focus-visible .logoColor {
   opacity: 1;
-  transform: translate(-50%, -50%) scale(1);
 }
 
 /* Metadata mono, arriba. */
@@ -249,7 +254,7 @@
 @media (prefers-reduced-motion: reduce) {
   .panel,
   .glow,
-  .logoReveal,
+  .logoLayer,
   .title,
   .bar,
   .go,
