@@ -3,15 +3,12 @@ import { NavLink } from 'react-router-dom'
 import styles from './Nav.module.css'
 import { useLang } from '../../i18n/context'
 import clueLogo from '../../assets/images/logo/clue-digital-white.png'
+import isoWhite from '../../assets/images/logo/iso-blanco.png'
 
-/* Logo del nav: una sola imagen (el lockup CLUE DIGITAL WHITE) recortada por
-   la "ventana" .brand (overflow hidden). Arriba se ve completo (isotipo +
-   "Clue Dev"); al scrollear, la ventana encoge y la imagen se desliza para
-   dejar SOLO el isotipo — con tamaño CONSTANTE, así la transición es suave.
-   La imagen lleva ancho/alto EXPLÍCITOS (no auto) por dos motivos: el crop
-   funciona bien y el <img> escala más nítido que un background. El recorte
-   vive en Nav.module.css. Blanco en todas las páginas; para colorear por
-   página a futuro hay un PNG por color de marca (mismas dimensiones). */
+/* Logo del nav: dos imágenes que hacen crossfade con el scroll. Arriba se ve
+   el logo completo (clue-digital-white); al bajar, se desvanece y aparece el
+   isotipo solo (iso-blanco). El contenedor ajusta su ancho. Ambos en blanco.
+   (max-width:none en .logo anula el reset global img{max-width:100%}.) */
 
 export default function Nav() {
   const { t, lang, setLang } = useLang()
@@ -52,7 +49,8 @@ export default function Nav() {
           end
           aria-label="Clue Dev — Inicio"
         >
-          <img src={clueLogo} alt="" className={styles.logo} />
+          <img src={clueLogo} alt="" className={`${styles.logo} ${styles.logoFull}`} />
+          <img src={isoWhite} alt="" className={`${styles.logo} ${styles.logoIso}`} />
         </NavLink>
 
         <ul className={styles.links} role="list">
