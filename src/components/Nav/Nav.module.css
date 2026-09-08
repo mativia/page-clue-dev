@@ -35,19 +35,39 @@
   padding: 1.1rem clamp(1.25rem, 5vw, 4rem);
 }
 
+/* Marca: contenedor de alto fijo con los dos logos superpuestos. El ancho
+   equivale al del logo activo a 34px de alto (full 876x396 → ~76px;
+   iso 668x468 → ~49px) y transiciona al scrollear. */
 .brand {
+  position: relative;
   display: inline-flex;
   align-items: center;
   flex-shrink: 0;
+  height: 34px;
+  width: 76px;
+  transition: width var(--t-slow) var(--ease);
 }
 
-/* Isotipo (PNG) — blanco en todas las páginas. El color por página se hace
-   cambiando el src en Nav.jsx (hay un PNG por color de marca), no por CSS. */
+/* Logos (PNG) superpuestos; crossfade por scroll. Blanco en todas las
+   páginas; el color por página se haría cambiando el src en Nav.jsx. */
 .logo {
-  height: 32px;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 34px;
   width: auto;
   display: block;
+  transition: opacity var(--t-slow) var(--ease);
 }
+
+.logoFull { opacity: 1; }
+.logoIso  { opacity: 0; }
+
+/* Scrolleado: el contenedor achica y queda solo el isotipo. */
+.navScrolled .brand { width: 49px; }
+.navScrolled .logoFull { opacity: 0; }
+.navScrolled .logoIso  { opacity: 1; }
 
 /* ── Desktop links ────────────────────────────────────────── */
 .links {
@@ -214,6 +234,8 @@
 /* ── Reduced motion ───────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
   .nav,
+  .brand,
+  .logo,
   .link,
   .cta,
   .langBtn,

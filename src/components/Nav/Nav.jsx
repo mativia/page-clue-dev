@@ -1,20 +1,30 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
 import styles from './Nav.module.css'
 import { useLang } from '../../i18n/context'
+import clueFull from '../../assets/images/logo/clue-digital-white.png'
 import isoWhite from '../../assets/images/logo/iso-blanco.png'
 
-/* Isotipo blanco en el nav (fondo oscuro monocromo) en TODAS las páginas.
-   Para colorear por página a futuro: la diseñadora dejó un PNG por color de
-   marca en assets/images/logo/ (CLUE HYPER VIOLET / INFRARED ORANGE / …).
-   El Nav ya es route-aware → mapear pathname a la variante y cambiar el src:
-     const iso = { '/odoo': isoViolet, '/landing': isoOrange }[pathname] ?? isoWhite */
+/* Logo del nav: arriba de todo se ve el logo completo (isotipo + "Clue Dev");
+   al scrollear hacia abajo hace crossfade y queda solo el isotipo.
+   Ambos en blanco (nav monocromo) en TODAS las páginas. Para colorear por
+   página a futuro hay un PNG por color de marca en assets/images/logo/
+   (CLUE HYPER VIOLET / INFRARED ORANGE / …); el Nav ya es route-aware. */
 
 export default function Nav() {
   const { t, lang, setLang } = useLang()
   const [menuOpen, setMenuOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
 
   const closeMenu = () => setMenuOpen(false)
+
+  // Al bajar del tope, el logo pasa de completo a solo isotipo.
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24)
+    onScroll() // estado inicial (por si carga ya scrolleado)
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
 
   const linkClass = ({ isActive }) =>
     `${styles.link}${isActive ? ` ${styles.linkActive}` : ''}`
@@ -31,7 +41,7 @@ export default function Nav() {
   }
 
   return (
-    <nav className={styles.nav}>
+    <nav className={`${styles.nav}${scrolled ? ` ${styles.navScrolled}` : ''}`}>
       <div className={styles.inner}>
         <NavLink
           to="/"
@@ -40,7 +50,8 @@ export default function Nav() {
           end
           aria-label="Clue Dev — Inicio"
         >
-          <img src={isoWhite} alt="" className={styles.logo} />
+          <img src={clueFull} alt="" className={`${styles.logo} ${styles.logoFull}`} />
+          <img src={isoWhite} alt="" className={`${styles.logo} ${styles.logoIso}`} />
         </NavLink>
 
         <ul className={styles.links} role="list">
