@@ -35,39 +35,43 @@
   padding: 1.1rem clamp(1.25rem, 5vw, 4rem);
 }
 
-/* Marca: contenedor de alto fijo con los dos logos superpuestos. El ancho
-   equivale al del logo activo a 34px de alto (full 876x396 → ~76px;
-   iso 668x468 → ~49px) y transiciona al scrollear. */
+/* Marca = "ventana" que recorta el lockup (una sola imagen). El isotipo, con
+   alto CONSTANTE, no cambia de tamaño; al scrollear la ventana encoge y recorta
+   el texto de abajo → transición suave, sin salto.
+   Medidas del lockup 876x396: isotipo x[264..623] y[0..245]; texto y[246..395].
+   A 22px de isotipo → escala 0.0894 → imagen de 35.4px de alto. */
 .brand {
   position: relative;
-  display: inline-flex;
-  align-items: center;
+  display: block;
   flex-shrink: 0;
-  height: 34px;
-  width: 76px;
-  transition: width var(--t-slow) var(--ease);
+  overflow: hidden;
+  width: 78.3px;   /* lockup completo */
+  height: 35.4px;
+  transition: width var(--t-slow) var(--ease), height var(--t-slow) var(--ease);
 }
 
-/* Logos (PNG) superpuestos; crossfade por scroll. Blanco en todas las
-   páginas; el color por página se haría cambiando el src en Nav.jsx. */
+/* La imagen (lockup) no se mueve de tamaño: solo se desliza en X al scrollear.
+   Blanco en todas las páginas; el color por página se haría cambiando el src. */
 .logo {
   position: absolute;
+  top: 0;
   left: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  height: 34px;
+  height: 35.4px;  /* CONSTANTE: el isotipo nunca cambia de tamaño */
   width: auto;
   display: block;
-  transition: opacity var(--t-slow) var(--ease);
+  transition: left var(--t-slow) var(--ease);
 }
 
-.logoFull { opacity: 1; }
-.logoIso  { opacity: 0; }
+/* Scrolleado: la ventana queda del tamaño del isotipo (recorta el texto) y lo
+   alinea a la izquierda. */
+.navScrolled .brand {
+  width: 32.2px;
+  height: 22px;
+}
 
-/* Scrolleado: el contenedor achica y queda solo el isotipo. */
-.navScrolled .brand { width: 49px; }
-.navScrolled .logoFull { opacity: 0; }
-.navScrolled .logoIso  { opacity: 1; }
+.navScrolled .logo {
+  left: -23.6px;
+}
 
 /* ── Desktop links ────────────────────────────────────────── */
 .links {
