@@ -35,37 +35,41 @@
   padding: 1.1rem clamp(1.25rem, 5vw, 4rem);
 }
 
-/* Marca: contenedor de los dos logos superpuestos que hacen crossfade con el
-   scroll. El ancho pasa del logo completo (~71px) al isotipo (~43px). */
+/* Marca: contenedor de los dos logos superpuestos que hacen crossfade suave
+   con el scroll. El ancho pasa del logo completo (~71px) al isotipo (~43px). */
 .brand {
   position: relative;
   display: block;
   flex-shrink: 0;
   height: 32px;
   width: 70.8px;   /* clue-digital-white a 32px de alto */
-  transition: width var(--t-slow) var(--ease);
+  transition: width 0.55s var(--ease-out);
 }
 
-/* Los dos logos, centrados y a la izquierda. max-width:none anula el reset
-   global img{max-width:100%} (si no, capaba el ancho al encoger el contenedor). */
+/* Los dos logos, centrados y a la izquierda. El crossfade combina opacidad con
+   un leve zoom para que se sienta más suave (no un corte de opacidad).
+   max-width:none anula el reset global img{max-width:100%}. */
 .logo {
   position: absolute;
   top: 50%;
   left: 0;
-  transform: translateY(-50%);
+  transform-origin: left center;
+  transform: translateY(-50%) scale(1);
   display: block;
   width: auto;
   max-width: none;
-  transition: opacity var(--t-slow) var(--ease);
+  transition: opacity 0.55s var(--ease-out), transform 0.55s var(--ease-out);
 }
 
-.logoFull { height: 32px; opacity: 1; } /* clue-digital-white (completo) */
-.logoIso  { height: 30px; opacity: 0; } /* iso-blanco (solo isotipo) */
+/* clue-digital-white (completo): visible arriba; al scrollear se va achicando. */
+.logoFull { height: 32px; opacity: 1; }
+.navScrolled .logoFull { opacity: 0; transform: translateY(-50%) scale(0.9); }
 
-/* Scrolleado: se desvanece el completo y aparece el isotipo. */
+/* iso-blanco (solo isotipo): oculto y un toque chico arriba; entra creciendo. */
+.logoIso { height: 30px; opacity: 0; transform: translateY(-50%) scale(0.85); }
+.navScrolled .logoIso { opacity: 1; transform: translateY(-50%) scale(1); }
+
 .navScrolled .brand { width: 42.8px; } /* iso-blanco a 30px de alto */
-.navScrolled .logoFull { opacity: 0; }
-.navScrolled .logoIso  { opacity: 1; }
 
 /* ── Desktop links ────────────────────────────────────────── */
 .links {

@@ -18,8 +18,10 @@ export default function Nav() {
   const closeMenu = () => setMenuOpen(false)
 
   // Al bajar del tope, el logo pasa de completo a solo isotipo.
+  // Histéresis (entra a 40px, sale a 8px) para que no parpadee en el umbral.
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24)
+    const onScroll = () =>
+      setScrolled(prev => (prev ? window.scrollY > 8 : window.scrollY > 40))
     onScroll() // estado inicial (por si carga ya scrolleado)
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
