@@ -1,5 +1,6 @@
 import styles from './Footer.module.css'
 import { useLang } from '../../i18n/context'
+import clueLogo from '../../assets/images/logo/clue-digital-white.png'
 
 const EMAILS = ['cluedev.joaquin@gmail.com', 'cluedev.agustin@gmail.com']
 const PHONE = { display: '+54 9 3385 445914', href: 'tel:+5493385445914' }
@@ -18,9 +19,7 @@ export default function Footer() {
     <footer className={styles.footer}>
       <div className={styles.top}>
         <div className={styles.brandCol}>
-          <span className={styles.brand}>
-            CLUE DEV<span className={styles.brandDot}>.</span>
-          </span>
+          <img src={clueLogo} alt="Clue Dev" className={styles.brandLogo} />
           <p className={styles.tagline}>{t.footer.tagline}</p>
         </div>
 

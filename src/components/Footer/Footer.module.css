@@ -19,15 +19,10 @@
   max-width: 42ch;
 }
 
-.brand {
-  font-family: var(--font-mono);
-  font-size: 13px;
-  letter-spacing: 0.14em;
-  color: var(--color-text-primary);
-}
-
-.brandDot {
-  color: var(--ember-500);
+.brandLogo {
+  width: clamp(150px, 20vw, 185px);
+  height: auto;
+  display: block;
 }
 
 .tagline {
