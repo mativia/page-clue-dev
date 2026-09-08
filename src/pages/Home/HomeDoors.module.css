@@ -75,8 +75,8 @@
   transition: opacity var(--t-slow) var(--ease-out);
 }
 
-/* CLUE CONCRETE — preview fijo (fantasma oscuro) en los 3 paneles. */
-.logoBase { opacity: 1; }
+/* CLUE CONCRETESOFT atenuado — marca de agua fija (fundida en el fondo). */
+.logoBase { opacity: 0.4; }
 
 /* Logo en el color de la cara — oculto, aparece al hover encima del Concrete. */
 .logoColor { opacity: 0; }
