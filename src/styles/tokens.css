@@ -20,16 +20,16 @@
   /* ── Escala violeta ───────────────────────────────────── */
   --violet-900: #2a1d3d;
   --violet-700: #5b3fa8;
-  --violet-500: #8b5cf6;  /* violeta vivo — el principal de UI */
+  --violet-500: #8628FC;  /* violeta vivo — el principal de UI */
   --violet-300: #a982e0;  /* lavanda — eyebrows, numeración */
   --violet-200: #c4aef0;  /* texto sobre superficie violeta */
 
-  --violet-a04: rgba(139, 92, 246, 0.04);
-  --violet-a08: rgba(139, 92, 246, 0.08);
-  --violet-a14: rgba(139, 92, 246, 0.14);
-  --violet-a24: rgba(139, 92, 246, 0.24);
-  --violet-a40: rgba(139, 92, 246, 0.40);
-  --violet-a60: rgba(139, 92, 246, 0.60);
+  --violet-a04: rgba(134, 40, 252, 0.04);
+  --violet-a08: rgba(134, 40, 252, 0.08);
+  --violet-a14: rgba(134, 40, 252, 0.14);
+  --violet-a24: rgba(134, 40, 252, 0.24);
+  --violet-a40: rgba(134, 40, 252, 0.40);
+  --violet-a60: rgba(134, 40, 252, 0.60);
 
   /* Violeta oficial de Odoo — detalles "esto es Odoo".
      Se usa apagado, como tinte de ambiente, nunca como CTA. */
@@ -38,21 +38,21 @@
   --odoo-a20:    rgba(113, 75, 103, 0.20);
 
   /* ── Escala ember (acento) ────────────────────────────── */
-  --ember-500: #e84c1e;
+  --ember-500: #FC4A01;
   --ember-300: #f5875f;
 
-  --ember-a08: rgba(232, 76, 30, 0.08);
-  --ember-a14: rgba(232, 76, 30, 0.14);
-  --ember-a24: rgba(232, 76, 30, 0.24);
-  --ember-a40: rgba(232, 76, 30, 0.40);
-  --ember-a60: rgba(232, 76, 30, 0.60);
+  --ember-a08: rgba(252, 74, 1, 0.08);
+  --ember-a14: rgba(252, 74, 1, 0.14);
+  --ember-a24: rgba(252, 74, 1, 0.24);
+  --ember-a40: rgba(252, 74, 1, 0.40);
+  --ember-a60: rgba(252, 74, 1, 0.60);
 
   /* Alias de marca (compatibilidad + lectura) */
   --color-ember:  var(--ember-500);
   --color-violet: var(--violet-500);
 
   /* ── Texto — grises corridos hacia el violeta ─────────── */
-  --color-text-primary:   #ede9e0;
+  --color-text-primary:   #EBEBEB;
   --color-text-secondary: #a49cb0;
   --color-text-muted:     #7d7589;
 
@@ -75,8 +75,8 @@
   --rule-fade: linear-gradient(90deg, transparent, var(--border-hairline) 50%, transparent);
 
   /* ── Glows ────────────────────────────────────────────── */
-  --glow-violet: 0 0 40px rgba(139, 92, 246, 0.18);
-  --glow-ember:  0 0 32px rgba(232, 76, 30, 0.22);
+  --glow-violet: 0 0 40px rgba(134, 40, 252, 0.18);
+  --glow-ember:  0 0 32px rgba(252, 74, 1, 0.22);
 
   /* ── Glass ────────────────────────────────────────────── */
   --glass-violet:  rgba(24, 18, 34, 0.55);

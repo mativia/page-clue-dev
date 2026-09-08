@@ -71,11 +71,11 @@
 }
 
 .line {
-  color: #ede9e0;
+  color: #EBEBEB;
 }
 
 .dot {
-  color: #e84c1e;
+  color: #FC4A01;
 }
 
 .dotDim {
@@ -96,7 +96,7 @@
   font-family: 'DM Sans', sans-serif;
   font-size: 14px;
   font-weight: 400;
-  color: #ede9e0;
+  color: #EBEBEB;
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
@@ -113,7 +113,7 @@
   left: 0;
   right: 0;
   height: 1px;
-  background: #e84c1e;
+  background: #FC4A01;
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 0.3s ease;
@@ -161,7 +161,7 @@
   right: 0;
   z-index: 2;
   height: 1px;
-  background: linear-gradient(to right, #e84c1e, transparent 40%);
+  background: linear-gradient(to right, #FC4A01, transparent 40%);
 }
 
 /* ── Mobile ───────────────────────────────────────────────── */

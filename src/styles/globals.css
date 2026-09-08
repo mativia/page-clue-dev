@@ -41,9 +41,9 @@ body::before {
   z-index: -1;
   pointer-events: none;
   background:
-    radial-gradient(120vw 95vh at 10% -12%, rgba(139, 92, 246, 0.22), transparent 62%),
+    radial-gradient(120vw 95vh at 10% -12%, rgba(134, 40, 252, 0.22), transparent 62%),
     radial-gradient(95vw 75vh at 96% 12%, rgba(113, 75, 103, 0.20), transparent 64%),
-    radial-gradient(85vw 65vh at 50% 112%, rgba(232, 76, 30, 0.07), transparent 60%),
+    radial-gradient(85vw 65vh at 50% 112%, rgba(252, 74, 1, 0.07), transparent 60%),
     var(--surface-0);
 }
 

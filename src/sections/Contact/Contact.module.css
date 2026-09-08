@@ -16,9 +16,9 @@
   inset: 0;
   z-index: 0;
   background:
-    radial-gradient(70vw 70vh at 78% 18%, rgba(139, 92, 246, 0.30), transparent 62%),
+    radial-gradient(70vw 70vh at 78% 18%, rgba(134, 40, 252, 0.30), transparent 62%),
     radial-gradient(60vw 60vh at 12% 88%, rgba(113, 75, 103, 0.32), transparent 64%),
-    radial-gradient(50vw 40vh at 50% 50%, rgba(232, 76, 30, 0.06), transparent 70%);
+    radial-gradient(50vw 40vh at 50% 50%, rgba(252, 74, 1, 0.06), transparent 70%);
 }
 
 /* ── Panel ────────────────────────────────────────────────── */

@@ -33,18 +33,18 @@
   --font-mono:    'DM Mono', 'JetBrains Mono', monospace;
 
   /* ── Text ─────────────────────────────────────────────── */
-  --color-text-primary:   #ede9e0;
+  --color-text-primary:   #EBEBEB;
   --color-text-secondary: #9a9489;
   --color-text-muted:     #9a9489;
 
   /* ── Brand palette (landing / naranja) ────────────────── */
-  --color-base:    #111110;
-  --color-ember:   #e84c1e;
+  --color-base:    #151918;
+  --color-ember:   #FC4A01;
   --color-teal:    #0d2e2a;
   --color-stone:   #9a9489;
 
   /* ── Accent ───────────────────────────────────────────── */
-  --color-accent:         #ede9e0;
+  --color-accent:         #EBEBEB;
   --color-accent-blue:    #4f8eff;
   --color-accent-cyan:    #22d3ee;
   --color-accent-muted:   rgba(79, 142, 255, 0.16);

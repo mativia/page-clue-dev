@@ -2,7 +2,7 @@
 .section {
   position: relative;
   padding: clamp(5rem, 11vw, 9rem) 0 0;
-  background: #111110;
+  background: #151918;
   overflow: hidden;
 }
 
@@ -65,7 +65,7 @@
   font-size: 10px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: #e84c1e;
+  color: #FC4A01;
   margin-bottom: 1.5rem;
 }
 
@@ -74,13 +74,13 @@
   font-size: clamp(56px, 10vw, 132px);
   line-height: 0.86;
   letter-spacing: 0.01em;
-  color: #ede9e0;
+  color: #EBEBEB;
   margin: 0 0 1.75rem;
   max-width: 14ch;
 }
 
 .accentDot {
-  color: #e84c1e;
+  color: #FC4A01;
 }
 
 .lede {
@@ -94,7 +94,7 @@
 }
 
 .lede strong {
-  color: #ede9e0;
+  color: #EBEBEB;
   font-weight: 500;
 }
 
@@ -120,7 +120,7 @@
 }
 
 .point:focus-visible {
-  outline: 2px solid #e84c1e;
+  outline: 2px solid #FC4A01;
   outline-offset: -2px;
 }
 
@@ -129,7 +129,7 @@
 }
 
 .pointActive::after {
-  background: #e84c1e;
+  background: #FC4A01;
 }
 
 .point::after {
@@ -148,14 +148,14 @@
 }
 
 .point:hover::after {
-  background: #e84c1e;
+  background: #FC4A01;
 }
 
 .pointNum {
   font-family: 'DM Mono', monospace;
   font-size: 10px;
   letter-spacing: 0.15em;
-  color: #e84c1e;
+  color: #FC4A01;
   margin-bottom: 1.5rem;
 }
 
@@ -163,7 +163,7 @@
   font-family: 'Bebas Neue', sans-serif;
   font-size: clamp(24px, 2.4vw, 30px);
   line-height: 1.02;
-  color: #ede9e0;
+  color: #EBEBEB;
   margin: 0 0 0.9rem;
 }
 
@@ -172,7 +172,7 @@
   font-weight: 300;
   font-size: 13px;
   line-height: 1.7;
-  color: rgba(237, 233, 224, 0.62);
+  color: rgba(235, 235, 235, 0.62);
   margin: 0;
 }
 
