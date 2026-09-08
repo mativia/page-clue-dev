@@ -63,7 +63,7 @@
    centrado horizontal y un 25% por encima del centro vertical. Fundido + zoom. */
 .logoReveal {
   position: absolute;
-  top: 25%;
+  top: 35%;
   left: 50%;
   z-index: 1;
   width: min(84%, 408px);
