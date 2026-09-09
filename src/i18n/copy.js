@@ -164,7 +164,7 @@ export const COPY = {
     desarrollo: {
       hero: {
         eyebrow: 'CLUE_DEV · SOFTWARE A MEDIDA · CBA, AR',
-        titleLines: ['SISTEMAS A MEDIDA.', 'PRODUCTOS LISTOS.', 'UN SOLO ESTÁNDAR'],
+        titleLines: ['SOFTWARE', 'QUE FUNCIONA'],
         sub: 'Construimos sistemas a medida, del relevamiento al deploy, y ofrecemos productos listos por suscripción. Dos formas de sumar software a tu empresa, con el mismo estándar de ingeniería.',
         cta: 'Hablemos →',
       },
@@ -530,7 +530,7 @@ export const COPY = {
     desarrollo: {
       hero: {
         eyebrow: 'CLUE_DEV · CUSTOM SOFTWARE · CBA, AR',
-        titleLines: ['CUSTOM SYSTEMS.', 'READY PRODUCTS.', 'ONE STANDARD'],
+        titleLines: ['SOFTWARE', 'THAT WORKS'],
         sub: 'We build custom systems, from discovery to deploy, and offer ready-made products by subscription. Two ways to bring software into your company, with the same engineering standard.',
         cta: "Let's talk →",
       },
