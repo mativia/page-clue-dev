@@ -35,6 +35,13 @@ export default function Custom() {
             </Reveal>
           ))}
         </ol>
+
+        <Reveal>
+          <div className={styles.specialty}>
+            <span className={styles.specialtyLabel}>{c.specialty.label}</span>
+            <p className={styles.specialtyText}>{c.specialty.text}</p>
+          </div>
+        </Reveal>
       </div>
     </section>
   )

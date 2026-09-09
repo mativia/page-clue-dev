@@ -188,6 +188,10 @@ export const COPY = {
         eyebrow: 'Modo A · A medida',
         titleLines: ['DEL PROBLEMA', 'AL SISTEMA', 'EN PRODUCCIÓN'],
         sub: 'Un proceso claro y medible, del primer relevamiento al sistema funcionando en tu empresa.',
+        specialty: {
+          label: 'Especialidad · Automatización de Excel',
+          text: 'Nos especializamos en automatizar procesos que hoy viven en Excel. Miramos cómo trabaja tu empresa con sus planillas y lo llevamos a una interfaz cómoda para el usuario: todo unificado y con una base de datos propia.',
+        },
         steps: [
           { id: '01', title: 'Relevamiento', desc: 'Entendemos tu operación y definimos los requerimientos reales, sin tecnicismos.' },
           { id: '02', title: 'Desarrollo', desc: 'Construimos el sistema a medida, con avances visibles y comunicación directa.' },
@@ -554,6 +558,10 @@ export const COPY = {
         eyebrow: 'Mode A · Custom',
         titleLines: ['FROM PROBLEM', 'TO SYSTEM', 'IN PRODUCTION'],
         sub: 'A clear, measurable process, from first discovery to the system running in your company.',
+        specialty: {
+          label: 'Specialty · Excel automation',
+          text: 'We specialize in automating processes that today live in Excel. We look at how your company works with its spreadsheets and move it into an interface that feels comfortable for the user: everything unified, with its own database.',
+        },
         steps: [
           { id: '01', title: 'Discovery', desc: 'We understand your operation and define the real requirements, no jargon.' },
           { id: '02', title: 'Development', desc: 'We build the custom system, with visible progress and direct communication.' },
