@@ -1,5 +1,6 @@
 import styles from './Hero.module.css'
 import { useLang } from '../../i18n/context'
+import logoWatermark from '../../assets/images/logo/clue-infrared-orange.png'
 
 /* Hero de /landing. Titular en DOS frases con simetría: la primera
    (diseño → atrae) va atenuada; la segunda (código → convierte) lleva
@@ -10,6 +11,10 @@ export default function Hero() {
 
   return (
     <section className={styles.hero} id="inicio">
+      {/* Marca de agua: logo de Clue Dev en naranja, sutil, a la derecha
+          (sobre la zona más oscura de la foto). Solo en desktop ancho. */}
+      <img src={logoWatermark} alt="" className={styles.watermark} aria-hidden="true" />
+
       <div className={styles.content}>
         <span className={styles.eyebrow}>{h.eyebrow}</span>
 

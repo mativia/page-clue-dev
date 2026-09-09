@@ -31,6 +31,29 @@
   );
 }
 
+/* ── Marca de agua — logo naranja, sutil, a la derecha ────── */
+/* Sobre la zona baja-derecha de la foto (más oscura por el scrim), por encima
+   del scrim (z 2) pero despejada del contenido (izquierda) y del HUD (abajo). */
+.watermark {
+  position: absolute;
+  z-index: 2;
+  top: 52%;
+  right: clamp(17rem, 21vw, 24rem);
+  transform: translateY(-50%);
+  width: clamp(280px, 24vw, 460px);
+  height: auto;
+  max-width: none; /* anula el reset global img{max-width:100%} */
+  opacity: 0.16;
+  pointer-events: none;
+}
+
+/* En pantallas angostas se acercaría al contenido/HUD: se oculta. */
+@media (max-width: 1400px) {
+  .watermark {
+    display: none;
+  }
+}
+
 /* ── Content zone (left-aligned, bottom) ─────────────────── */
 .content {
   position: relative;
