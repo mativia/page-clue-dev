@@ -30,7 +30,7 @@
   z-index: 0;
   top: clamp(4rem, 9vw, 7rem);
   right: clamp(1.5rem, 6vw, 6rem);
-  width: clamp(300px, 32vw, 520px);
+  width: clamp(240px, 26vw, 420px);
   height: auto;
   max-width: none; /* anula el reset global img{max-width:100%} */
   opacity: 0.12;
