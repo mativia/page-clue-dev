@@ -80,7 +80,7 @@
   width: clamp(280px, 24vw, 460px);
   height: auto;
   max-width: none; /* anula el reset global img{max-width:100%} */
-  opacity: 0.12;
+  opacity: 0.08;
   pointer-events: none;
 }
 
