@@ -37,13 +37,13 @@
 .watermark {
   position: absolute;
   z-index: 2;
-  top: 52%;
-  right: clamp(17rem, 21vw, 24rem);
+  top: 27%;
+  right: clamp(3rem, 5vw, 7rem);
   transform: translateY(-50%);
   width: clamp(280px, 24vw, 460px);
   height: auto;
   max-width: none; /* anula el reset global img{max-width:100%} */
-  opacity: 0.16;
+  opacity: 0.18;
   pointer-events: none;
 }
 
