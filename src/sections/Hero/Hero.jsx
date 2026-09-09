@@ -2,6 +2,7 @@ import { useRef } from 'react'
 import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion'
 import styles from './Hero.module.css'
 import { useLang } from '../../i18n/context'
+import logoWatermark from '../../assets/images/logo/clue-hyper-violet.png'
 
 // Textura de fondo: cualquier imagen llamada fondoHero.(png|jpg|jpeg|webp)
 // en src/assets/images/. Va en duotono violeta y a baja opacidad — el campo
@@ -39,6 +40,10 @@ export default function Hero() {
       <div className={styles.field} aria-hidden="true" />
       <div className={styles.mesh} aria-hidden="true" />
       <div className={styles.grain} aria-hidden="true" />
+
+      {/* Marca de agua: logo de Clue Dev en violeta, muy sutil, en la zona
+          derecha del hero (detrás del contenido). Solo en desktop. */}
+      <img src={logoWatermark} alt="" className={styles.watermark} aria-hidden="true" />
 
       <div className={styles.stage}>
         <motion.div

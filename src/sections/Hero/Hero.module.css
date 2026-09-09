@@ -68,6 +68,22 @@
   100% { transform: translate(0, 0); }
 }
 
+/* ── Marca de agua — logo violeta, muy sutil, a la derecha ──── */
+/* Anclada a la derecha (despejada del título a la izquierda y del spec rail
+   al borde). z-index 2: queda detrás del contenido (z 3). */
+.watermark {
+  position: absolute;
+  z-index: 2;
+  top: 42%;
+  right: clamp(17rem, 21vw, 24rem);
+  transform: translateY(-50%);
+  width: clamp(280px, 24vw, 460px);
+  height: auto;
+  max-width: none; /* anula el reset global img{max-width:100%} */
+  opacity: 0.12;
+  pointer-events: none;
+}
+
 /* ── Stage ────────────────────────────────────────────────── */
 .stage {
   position: relative;
@@ -306,6 +322,14 @@
 }
 
 /* ── Responsive ───────────────────────────────────────────── */
+/* La marca de agua es un detalle de desktop amplio; en pantallas más angostas
+   se acercaría al título / spec, así que la ocultamos. */
+@media (max-width: 1400px) {
+  .watermark {
+    display: none;
+  }
+}
+
 @media (max-width: 1080px) {
   .stage {
     grid-template-columns: minmax(0, 1fr);
