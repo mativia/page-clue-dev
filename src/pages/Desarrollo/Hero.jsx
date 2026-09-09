@@ -1,5 +1,6 @@
 import styles from './Hero.module.css'
 import { useLang } from '../../i18n/context'
+import logoWatermark from '../../assets/images/logo/clue-digital-white.png'
 
 /* Hero de /desarrollo. B&N, feel de ficha técnica: grid tenue de fondo +
    metadata mono. Titular en 3 tiempos; las dos primeras líneas son las dos
@@ -12,6 +13,9 @@ export default function Hero() {
   return (
     <section className={styles.hero} id="inicio">
       <div className={styles.grid} aria-hidden="true" />
+      {/* Marca de agua: logo de Clue Dev en blanco, sutil, a la derecha
+          (zona superior libre). Solo en desktop ancho. */}
+      <img src={logoWatermark} alt="" className={styles.watermark} aria-hidden="true" />
 
       <div className={styles.content}>
         <span className={styles.eyebrow}>{h.eyebrow}</span>

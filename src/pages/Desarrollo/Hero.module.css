@@ -26,6 +26,29 @@
   mask-image: radial-gradient(circle at 50% 38%, #000 0%, transparent 78%);
 }
 
+/* ── Marca de agua — logo blanco, sutil, a la derecha ──────── */
+/* Zona superior-derecha libre (contenido abajo-izq, HUD abajo-der).
+   Detrás del contenido (z 1, sobre la grilla z 0). */
+.watermark {
+  position: absolute;
+  z-index: 1;
+  top: 40%;
+  right: clamp(17rem, 21vw, 24rem);
+  transform: translateY(-50%);
+  width: clamp(280px, 24vw, 460px);
+  height: auto;
+  max-width: none; /* anula el reset global img{max-width:100%} */
+  opacity: 0.08;
+  pointer-events: none;
+}
+
+/* En pantallas angostas se acercaría al contenido/HUD: se oculta. */
+@media (max-width: 1400px) {
+  .watermark {
+    display: none;
+  }
+}
+
 .content {
   position: relative;
   z-index: 2;
