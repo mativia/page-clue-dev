@@ -31,9 +31,9 @@
   );
 }
 
-/* ── Marca de agua — logo naranja, sutil, a la derecha ────── */
-/* Sobre la zona baja-derecha de la foto (más oscura por el scrim), por encima
-   del scrim (z 2) pero despejada del contenido (izquierda) y del HUD (abajo). */
+/* ── Marca de agua — logo gris (Concretesoft), rincón sup. derecho ── */
+/* Gris en vez de naranja: contrasta mejor sobre las nubes claras. Por encima
+   del scrim (z 2), despejada del contenido (izquierda) y del HUD (abajo). */
 .watermark {
   position: absolute;
   z-index: 2;
@@ -43,7 +43,7 @@
   width: clamp(280px, 24vw, 460px);
   height: auto;
   max-width: none; /* anula el reset global img{max-width:100%} */
-  opacity: 0.18;
+  opacity: 0.22;
   pointer-events: none;
 }
 
