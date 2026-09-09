@@ -248,6 +248,11 @@
     opacity: 1;
     filter: none;
   }
+
+  /* En mobile el logo se encima con el título: lo ocultamos. */
+  .logoLayer {
+    display: none;
+  }
 }
 
 /* ── Reduced motion ─────────────────────────────────────── */
