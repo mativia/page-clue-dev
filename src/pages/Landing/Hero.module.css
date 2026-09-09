@@ -31,29 +31,6 @@
   );
 }
 
-/* ── Marca de agua — logo gris (Concretesoft), rincón sup. derecho ── */
-/* Gris en vez de naranja: contrasta mejor sobre las nubes claras. Por encima
-   del scrim (z 2), despejada del contenido (izquierda) y del HUD (abajo). */
-.watermark {
-  position: absolute;
-  z-index: 2;
-  top: 27%;
-  right: clamp(3rem, 5vw, 7rem);
-  transform: translateY(-50%);
-  width: clamp(280px, 24vw, 460px);
-  height: auto;
-  max-width: none; /* anula el reset global img{max-width:100%} */
-  opacity: 0.22;
-  pointer-events: none;
-}
-
-/* En pantallas angostas se acercaría al contenido/HUD: se oculta. */
-@media (max-width: 1400px) {
-  .watermark {
-    display: none;
-  }
-}
-
 /* ── Content zone (left-aligned, bottom) ─────────────────── */
 .content {
   position: relative;

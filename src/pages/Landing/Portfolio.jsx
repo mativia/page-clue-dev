@@ -1,6 +1,7 @@
 import styles from './Portfolio.module.css'
 import { Reveal } from '../../components/Reveal/Reveal'
 import { useLang } from '../../i18n/context'
+import logoWatermark from '../../assets/images/logo/clue-infrared-orange.png'
 
 /* Capturas de los proyectos. Nombrá cada archivo EXACTAMENTE igual que el
    `slug` del item en copy.js (ej: proyecto-01.webp). Si el archivo no existe,
@@ -75,6 +76,8 @@ export default function Portfolio() {
   return (
     <section className={styles.section} id="trabajos">
       <div className={styles.topDivider} />
+      {/* Marca de agua: logo naranja, arriba a la derecha del header. */}
+      <img src={logoWatermark} alt="" className={styles.watermark} aria-hidden="true" />
       <div className={styles.sectionInner}>
         <span className={styles.eyebrow}>{p.eyebrow}</span>
         <h2 className={styles.sectionTitle}>
