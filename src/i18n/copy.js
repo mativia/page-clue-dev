@@ -17,7 +17,8 @@ export const COPY = {
     nav: {
       links: [
         { label: 'Servicios', id: 'servicios' },
-        { label: 'Módulos', id: 'modulos' },
+        // { label: 'Módulos', id: 'modulos' }, // oculto hasta tener módulos reales
+
         { label: 'Proceso', id: 'proceso' },
         { label: 'Contacto', id: 'contacto' },
       ],
@@ -395,7 +396,8 @@ export const COPY = {
     nav: {
       links: [
         { label: 'Services', id: 'servicios' },
-        { label: 'Modules', id: 'modulos' },
+        // { label: 'Modules', id: 'modulos' }, // oculto hasta tener módulos reales
+
         { label: 'Process', id: 'proceso' },
         { label: 'Contact', id: 'contacto' },
       ],
