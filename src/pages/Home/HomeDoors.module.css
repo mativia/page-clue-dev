@@ -76,14 +76,14 @@
 }
 
 /* CLUE CONCRETESOFT atenuado — marca de agua fija (fundida en el fondo). */
-.logoBase { opacity: 0.14; }
+.logoBase { opacity: 0.10; }
 
 /* Logo en el color de la cara — oculto, aparece al hover encima del Concrete. */
 .logoColor { opacity: 0; }
 
 .panel:hover .logoColor,
 .panel:focus-visible .logoColor {
-  opacity: 0.6;
+  opacity: 0.45;
 }
 
 /* Metadata mono, arriba. */
